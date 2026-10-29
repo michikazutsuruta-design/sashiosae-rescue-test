@@ -4,8 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="差押え・競売・任意売却・相続不動産の売却相談。全国対応の差押えレスキュー。">
-<title>差押えレスキュー｜全国対応の不動産売却相談</title>
+<meta name="description" content="差押え・競売の通知、住宅ローン返済、任意売却、相続不動産の売却でお悩みの方へ。差押えレスキューは全国の不動産相談を受け付けています。相談無料。株式会社ライドエステート運営。">
+<link rel="canonical" href="https://michikazutsuruta-design.github.io/sashiosae-rescue-test/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="差押えレスキュー">
+<meta property="og:title" content="差押え・競売・任意売却・相続不動産の無料相談｜差押えレスキュー">
+<meta property="og:description" content="全国の不動産売却相談を受付。通知や期限、物件の状況を整理し、今後の選択肢を一緒に考えます。">
+<meta property="og:url" content="https://michikazutsuruta-design.github.io/sashiosae-rescue-test/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#102c49">
+<title>差押え・競売・任意売却・相続不動産の無料相談｜差押えレスキュー</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:"Helvetica Neue",Arial,"Noto Sans JP",sans-serif;color:#203044;background:#f5f7fa;line-height:1.8}
@@ -40,41 +49,81 @@ footer a{color:white}
 .hero{padding:55px 20px}
 .form-box{padding:20px}
 }
+
+html{scroll-padding-top:24px}
+a{color:#174a70;text-underline-offset:3px;overflow-wrap:anywhere}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #9b5300;outline-offset:4px}
+.hero a:focus-visible,header a:focus-visible,footer a:focus-visible{outline-color:#fff}
+.skip{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:10}
+.skip:focus{top:12px}
+.header-inner nav{display:flex;gap:20px;flex-wrap:wrap}
+.hero .secondary{display:inline-block;color:white;margin:12px 18px}
+.hero .eyebrow{font-size:14px;letter-spacing:.06em;margin-bottom:18px}
+.hero .small{color:#e0eaf3;margin-top:18px;font-size:14px}
+.card p:last-child{margin-bottom:0}
+.section-intro{max-width:760px;margin:0 auto 28px}
+.center{text-align:center;margin-top:28px}
+.small{color:#49596d}
+#contact{max-width:800px}
+#contact form{background:white;padding:28px;border-radius:12px}
+#contact input,#contact select,#contact textarea{background:#fff;color:#203044;min-width:0}
+.required{font-size:13px;color:#8c3323;margin-left:8px}
+.consent{display:flex;align-items:flex-start;gap:10px;font-weight:normal}
+.consent input{width:22px;height:22px;flex:0 0 22px;margin-top:5px}
+details{background:white;border-radius:10px;padding:20px 24px;margin-bottom:12px}
+summary{font-weight:bold;cursor:pointer}
+details p{margin-bottom:0}
+.mobile-cta{display:none}
+footer p{overflow-wrap:anywhere}
+@media(max-width:650px){
+.header-inner nav{justify-content:center;margin-top:10px;gap:16px}
+.container{padding:38px 18px}h2{font-size:24px}
+.card{padding:22px}.hero{padding:44px 18px}
+#contact form{padding:20px 16px}
+.mobile-cta{display:block;position:fixed;bottom:0;left:0;right:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#102c49;z-index:5}
+.mobile-cta .btn{display:block;text-align:center;padding:10px}
+body{padding-bottom:90px}
+}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">本文へ移動</a>
 <header>
 <div class="header-inner">
 <div class="logo">差押えレスキュー</div>
-<a href="#contact">無料相談窓口</a>
+<nav aria-label="メインメニュー"><a href="#services">相談内容</a><a href="#faq">よくある質問</a><a href="#contact">無料相談窓口</a></nav>
 </div>
 </header>
 
 <section class="hero">
-<h1>大切な不動産のことで、<br>一人で悩んでいませんか？</h1>
+<p class="eyebrow">全国対応の不動産売却相談窓口</p>
+<h1>差押え・競売・任意売却・相続不動産。<br>まずは、今の状況を一緒に整理しましょう。</h1>
 <p>差押え・競売・住宅ローンの返済・相続した不動産。状況を整理し、売却という選択肢を一緒に考えるための相談窓口です。</p>
-<a class="btn" href="#services">相談できる内容を見る</a>
+<a class="btn" href="#contact">無料相談フォームへ</a>
+<a class="secondary" href="#services">相談できる内容を見る</a>
+<p class="small">相談無料｜運営：株式会社ライドエステート（RE/MAX RIDE）</p>
 </section>
 
-<main>
+<main id="main">
 <section class="container" id="services">
 <h2>このようなお悩みに対応します</h2>
 <div class="grid">
 <article class="card">
 <h3>差押えの通知が届いた</h3>
-<p>通知の内容や期限を確認し、不動産売却を含む今後の選択肢を整理します。</p>
+<p>不動産の差押え通知が届いたら、通知の発行元・対象物件・記載された期限を確認しましょう。ローンや税金の滞納など、差押えの原因によって対応は異なります。売却に必要な条件や確認事項を整理します。</p>
 </article>
 <article class="card">
 <h3>不動産が競売になりそう</h3>
-<p>競売の進行状況を確認し、任意売却を検討できるかなどを整理します。</p>
+<p>競売は、裁判所の手続により不動産が売却される制度です。開始決定や入札に関する通知がある場合は、日程もお知らせください。進行状況により取れる方法が変わるため、早めの状況確認が大切です。相談だけで手続が停止することはありません。</p>
 </article>
 <article class="card">
-<h3>住宅ローンの返済が厳しい</h3>
-<p>返済状況や不動産の価値を踏まえ、売却の可能性を検討します。</p>
+<h3>住宅ローンの返済・任意売却を相談したい</h3>
+<p>任意売却は、売却代金だけでは住宅ローン等を完済できない場合に、債権者の同意など必要な条件を整えて売却する方法です。残債・査定価格・期限を確認し、実施できるか検討します。売却後に債務が残る場合があり、必ず実施できるとは限りません。</p>
 </article>
 <article class="card">
 <h3>相続した不動産を現金化したい</h3>
-<p>空き家・遠方の土地・相続したマンションなど、売却方法を検討します。</p>
+<p>相続した空き家・遠方の土地・マンションなどの売却をご相談いただけます。名義、共有者の有無、相続登記の状況を確認し、売却までに必要な準備を整理します。登記や相続に関する法律上の判断は、司法書士・弁護士等にご確認ください。</p>
 </article>
 </div>
 </section>
@@ -82,27 +131,27 @@ footer a{color:white}
 <section class="container">
 <h2>全国の不動産売却相談に対応</h2>
 <div class="notice">
-<p>日本全国の不動産について、オンラインでのご相談を想定しています。物件所在地や権利関係などにより、対応方法は異なります。</p>
-<p>※具体的な対応可否は、物件や相談内容を確認したうえで判断します。</p>
+<p>日本全国の不動産について、まずはフォーム・メール・電話でご相談を受け付けています。物件所在地や権利関係などにより、対応方法は異なります。</p>
+<p>※全国から相談を受け付けますが、現地対応や売却の取扱いができるかは、物件や相談内容を確認したうえでご案内します。</p>
 </div>
 </section>
 
 <section class="container">
 <h2>ご相談の流れ</h2>
 <div class="steps">
-<div class="step"><div class="num">01</div><h3>状況を伝える</h3><p>物件所在地やお困りの内容を整理します。</p></div>
-<div class="step"><div class="num">02</div><h3>内容を確認</h3><p>必要な情報や今後の選択肢を確認します。</p></div>
-<div class="step"><div class="num">03</div><h3>売却方法を検討</h3><p>状況に応じて対応方法をご案内します。</p></div>
+<div class="step"><div class="num">01</div><h3>状況を伝える</h3><p>フォームにお困りの内容を入力。わかる範囲で所在地や通知の期限をお知らせください。</p></div>
+<div class="step"><div class="num">02</div><h3>内容を確認</h3><p>担当者が内容を確認し、ご入力のメールアドレスへご連絡します。必要な資料もご案内します。</p></div>
+<div class="step"><div class="num">03</div><h3>売却方法を検討</h3><p>対応可否と選択肢をご案内。売却を進める場合は、条件や費用をご確認いただきます。</p></div>
 </div>
 </section>
 
 <section class="container" id="consult">
-<h2>不動産の無料相談</h2>
-<div class="form-box">
-<p><strong>差押え・競売・任意売却・相続不動産について、全国から無料相談を受け付けています。下記の相談フォームよりお気軽にお問い合わせください。</strong></p>
-
-
+<h2>ご相談の前に知っていただきたいこと</h2>
+<div class="notice">
+<p><strong>初回の相談は無料です。</strong>売却を進める際には、仲介手数料や登記費用などが発生する場合があります。具体的な費用・条件は、手続や契約の前にご確認ください。</p>
+<p>通知の名称・期限、物件のある市区町村、ローン残高など、わかる範囲の情報があると確認がスムーズです。最初の相談で資料をすべて揃える必要はありません。</p>
 </div>
+<p class="center"><a class="btn" href="#contact">今の状況を無料で相談する</a></p>
 </section>
 
 <section class="container">
@@ -112,14 +161,24 @@ footer a{color:white}
 <p>売却や競売の停止、債務の解消など、特定の結果を保証するものではありません。</p>
 </div>
 </section>
+<section class="container" id="faq">
+<h2>よくあるご質問</h2>
+<details><summary>差押えや競売の通知が届いていても相談できますか？</summary><p>ご相談いただけます。通知の名称と記載された期限をお知らせください。進行状況や債権者の意向などにより、売却できるかは異なります。期限が迫っている場合は、通知の発行元や弁護士等にも直接確認してください。</p></details>
+<details><summary>任意売却をすれば借金はなくなりますか？</summary><p>売却代金や債務額によっては残債が生じます。債務の解消を保証するものではありません。返済や債務整理について法律上の判断が必要な場合は、弁護士等へご相談ください。</p></details>
+<details><summary>遠方の物件や相続登記前でも相談できますか？</summary><p>全国から相談を受け付けています。相続登記前も状況整理の相談は可能ですが、相続した不動産を売却するには相続登記が必要です。権利関係や地域により対応可否・進め方が異なります。</p></details>
+<details><summary>相談料や売却時の費用はかかりますか？</summary><p>初回相談は無料です。売却等を進める場合の仲介手数料・登記費用等は、内容に応じて異なります。契約や手続の前に具体的な条件をご確認ください。</p></details>
+<p class="small">制度についての参考：<a href="https://www.bit.courts.go.jp/words/ka-ko/ke03.html" target="_blank" rel="noopener noreferrer">裁判所 BIT「競売申立ての取下げ」</a> ／ <a href="https://www.moj.go.jp/MINJI/minji05_00602.html" target="_blank" rel="noopener noreferrer">法務省「相続人申告登記について」</a></p>
+</section>
 <section class="container" id="contact">
   <h2>無料売却相談・お問い合わせ</h2>
-  <p>全国対応。ご相談内容を確認のうえ、担当者よりご連絡いたします。</p>
-  <form action="https://formspree.io/f/meaazqlq" method="POST">
-    <p><label>お名前（必須）<br><input type="text" name="name" required></label></p>
-    <p><label>メールアドレス（必須）<br><input type="email" name="email" required></label></p>
+  <p>ご相談内容を確認のうえ、担当者よりメールでご連絡いたします。<strong>「必須」の項目をご入力ください。</strong></p>
+<p class="small" id="form-help">通知の期限や物件所在地（都道府県・市区町村）がわかる場合は、ご相談内容にご記入ください。マイナンバー、口座番号、本人確認書類などの機微な情報は入力しないでください。</p>
+  <form action="https://formspree.io/f/meaazqlq" method="POST" accept-charset="UTF-8" aria-describedby="form-help">
+    <p><label>お名前（必須）<br><input type="text" name="name" autocomplete="name" maxlength="100" required></label></p>
+    <p><label>メールアドレス（必須）<br><input type="email" name="email" autocomplete="email" maxlength="254" required></label></p>
     <p><label>ご相談の種類<br>
       <select name="consultation_type">
+        <option value="">選択してください（任意）</option>
         <option value="差押え">差押え</option>
         <option value="競売">競売</option>
         <option value="任意売却">任意売却</option>
@@ -128,11 +187,13 @@ footer a{color:white}
         <option value="その他">その他</option>
       </select>
     </label></p>
-    <p><label>ご相談内容（必須）<br><textarea name="message" rows="5" required></textarea></label></p>
-    <p><label style="display:flex;align-items:center;gap:10px;font-weight:normal"><input type="checkbox" name="privacy_consent" value="同意" required style="width:20px;height:20px;flex-shrink:0"><a href="privacy.html" target="_blank" rel="noopener noreferrer">個人情報の取扱い（プライバシーポリシー）</a>に同意します</label></p>
+    <p><label>ご相談内容（必須）<br><textarea name="message" rows="7" maxlength="5000" placeholder="例：○○県○○市の自宅について、競売開始決定の通知が届きました。今後の売却について相談したいです。" required></textarea></label></p>
+    <p><label class="consent"><input type="checkbox" name="privacy_consent" value="同意" required><span><a href="privacy.html" target="_blank" rel="noopener noreferrer">個人情報の取扱い（プライバシーポリシー・別タブで開く）</a>を確認し、同意します（必須）</span></label></p>
+    <p class="small">送信にはFormspreeを利用します。送信後に表示される案内で受付結果をご確認ください。</p>
     <p><button type="submit">無料相談を送信する</button></p>
   </form>
-  <p>※ご相談内容はプライバシーポリシーに従って適切に取り扱います。</p>
+  <p class="small">ご相談内容はプライバシーポリシーに従って取り扱います。送信エラーや返信が届かない場合は、迷惑メールをご確認のうえ、下記の電話またはメールでお問い合わせください。フォームは即時対応を保証する窓口ではありません。</p>
+<p>電話：<a href="tel:0353571496">03-5357-1496</a><br>メール：<a href="mailto:michikazu.tsuruta@remax-agt.net">michikazu.tsuruta@remax-agt.net</a></p>
 </section>
 </main>
 
@@ -148,5 +209,7 @@ footer a{color:white}
   <p><a href="privacy.html">プライバシーポリシー</a></p>
   <p>© 2026 株式会社ライドエステート</p>
 </footer>
+<div class="mobile-cta"><a class="btn" href="#contact">無料相談フォームへ</a></div>
 </body>
 </html>
+
