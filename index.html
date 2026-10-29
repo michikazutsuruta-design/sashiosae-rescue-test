@@ -132,32 +132,59 @@ header a:focus-visible{outline-color:#9b5300}
 @media(max-width:800px){.header-inner{flex-direction:column;gap:16px}.header-inner nav{justify-content:center}}
 @media(max-width:650px){header{padding:16px 18px}.header-inner{display:flex}.brand-mark{width:54px;height:54px;flex-basis:54px}.brand-title{font-size:28px}.brand-kicker{font-size:10px}.brand-caption{font-size:9px}.header-inner nav{gap:18px;margin-top:0}header nav a{font-size:12px}header nav a[href="#contact"]{padding:9px 12px}}
 @media(max-width:360px){.brand-title{font-size:25px}.brand-mark{width:48px;height:48px;flex-basis:48px}.header-inner nav{gap:12px}}
+
+/* Consultation-first entrance */
+.brand-kicker{letter-spacing:.02em;font-size:10px}
+.hero{padding-top:60px;padding-bottom:54px}
+.hero .eyebrow{letter-spacing:.02em}
+.hero .hero-brand{font-size:clamp(36px,5vw,58px);font-weight:900;letter-spacing:-.045em;line-height:1.2;margin:0 0 22px;max-width:none}
+.hero-brand span{color:#ffc368}
+.hero h1{font-size:clamp(26px,3vw,38px);line-height:1.65;max-width:850px;text-wrap:initial;margin-bottom:20px}
+.hero .small{margin-bottom:0}
+.operator-bar{max-width:1100px;margin:auto;padding:22px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #dae2e8;font-size:14px}
+.operator-bar p{margin:0}.operator-bar span{font-size:12px;color:#526577}.operator-bar a{font-weight:700;white-space:nowrap}
+.section-label{text-align:center;color:#8b5b20;font-size:12px;letter-spacing:.12em;font-weight:700;margin:0 0 10px}
+.entry-section h2{margin-bottom:26px}.entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.entry-card{display:flex;flex-direction:column;background:#fff;border:1px solid #dbe3e9;border-top:4px solid #c89443;border-radius:10px;padding:25px;text-decoration:none;color:#203044;box-shadow:0 6px 20px #102c4906}
+.entry-card:hover{border-color:#b68436;box-shadow:0 8px 24px #102c4912}.entry-number{font-size:12px;font-weight:700;color:#86602c;letter-spacing:.06em}.entry-card h3{font-size:20px;line-height:1.65;margin:16px 0 10px;color:#102c49}.entry-card p{font-size:14px;margin:0 0 22px}.entry-link{font-size:13px;color:#174a70;font-weight:700;margin-top:auto}
+#notice-help,#loan-help,#inheritance-help,#company{scroll-margin-top:24px}
+@media(max-width:650px){.hero{padding-top:36px;padding-bottom:36px}.hero .hero-brand{font-size:38px;margin-bottom:18px}.hero h1{font-size:26px;line-height:1.65}.hero .eyebrow{font-size:11px;padding:5px 10px;margin-bottom:20px}.operator-bar{display:block;padding:20px 18px;font-size:12px}.operator-bar a{display:inline-block;margin-top:10px}.entry-grid{grid-template-columns:1fr}.entry-card{padding:22px}.entry-card h3{font-size:20px;margin:10px 0}.entry-card h3 br{display:none}.entry-card p{margin-bottom:14px}.brand-kicker{font-size:9px}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <header>
 <div class="header-inner">
-<a class="logo brand" href="./" aria-label="差押えレスキュー トップページ"><svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M32 4 55 13v18c0 14-10 23-23 29C19 54 9 45 9 31V13L32 4Z" fill="#102c49"/><path d="m20 30 12-11 12 11M23 28v15h18V28" stroke="#f0b651" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 43v-9h5v9" stroke="white" stroke-width="3"/><path d="m44 10 5 2" stroke="#f0b651" stroke-width="3" stroke-linecap="round"/></svg><span class="brand-copy"><span class="brand-kicker">住まいと、これからの安心を。</span><span class="brand-title">差押え<span>レスキュー</span></span><span class="brand-caption">全国対応の不動産相談窓口</span></span></a>
-<nav aria-label="メインメニュー"><a href="#services">相談内容</a><a href="#faq">よくある質問</a><a href="#contact">無料相談窓口</a></nav>
+<a class="logo brand" href="./" aria-label="差押えレスキュー トップページ"><svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M32 4 55 13v18c0 14-10 23-23 29C19 54 9 45 9 31V13L32 4Z" fill="#102c49"/><path d="m20 30 12-11 12 11M23 28v15h18V28" stroke="#f0b651" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 43v-9h5v9" stroke="white" stroke-width="3"/><path d="m44 10 5 2" stroke="#f0b651" stroke-width="3" stroke-linecap="round"/></svg><span class="brand-copy"><span class="brand-kicker">住宅ローン・差押え・競売・相続不動産の相談</span><span class="brand-title">差押え<span>レスキュー</span></span><span class="brand-caption">全国対応の不動産相談窓口</span></span></a>
+<nav aria-label="メインメニュー"><a href="#services">相談内容</a><a href="#company">運営会社</a><a href="#contact">無料相談窓口</a></nav>
 </div>
 </header>
 
 <section class="hero">
-<p class="eyebrow">全国対応の不動産売却相談窓口</p>
-<h1>差押え・競売・任意売却・相続不動産。<br>まずは、今の状況を一緒に整理しましょう。</h1>
-<p>差押え・競売・住宅ローンの返済・相続した不動産。状況を整理し、売却という選択肢を一緒に考えるための相談窓口です。</p>
-<a class="btn" href="#contact">無料相談はこちら</a>
+<p class="eyebrow">住宅ローン・差押え・競売・相続不動産の相談</p>
+<p class="hero-brand">差押え<span>レスキュー</span></p>
+<h1>その通知、<br>ひとりで抱え込まないでください。</h1>
+<p>差押えや競売の通知、住宅ローンの返済、相続した家のこと。何から始めればよいかわからなくても、今の状況を一緒に整理します。</p>
+<a class="btn" href="#contact">今の悩みを無料で相談する</a>
 <p class="reassurance">まだ売却を決めていなくても、ご相談いただけます。</p>
-<a class="secondary" href="#services">相談できる内容を見る</a>
-<p class="small">相談無料｜運営：株式会社ライドエステート（RE/MAX RIDE）</p>
+<p class="small">初回相談無料｜フォームは24時間365日受付<br>担当者が内容を確認し、メールでご連絡します。即時返信ではありません。</p>
 </section>
+<div class="operator-bar"><p>運営：<strong>株式会社ライドエステート</strong>（RE/MAX RIDE）<br><span>宅地建物取引業免許：東京都知事（1）第108775号</span></p><a href="#company">会社情報・連絡先を見る →</a></div>
 
 <main id="main">
+<section class="container entry-section" aria-labelledby="entry-title">
+<p class="section-label">今のお悩みから選べます</p><h2 id="entry-title">どのようなことでお困りですか？</h2>
+<div class="entry-grid">
+<a class="entry-card" href="#notice-help"><span class="entry-number">01 ／ 通知・期限</span><h3>差押え・競売の<br>通知が届いた</h3><p>通知や期限を確認し、今できることを整理したい方へ。</p><span class="entry-link">相談できる内容を見る →</span></a>
+<a class="entry-card" href="#loan-help"><span class="entry-number">02 ／ 住宅ローン</span><h3>毎月のローン返済が<br>厳しくなってきた</h3><p>滞納中の方も、今後の支払いが心配な方もご相談ください。</p><span class="entry-link">相談できる内容を見る →</span></a>
+<a class="entry-card" href="#inheritance-help"><span class="entry-number">03 ／ 相続・空き家</span><h3>相続した家や<br>遠方の不動産に困っている</h3><p>空き家の管理や売却、何から始めるか迷っている方へ。</p><span class="entry-link">相談できる内容を見る →</span></a>
+</div><p class="center small">どれに当てはまるかわからない場合も、<a href="#contact">そのままご相談いただけます。</a></p>
+</section>
+
 <section class="container" id="services">
 <h2>このようなお悩みに対応します</h2>
 <div class="grid">
-<article class="card">
+<article class="card" id="notice-help">
 <svg class="worry-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="7" y="12" width="34" height="25" rx="4"/><path d="m8 15 16 12 16-12"/></svg><h3>突然の通知。どうしたらいい？</h3><p class="worry-topic">差押えの通知が届いた方へ</p>
 <p>不動産の差押え通知が届いたら、通知の発行元・対象物件・記載された期限を確認しましょう。ローンや税金の滞納など、差押えの原因によって対応は異なります。売却に必要な条件や確認事項を整理します。</p>
 </article>
@@ -165,11 +192,11 @@ header a:focus-visible{outline-color:#9b5300}
 <svg class="worry-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 23 18-15 18 15M12 20v20h24V20M21 40V28h7v12"/></svg><h3>家が競売になるかもしれなくて、不安</h3><p class="worry-topic">競売に関するご相談</p>
 <p>競売は、裁判所の手続により不動産が売却される制度です。開始決定や入札に関する通知がある場合は、日程もお知らせください。進行状況により取れる方法が変わるため、早めの状況確認が大切です。相談だけで手続が停止することはありません。</p>
 </article>
-<article class="card">
+<article class="card" id="loan-help">
 <svg class="worry-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 23 18-15 18 15M12 20v20h24V20M21 40V28h7v12"/></svg><h3>住宅ローンの支払いがつらい</h3><p class="worry-topic">住宅ローンの返済・任意売却のご相談</p>
 <p>任意売却は、売却代金だけでは住宅ローン等を完済できない場合に、債権者の同意など必要な条件を整えて売却する方法です。残債・査定価格・期限を確認し、実施できるか検討します。売却後に債務が残る場合があり、必ず実施できるとは限りません。</p>
 </article>
-<article class="card">
+<article class="card" id="inheritance-help">
 <svg class="worry-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 23 18-15 18 15M12 20v20h24V20M21 40V28h7v12"/></svg><h3>実家を相続したけれど、どうすればいい？</h3><p class="worry-topic">相続した不動産の売却相談</p>
 <p>相続した空き家・遠方の土地・マンションなどの売却をご相談いただけます。名義、共有者の有無、相続登記の状況を確認し、売却までに必要な準備を整理します。登記や相続に関する法律上の判断は、司法書士・弁護士等にご確認ください。</p>
 </article>
@@ -191,8 +218,8 @@ header a:focus-visible{outline-color:#9b5300}
 <h2>ご相談の流れ</h2>
 <div class="steps">
 <div class="step"><div class="num">01</div><h3>お悩みをひとこと</h3><p>うまく説明できなくても大丈夫です。今お困りのことを、わかる範囲でお知らせください。</p></div>
-<div class="step"><svg class="worry-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10" width="38" height="28" rx="5"/><path d="m6 13 18 14 18-14"/></svg><div class="num">02</div><h3>内容を確認</h3><p>担当者が内容を確認し、ご入力のメールアドレスへご連絡します。必要な資料もご案内します。</p></div>
-<div class="step"><div class="num">03</div><h3>売却方法を検討</h3><p>対応可否と選択肢をご案内。売却を進める場合は、条件や費用をご確認いただきます。</p></div>
+<div class="step"><svg class="worry-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10" width="38" height="28" rx="5"/><path d="m6 13 18 14 18-14"/></svg><div class="num">02</div><h3>担当者からメールでご連絡</h3><p>株式会社ライドエステートの担当者が内容を確認し、ご入力のメールアドレスへご連絡します。即時返信ではありません。詳しい状況や必要な資料は、その際に伺います。</p></div>
+<div class="step"><div class="num">03</div><h3>方法・費用を確認して検討</h3><p>対応可否と選択肢をご案内します。初回相談は無料。売却等を進める場合の仲介手数料・登記費用等は別途必要となる場合があり、契約や手続の前に具体的な費用・条件をご案内します。</p></div>
 </div>
 </section>
 
@@ -252,7 +279,7 @@ header a:focus-visible{outline-color:#9b5300}
 </section>
 </main>
 
-<footer>
+<footer id="company">
   <p><strong>差押えレスキュー</strong></p>
   <p>運営会社：株式会社ライドエステート（RE/MAX RIDE）</p>
   <p>代表者：阪本 浩之</p>
