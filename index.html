@@ -113,13 +113,32 @@ body{padding-bottom:90px}
 .worry-topic{font-size:14px;color:#526b7c;margin-top:-8px}
 .step .worry-icon{margin:0 auto 12px}
 .card h3{line-height:1.6}
+
+/* Brand identity */
+header{background:#fff;color:#102c49;padding:20px 5%;border-top:4px solid #dca64a;border-bottom:1px solid #e4e9ee}
+.header-inner{gap:28px}
+header .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#102c49;flex-shrink:0;text-align:left}
+.brand-mark{width:62px;height:62px;flex:0 0 62px}
+.brand-copy{display:flex;flex-direction:column;gap:5px}
+.brand-kicker{font-size:11px;font-weight:600;letter-spacing:.13em;line-height:1.4;color:#526577}
+.brand-title{font-size:30px;font-weight:900;letter-spacing:-.055em;line-height:1.15;white-space:nowrap}
+.brand-title span{color:#9a641e;margin-left:3px}
+.brand-caption{font-size:10px;font-weight:600;letter-spacing:.16em;line-height:1.4;color:#526577}
+header nav{align-items:center}
+header nav a{color:#203b52;font-size:13px;font-weight:700;text-decoration:none}
+header nav a:hover{color:#94601d}
+header nav a[href="#contact"]{padding:11px 18px;border-radius:6px;background:#102c49;color:#fff}
+header a:focus-visible{outline-color:#9b5300}
+@media(max-width:800px){.header-inner{flex-direction:column;gap:16px}.header-inner nav{justify-content:center}}
+@media(max-width:650px){header{padding:16px 18px}.header-inner{display:flex}.brand-mark{width:54px;height:54px;flex-basis:54px}.brand-title{font-size:28px}.brand-kicker{font-size:10px}.brand-caption{font-size:9px}.header-inner nav{gap:18px;margin-top:0}header nav a{font-size:12px}header nav a[href="#contact"]{padding:9px 12px}}
+@media(max-width:360px){.brand-title{font-size:25px}.brand-mark{width:48px;height:48px;flex-basis:48px}.header-inner nav{gap:12px}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <header>
 <div class="header-inner">
-<div class="logo">差押えレスキュー</div>
+<a class="logo brand" href="./" aria-label="差押えレスキュー トップページ"><svg class="brand-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false"><path d="M32 4 55 13v18c0 14-10 23-23 29C19 54 9 45 9 31V13L32 4Z" fill="#102c49"/><path d="m20 30 12-11 12 11M23 28v15h18V28" stroke="#f0b651" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 43v-9h5v9" stroke="white" stroke-width="3"/><path d="m44 10 5 2" stroke="#f0b651" stroke-width="3" stroke-linecap="round"/></svg><span class="brand-copy"><span class="brand-kicker">住まいと、これからの安心を。</span><span class="brand-title">差押え<span>レスキュー</span></span><span class="brand-caption">全国対応の不動産相談窓口</span></span></a>
 <nav aria-label="メインメニュー"><a href="#services">相談内容</a><a href="#faq">よくある質問</a><a href="#contact">無料相談窓口</a></nav>
 </div>
 </header>
