@@ -131,6 +131,28 @@ footer a{color:white}
 <p>売却や競売の停止、債務の解消など、特定の結果を保証するものではありません。</p>
 </div>
 </section>
+<section class="container" id="contact">
+  <h2>無料売却相談・お問い合わせ</h2>
+  <p>全国対応。ご相談内容を確認のうえ、担当者よりご連絡いたします。</p>
+  <form action="https://formspree.io/f/meaazqlq" method="POST">
+    <p><label>お名前（必須）<br><input type="text" name="name" required></label></p>
+    <p><label>メールアドレス（必須）<br><input type="email" name="email" required></label></p>
+    <p><label>ご相談の種類<br>
+      <select name="consultation_type">
+        <option value="差押え">差押え</option>
+        <option value="競売">競売</option>
+        <option value="任意売却">任意売却</option>
+        <option value="住宅ローン">住宅ローン返済</option>
+        <option value="相続">相続不動産</option>
+        <option value="その他">その他</option>
+      </select>
+    </label></p>
+    <p><label>ご相談内容（必須）<br><textarea name="message" rows="5" required></textarea></label></p>
+    <p><label><input type="checkbox" name="privacy_consent" value="同意" required> 個人情報の取扱いに同意します</label></p>
+    <p><button type="submit">無料相談を送信する</button></p>
+  </form>
+  <p>※現在、個人情報保護方針を整備中です。公開前に必ず掲載します。</p>
+</section>
 </main>
 
 <footer>
