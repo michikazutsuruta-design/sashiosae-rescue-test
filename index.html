@@ -149,6 +149,11 @@ header a:focus-visible{outline-color:#9b5300}
 .entry-card:hover{border-color:#b68436;box-shadow:0 8px 24px #102c4912}.entry-number{font-size:12px;font-weight:700;color:#86602c;letter-spacing:.06em}.entry-card h3{font-size:20px;line-height:1.65;margin:16px 0 10px;color:#102c49}.entry-card p{font-size:14px;margin:0 0 22px}.entry-link{font-size:13px;color:#174a70;font-weight:700;margin-top:auto}
 #notice-help,#loan-help,#inheritance-help,#company{scroll-margin-top:24px}
 @media(max-width:650px){.hero{padding-top:36px;padding-bottom:36px}.hero .hero-brand{font-size:38px;margin-bottom:18px}.hero h1{font-size:26px;line-height:1.65}.hero .eyebrow{font-size:11px;padding:5px 10px;margin-bottom:20px}.operator-bar{display:block;padding:20px 18px;font-size:12px}.operator-bar a{display:inline-block;margin-top:10px}.entry-grid{grid-template-columns:1fr}.entry-card{padding:22px}.entry-card h3{font-size:20px;margin:10px 0}.entry-card h3 br{display:none}.entry-card p{margin-bottom:14px}.brand-kicker{font-size:9px}}
+
+/* Keep heading phrases together on narrow screens */
+h2{text-wrap:balance}
+.heading-phrase{display:inline-block}
+@media(max-width:650px){.hero h1{font-size:clamp(20px,6vw,26px);line-height:1.65}.hero h1 .heading-phrase{white-space:nowrap}h2{line-height:1.65}}
 </style>
 </head>
 <body>
@@ -163,7 +168,7 @@ header a:focus-visible{outline-color:#9b5300}
 <section class="hero">
 <p class="eyebrow">住宅ローン・差押え・競売・相続不動産の相談</p>
 <p class="hero-brand">差押え<span>レスキュー</span></p>
-<h1>その通知、<br>ひとりで抱え込まないでください。</h1>
+<h1>その通知、<br><span class="heading-phrase">ひとりで</span><wbr><span class="heading-phrase">抱え込まないでください。</span></h1>
 <p>差押えや競売の通知、住宅ローンの返済、相続した家のこと。何から始めればよいかわからなくても、今の状況を一緒に整理します。</p>
 <a class="btn" href="#contact">今の悩みを無料で相談する</a>
 <p class="reassurance">まだ売却を決めていなくても、ご相談いただけます。</p>
@@ -224,7 +229,7 @@ header a:focus-visible{outline-color:#9b5300}
 </section>
 
 <section class="container" id="consult">
-<h2>ご相談の前に知っていただきたいこと</h2>
+<h2><span class="heading-phrase">ご相談の前に</span><wbr><span class="heading-phrase">知っていただきたいこと</span></h2>
 <div class="notice">
 <p><strong>初回の相談は無料です。</strong>売却を進める際には、仲介手数料や登記費用などが発生する場合があります。具体的な費用・条件は、手続や契約の前にご確認ください。</p>
 <p>通知の名称・期限、物件のある市区町村、ローン残高など、わかる範囲の情報があると確認がスムーズです。最初の相談で資料をすべて揃える必要はありません。</p>
