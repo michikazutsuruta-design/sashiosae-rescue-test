@@ -106,6 +106,9 @@ body{padding-bottom:90px}
 .hero .secondary{display:block;margin:18px 0;text-align:center}
 .hero .small{font-size:12px;margin-bottom:0}
 }
+.hero .reassurance{font-size:14px;margin:12px 0 0;color:#fff}
+.contact-welcome{background:#edf4f3;border-left:4px solid #52887d;border-radius:8px;padding:20px 22px;color:#254e49}
+@media(max-width:650px){.hero .reassurance{font-size:13px}.contact-welcome{padding:16px}}
 </style>
 </head>
 <body>
@@ -122,6 +125,7 @@ body{padding-bottom:90px}
 <h1>差押え・競売・任意売却・相続不動産。<br>まずは、今の状況を一緒に整理しましょう。</h1>
 <p>差押え・競売・住宅ローンの返済・相続した不動産。状況を整理し、売却という選択肢を一緒に考えるための相談窓口です。</p>
 <a class="btn" href="#contact">無料相談はこちら</a>
+<p class="reassurance">まだ売却を決めていなくても、ご相談いただけます。</p>
 <a class="secondary" href="#services">相談できる内容を見る</a>
 <p class="small">相談無料｜運営：株式会社ライドエステート（RE/MAX RIDE）</p>
 </section>
@@ -160,7 +164,7 @@ body{padding-bottom:90px}
 <section class="container">
 <h2>ご相談の流れ</h2>
 <div class="steps">
-<div class="step"><div class="num">01</div><h3>状況を伝える</h3><p>フォームにお困りの内容を入力。わかる範囲で所在地や通知の期限をお知らせください。</p></div>
+<div class="step"><div class="num">01</div><h3>お悩みをひとこと</h3><p>うまく説明できなくても大丈夫です。今お困りのことを、わかる範囲でお知らせください。</p></div>
 <div class="step"><div class="num">02</div><h3>内容を確認</h3><p>担当者が内容を確認し、ご入力のメールアドレスへご連絡します。必要な資料もご案内します。</p></div>
 <div class="step"><div class="num">03</div><h3>売却方法を検討</h3><p>対応可否と選択肢をご案内。売却を進める場合は、条件や費用をご確認いただきます。</p></div>
 </div>
@@ -172,7 +176,7 @@ body{padding-bottom:90px}
 <p><strong>初回の相談は無料です。</strong>売却を進める際には、仲介手数料や登記費用などが発生する場合があります。具体的な費用・条件は、手続や契約の前にご確認ください。</p>
 <p>通知の名称・期限、物件のある市区町村、ローン残高など、わかる範囲の情報があると確認がスムーズです。最初の相談で資料をすべて揃える必要はありません。</p>
 </div>
-<p class="center"><a class="btn" href="#contact">今の状況を無料で相談する</a></p>
+<p class="center"><a class="btn" href="#contact">今の状況を無料で相談する</a><br><span class="small">まだ売却を決めていなくても、ご相談いただけます。</span></p>
 </section>
 
 <section class="container">
@@ -192,7 +196,8 @@ body{padding-bottom:90px}
 <p class="small">制度についての参考：<a href="https://www.bit.courts.go.jp/words/ka-ko/ke03.html" target="_blank" rel="noopener noreferrer">裁判所 BIT「競売申立ての取下げ」</a> ／ <a href="https://www.moj.go.jp/MINJI/minji05_00602.html" target="_blank" rel="noopener noreferrer">法務省「相続人申告登記について」</a></p>
 </section>
 <section class="container" id="contact">
-  <h2>無料売却相談・お問い合わせ</h2>
+  <h2>まずは、今のお悩みをお聞かせください</h2>
+  <p class="contact-welcome">何から話せばいいかわからなくても大丈夫です。<br>まずは、今お困りのことをひとこと。詳しい状況は、ご連絡の際に伺います。</p>
   <p>ご相談内容を確認のうえ、担当者よりメールでご連絡いたします。<strong>「必須」の項目をご入力ください。</strong></p>
 <p class="small" id="form-help">通知の期限や物件所在地（都道府県・市区町村）がわかる場合は、ご相談内容にご記入ください。マイナンバー、口座番号、本人確認書類などの機微な情報は入力しないでください。</p>
   <form action="https://formspree.io/f/meaazqlq" method="POST" accept-charset="UTF-8" aria-describedby="form-help">
@@ -209,7 +214,7 @@ body{padding-bottom:90px}
         <option value="その他">その他</option>
       </select>
     </label></p>
-    <p><label>ご相談内容（必須）<br><textarea name="message" rows="7" maxlength="5000" placeholder="例：○○県○○市の自宅について、競売開始決定の通知が届きました。今後の売却について相談したいです。" required></textarea></label></p>
+    <p><label>ご相談内容（必須）<br><textarea name="message" rows="7" maxlength="5000" placeholder="例：住宅ローンの返済が難しくなりました。何から始めればいいか相談したいです。" required></textarea></label></p>
     <p><label class="consent"><input type="checkbox" name="privacy_consent" value="同意" required><span><a href="privacy.html" target="_blank" rel="noopener noreferrer">個人情報の取扱い（プライバシーポリシー・別タブで開く）</a>を確認し、同意します（必須）</span></label></p>
     <p class="small">送信にはFormspreeを利用します。送信後に表示される案内で受付結果をご確認ください。</p>
     <p><button type="submit">無料相談を送信する</button></p>
