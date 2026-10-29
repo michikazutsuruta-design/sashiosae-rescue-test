@@ -12,6 +12,7 @@
 <meta property="og:title" content="差押え・競売・任意売却・相続不動産の無料相談｜差押えレスキュー">
 <meta property="og:description" content="全国の不動産売却相談を受付。通知や期限、物件の状況を整理し、今後の選択肢を一緒に考えます。">
 <meta property="og:url" content="https://michikazutsuruta-design.github.io/sashiosae-rescue-test/">
+<link rel="preload" as="image" href="residential-hero.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#102c49">
 <title>差押え・競売・任意売却・相続不動産の無料相談｜差押えレスキュー</title>
@@ -85,6 +86,26 @@ footer p{overflow-wrap:anywhere}
 body{padding-bottom:90px}
 }
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* Residential photo hero */
+.hero{position:relative;isolation:isolate;text-align:left;padding:88px max(24px,calc((100vw - 1100px)/2));background:#18384d url("residential-hero.jpg") center 58%/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,35,53,.92) 0%,rgba(12,35,53,.76) 45%,rgba(12,35,53,.16) 100%)}
+.hero h1{max-width:790px;font-size:clamp(30px,3.6vw,44px);text-wrap:balance;text-shadow:0 2px 12px #102c4933}
+.hero p{max-width:650px;margin-left:0;margin-right:0}
+.hero .eyebrow{display:inline-block;border:1px solid #ffffff70;border-radius:99px;padding:5px 15px;margin-bottom:24px;background:#102c4933}
+.hero .btn{background:#f3ae46;color:#182c40;padding:15px 30px;box-shadow:0 5px 20px #061c2d30}
+.hero .btn:hover{background:#ffc368}
+.hero .secondary{margin-left:24px}
+@media(max-width:650px){
+.hero{padding:48px 22px 42px;background-position:63% center}
+.hero::before{background:linear-gradient(90deg,rgba(12,35,53,.88),rgba(12,35,53,.65))}
+.hero h1{font-size:clamp(28px,7.6vw,36px);line-height:1.5}
+.hero p{font-size:16px}
+.hero .eyebrow{font-size:12px;padding:4px 12px}
+.hero .btn{display:block;text-align:center;padding:14px 16px}
+.hero .secondary{display:block;margin:18px 0;text-align:center}
+.hero .small{font-size:12px;margin-bottom:0}
+}
 </style>
 </head>
 <body>
@@ -100,7 +121,7 @@ body{padding-bottom:90px}
 <p class="eyebrow">全国対応の不動産売却相談窓口</p>
 <h1>差押え・競売・任意売却・相続不動産。<br>まずは、今の状況を一緒に整理しましょう。</h1>
 <p>差押え・競売・住宅ローンの返済・相続した不動産。状況を整理し、売却という選択肢を一緒に考えるための相談窓口です。</p>
-<a class="btn" href="#contact">無料相談フォームへ</a>
+<a class="btn" href="#contact">無料相談はこちら</a>
 <a class="secondary" href="#services">相談できる内容を見る</a>
 <p class="small">相談無料｜運営：株式会社ライドエステート（RE/MAX RIDE）</p>
 </section>
