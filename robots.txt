@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://michikazutsuruta-design.github.io/sashiosae-rescue-test/sitemap.xml
