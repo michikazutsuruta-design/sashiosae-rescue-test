@@ -339,5 +339,16 @@ h3{text-wrap:balance}.card p,.entry-card p,.steps p{text-wrap:pretty}
   <p>© 2026 株式会社ライドエステート</p>
 </footer>
 <div class="mobile-cta"><a class="btn" href="#contact">無料相談フォームへ</a></div>
+<script>
+// Carry only a non-personal consultation topic from a guide; never submit automatically.
+(function () {
+  var topics = {notice: '差押え', auction: '競売', ninbai: '任意売却', inheritance: '相続'};
+  var topic = new URLSearchParams(window.location.search).get('topic');
+  var select = document.querySelector('select[name="consultation_type"]');
+  if (select && !select.value && Object.prototype.hasOwnProperty.call(topics, topic)) {
+    select.value = topics[topic];
+  }
+})();
+</script>
 </body>
 </html>
