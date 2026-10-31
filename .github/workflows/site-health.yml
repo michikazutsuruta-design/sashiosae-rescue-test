@@ -1,0 +1,101 @@
+name: Site health
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: site-health
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check SEO, internal links, Formspree and deployed content
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, sys, time
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit, unquote
+          from urllib.request import Request, urlopen
+          import xml.etree.ElementTree as ET
+          BASE = 'https://michikazutsuruta-design.github.io/sashiosae-rescue-test/'
+          class Page(HTMLParser):
+              def __init__(self, text):
+                  super().__init__()
+                  self.tags = []
+                  self.feed(text)
+              def handle_starttag(self, tag, attrs):
+                  self.tags.append((tag, dict(attrs)))
+              def find(self, tag, **attrs):
+                  return [a for t, a in self.tags if t == tag and all(a.get(k) == v for k,v in attrs.items())]
+          errors = []
+          def check(ok, message):
+              if not ok: errors.append(message)
+          files = sorted(Path('.').glob('*.html'))
+          pages = {p.name: Page(p.read_text(encoding='utf-8')) for p in files}
+          locations = {n.text for n in ET.parse('sitemap.xml').iter() if n.tag.endswith('}loc')}
+          for path in files:
+              name, text = path.name, path.read_text(encoding='utf-8')
+              page = pages[name]
+              expected = BASE if name == 'index.html' else BASE + name
+              check('<title>' in text and '</title>' in text, name + ': title missing')
+              check(len(page.find('h1')) == 1, name + ': expected one H1')
+              check(page.find('html', lang='ja'), name + ': Japanese language missing')
+              check(page.find('meta', name='description') and page.find('meta', name='description')[0].get('content'), name + ': description missing')
+              check(page.find('link', rel='canonical', href=expected), name + ': canonical mismatch')
+              check(expected in locations, name + ': missing from sitemap')
+              for tag, attrs in page.tags:
+                  for key in ('href', 'src'):
+                      value = attrs.get(key)
+                      if not value or value.startswith(('mailto:', 'tel:', 'data:')): continue
+                      link = urlsplit(urljoin(expected, value))
+                      if link.netloc != urlsplit(BASE).netloc: continue
+                      check(link.path.startswith(urlsplit(BASE).path), name + ': link outside site ' + value)
+                      relative = unquote(link.path.removeprefix(urlsplit(BASE).path)) or 'index.html'
+                      check(Path(relative).is_file(), name + ': broken local link ' + value)
+                      if link.fragment and relative in pages:
+                          check(any(a.get('id') == unquote(link.fragment) for _,a in pages[relative].tags), name + ': missing anchor ' + value)
+          home = pages['index.html']
+          forms = home.find('form')
+          check(len(forms) == 1 and forms[0].get('action') == 'https://formspree.io/f/meaazqlq' and forms[0].get('method', '').lower() == 'post', 'Formspree action/method changed')
+          for field in ('name', 'email', 'message', 'privacy_consent'):
+              check(any(a.get('name') == field and 'required' in a for _,a in home.tags), 'Required form field missing: ' + field)
+          check(home.find('script', type='application/ld+json'), 'Structured data missing')
+          text = Path('index.html').read_text(encoding='utf-8')
+          import re
+          for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S):
+              json.loads(block)
+          check(BASE + 'sitemap.xml' in Path('robots.txt').read_text(), 'Sitemap discovery missing')
+          if errors:
+              print('\n'.join(errors)); sys.exit(1)
+          targets = [p.name for p in files] + ['sitemap.xml', 'robots.txt', 'residential-hero.jpg']
+          pending = set(targets)
+          for attempt in range(9):
+              for name in list(pending):
+                  url = BASE + ('' if name == 'index.html' else name)
+                  try:
+                      req = Request(url, headers={'User-Agent': 'SashiosaeRescueHealthCheck/1.0', 'Cache-Control': 'no-cache'})
+                      with urlopen(req, timeout=20) as response:
+                          data = response.read()
+                          if response.status == 200 and hashlib.sha256(data).digest() == hashlib.sha256(Path(name).read_bytes()).digest():
+                              pending.remove(name)
+                              print('PASS deployed:', name)
+                  except Exception as exc:
+                      print('Retry:', name, str(exc))
+              if not pending: break
+              if attempt < 8: time.sleep(20)
+          summary = '## Site health\nLocal SEO, internal links and Formspree configuration: PASS\n'
+          summary += 'Published files matching repository: ' + str(len(targets)-len(pending)) + '/' + str(len(targets)) + '\n'
+          summary += 'No form submissions were sent. Email delivery is not tested.\n'
+          if pending: summary += 'Not yet matching: ' + ', '.join(sorted(pending)) + '\n'
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out: out.write(summary)
+          if pending: sys.exit(1)
+          PY
