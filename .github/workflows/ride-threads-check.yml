@@ -1,4 +1,4 @@
-name: Ride Threads connection check
+name: Ride connection check
 on:
   workflow_dispatch:
 permissions:
@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Verify Ride account without publishing
         env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           RIDE_THREADS_ACCESS_TOKEN: ${{ secrets.RIDE_THREADS_ACCESS_TOKEN }}
         run: |
           python -u - <<'PY'
@@ -27,5 +28,22 @@ jobs:
               raise SystemExit('Wrong Threads account. Publishing is blocked.')
           print('Verified Threads account: @rideestate')
           print('Threads account ID: '+str(account['id']))
+          query = 'query { channel(input: {id: "6ae6e299e29c69a1712300e4"}) {id name service isDisconnected isLocked isQueuePaused} }'
+          buffer_request = urllib.request.Request('https://api.buffer.com', json.dumps({'query':query}).encode(), {'Authorization':'Bearer '+os.environ['BUFFER_API_KEY'], 'Content-Type':'application/json'}, method='POST')
+          try:
+              with urllib.request.urlopen(buffer_request, timeout=45) as response:
+                  buffer_result = json.load(response)
+          except urllib.error.HTTPError as error:
+              raise SystemExit('Buffer authentication failed. HTTP '+str(error.code)) from None
+          if buffer_result.get('errors'):
+              raise SystemExit('Buffer channel query failed; check API key channel access.')
+          channel = buffer_result['data']['channel']
+          if channel['name'].lstrip('@') != 'rideestate' or channel['service'] != 'instagram':
+              raise SystemExit('Wrong Instagram account. Publishing is blocked.')
+          print('Verified Buffer Instagram account: @rideestate')
+          print('Connection flags:', json.dumps({k:channel[k] for k in ('isDisconnected','isLocked','isQueuePaused')}))
+          if any(channel[k] for k in ('isDisconnected','isLocked','isQueuePaused')):
+              raise SystemExit('Instagram connection requires attention.')
           print('No posts created, changed or deleted.')
           PY
+
