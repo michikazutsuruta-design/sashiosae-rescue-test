@@ -76,21 +76,26 @@ def validate(c,history):
 def generate(day,kind,history):
     fields={'title_en':48,'title_yue':22,'body_en':155,'body_yue':100}
     props={k:{'type':'string','minLength':3,'maxLength':n} for k,n in fields.items()}
-    props['body_yue']['pattern']='.*[嘅唔睇喺撳咩搵].*'
     props.update({k:{'type':'array','minItems':4,'maxItems':4,'items':{'type':'string','minLength':2,'maxLength':60}} for k in ('slides_en','slides_yue')})
     instruction=('Write original RE/MAX RIDE home-search preparation content. English AND natural Hong Kong Cantonese written with Traditional characters, not Mandarin. '
         'Only general organization, everyday home preferences and viewing questions. No laws, tax, finance, investment advice, numerical claims, listings, prices, availability, achievements or guarantees. '
         'No personal names, URLs, hashtags or digits. English body max155 characters and Cantonese body max100 characters. '
         'The body_yue must use spoken Cantonese words such as 嘅, 睇, 撳; avoid Mandarin expressions 的, 看房, 請瀏覽. '
         'Example Cantonese style: 睇樓之前，寫低你重視嘅條件。撳個人檔案入面嘅官方網站。 '
-        'Invite readers to use the official website in the profile. Four short parallel bilingual slides. Output only JSON matching schema. /no_think')
+        'Use exactly these keys: title_en, title_yue, body_en, body_yue, slides_en, slides_yue. '
+        'slides_en and slides_yue must each contain four strings of at most sixty characters. title_en max forty eight characters, title_yue max twenty two. '
+        'Invite readers to use the official website in the profile. Output only the JSON object, not schema definitions. /no_think')
     payload={'messages':[{'role':'system','content':instruction},{'role':'user','content':json.dumps({'theme':TOPICS[(day.toordinal()+(4 if kind=='reel' else 0))%len(TOPICS)],'kind':kind,'avoid':history[-10:]})}],
              'max_tokens':1800,'temperature':.65,'response_format':{'type':'json_schema','json_schema':{'type':'object','additionalProperties':False,'properties':props,'required':list(props)}}}
     raw=shared.request_json('https://api.cloudflare.com/client/v4/accounts/'+os.environ['CLOUDFLARE_ACCOUNT_ID']+'/ai/run/@cf/qwen/qwen3-30b-a3b-fp8',payload,os.environ['CLOUDFLARE_API_TOKEN'])
     if not raw.get('success'): raise RuntimeError('Free AI generation failed; no paid fallback')
     c=raw['result'].get('response')
     if isinstance(c,str): c=json.loads(re.sub(r'^```(?:json)?\s*|\s*```$','',re.sub(r'<think>.*?</think>','',c,flags=re.S)).strip())
-    validate(c,history)
+    try:
+        validate(c,history)
+    except ValueError as error:
+        # Draft text is public marketing copy, never credentials or account metadata.
+        raise ValueError(str(error)+'; generated draft='+json.dumps(c,ensure_ascii=False)) from None
     return c
 
 def render(c,folder,kind):
