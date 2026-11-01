@@ -171,13 +171,14 @@ def render(content, folder, kind):
             d.multiline_text((70,y),wrapped(t,chars),font=f,fill=color,spacing=24)
         draw('差押えレスキュー',50,50,'white')
         draw(content['title'],52,240,chars=17)
-        draw(text,48,480 if kind=='reel' else 440,chars=17)
+        if kind=='reel': draw(text,48,480,chars=17)
+        else: draw(text,40,420,chars=23)
         draw('初回相談無料',36,height-350)
         draw('プロフィールの公式サイトへ',30,height-280,chars=25)
         draw('株式会社ライドエステート｜RE/MAX RIDE',24,height-190,chars=40)
         path=folder/f'{index}.png'; im.save(path); return path
     if kind=='post':
-        return slide(content['body'][:85],0)
+        return slide(' '.join(content['slides'][:2]),0)
     for i,text in enumerate(content['slides']): slide(text,i)
     playlist=folder/'concat.txt'
     playlist.write_text(''.join(f"file '{i}.png'\nduration 5\n" for i in range(4))+"file '3.png'\n")
