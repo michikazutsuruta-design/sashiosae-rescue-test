@@ -6,6 +6,7 @@ from urllib.parse import urlencode
 from urllib.error import HTTPError
 from difflib import SequenceMatcher
 import runner as shared
+import ride_photos
 
 ROOT = shared.ROOT
 BASE = ROOT/'social/ride'
@@ -99,6 +100,7 @@ def generate(day,kind,history):
     return c
 
 def render(c,folder,kind):
+    if kind=='reel': return ride_photos.render_reel(c,folder,BASE)
     from PIL import Image,ImageDraw,ImageFont
     folder.mkdir(parents=True,exist_ok=True)
     h=1920 if kind=='reel' else 1350
@@ -149,6 +151,31 @@ def run(mode):
         if entry.get('id') in byid:
             p=byid[entry['id']]; entry.update(status=p['status'],url=p.get('externalLink'))
     persist(state)
+    if mode in ('build','photos'):
+        for key,entry in state['journal'].items():
+            if entry.get('photo_update')=='attempting':
+                raise RuntimeError('Inspect uncertain photo update before retry: '+key)
+            if '/reel/instagram' not in key or entry.get('status')!='scheduled': continue
+            if entry.get('visual_version')==ride_photos.VERSION: continue
+            stamp=shared.parsed(entry.get('dueAt'))
+            if not stamp or stamp<=now+dt.timedelta(minutes=20): continue
+            if entry.get('id') not in byid: raise RuntimeError('Cannot verify reserved Reel '+key)
+            day=key.split('/')[0]; folder=BASE/f'{day}-reel'
+            c=shared.load(folder/'content.json',{})
+            media=render(c,folder,'reel'); url=public_media(state,media)
+            caption=validate(c,[])+'\n\n'+ride_photos.DISCLAIMER_EN+'\n'+ride_photos.DISCLAIMER_YUE
+            entry['photo_update']='attempting'; persist(state)
+            edit='''mutation Edit($input: EditPostInput!) { editPost(input:$input) {
+              ... on PostActionSuccess { post { id channelId dueAt status text externalLink } }
+              ... on MutationError { message } } }'''
+            result=shared.graphql(edit,{'input':{'id':entry['id'],'assets':[{'video':{'url':url}}],
+                'text':caption,'aiAssisted':True,
+                'metadata':{'instagram':{'type':'reel','shouldShareToFeed':True,'isAiGenerated':False}}}})['editPost']
+            p=result.get('post')
+            if not p or p['id']!=entry['id'] or p['channelId']!=IG or shared.parsed(p['dueAt'])!=stamp:
+                raise RuntimeError('Photo edit requires reconciliation: '+key)
+            entry.update(photo_update='complete',visual_version=ride_photos.VERSION,media=url,caption=caption,status=p['status'])
+            persist(state)
     if mode=='build':
         count=sum(p['status'] in ('scheduled','sending') for p in posts); generated=0
         for stamp,day,kind in slots(now):
@@ -167,14 +194,16 @@ def run(mode):
                 c=generate(day,kind,state['history']); generated+=1
                 folder.mkdir(parents=True,exist_ok=True); content.write_text(json.dumps(c,ensure_ascii=False,indent=2),encoding='utf8')
                 state['history']=(state['history']+[c['body_en']])[-120:]
-            caption=validate(c,[]); media=render(c,folder,kind); url=public_media(state,media)
+            caption=validate(c,[])
+            if kind=='reel': caption+='\n\n'+ride_photos.DISCLAIMER_EN+'\n'+ride_photos.DISCLAIMER_YUE
+            media=render(c,folder,kind); url=public_media(state,media)
             state['journal'][key]={'status':'attempting','dueAt':stamp.isoformat()}; persist(state)
             payload={'text':caption,'channelId':IG,'assets':[{('video' if kind=='reel' else 'image'):{'url':url}}],
                      'schedulingType':'automatic','mode':'customScheduled','dueAt':stamp.isoformat(),'needsApproval':False,'aiAssisted':True,
-                     'metadata':{'instagram':{'type':kind,'shouldShareToFeed':True,'isAiGenerated':True}}}
+                     'metadata':{'instagram':{'type':kind,'shouldShareToFeed':True,'isAiGenerated':kind!='reel'}}}
             result=shared.graphql(shared.CREATE,{'input':payload})['createPost']
             if not result.get('post'): raise RuntimeError('Instagram scheduling requires reconciliation')
-            p=result['post']; state['journal'][key]={'id':p['id'],'status':p['status'],'dueAt':p['dueAt'],'media':url,'caption':caption}; count+=1; posts.append(p); persist(state)
+            p=result['post']; state['journal'][key]={'id':p['id'],'status':p['status'],'dueAt':p['dueAt'],'media':url,'caption':caption,'visual_version':ride_photos.VERSION if kind=='reel' else 'text-v1'}; count+=1; posts.append(p); persist(state)
     if mode=='threads':
         day=now.astimezone(shared.JST).date(); stamp=shared.due(day,22)
         if day<START or not stamp<=now<=stamp+dt.timedelta(hours=2): return
@@ -203,11 +232,11 @@ def run(mode):
         state['journal'][key]['url']=public['permalink']; persist(state)
     for key,entry in state['journal'].items():
         stamp=shared.parsed(entry.get('dueAt'))
-        if entry.get('status') in ('error','attempting'): raise RuntimeError('Check unresolved Ride entry '+key)
+        if entry.get('status') in ('error','attempting') or entry.get('photo_update')=='attempting': raise RuntimeError('Check unresolved Ride entry '+key)
         if stamp and stamp<now-dt.timedelta(minutes=45) and entry.get('status') in ('scheduled','sending'):
             raise RuntimeError('Ride publication overdue '+key)
     persist(state)
 
 if __name__=='__main__':
     import argparse
-    p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor']); run(p.parse_args().mode)
+    p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos']); run(p.parse_args().mode)
