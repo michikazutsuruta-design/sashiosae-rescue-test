@@ -1,0 +1,31 @@
+name: Ride Threads connection check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify Ride account without publishing
+        env:
+          RIDE_THREADS_ACCESS_TOKEN: ${{ secrets.RIDE_THREADS_ACCESS_TOKEN }}
+        run: |
+          python -u - <<'PY'
+          import os, json, urllib.request, urllib.error
+          token = os.environ.get('RIDE_THREADS_ACCESS_TOKEN', '')
+          if not token or not token.isascii() or any(c.isspace() for c in token):
+              raise SystemExit('Invalid secret format. Paste the original Threads token directly into GitHub Secrets.')
+          request = urllib.request.Request('https://graph.threads.net/v1.0/me?fields=id,username', headers={'Authorization':'Bearer '+token})
+          try:
+              with urllib.request.urlopen(request, timeout=45) as response:
+                  account = json.load(response)
+          except urllib.error.HTTPError as error:
+              raise SystemExit('Threads authentication failed. HTTP '+str(error.code)) from None
+          if account.get('username','').lstrip('@') != 'rideestate':
+              raise SystemExit('Wrong Threads account. Publishing is blocked.')
+          print('Verified Threads account: @rideestate')
+          print('Threads account ID: '+str(account['id']))
+          print('No posts created, changed or deleted.')
+          PY
