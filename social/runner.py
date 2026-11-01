@@ -85,7 +85,7 @@ def fetch_posts(channel_map, now):
         raise RuntimeError('Unexpected organizations')
     args = {'organizationId': next(iter(organizations)), 'filter': {
         'channelIds': [c['id'] for c in channel_map.values()],
-        'startDate': (now-dt.timedelta(days=7)).isoformat()}}
+        'status': ['scheduled','sending','sent','error','draft']}}
     result, after = [], None
     for _ in range(10):
         page = graphql(POSTS, {'input': args, 'after': after})['posts']
@@ -149,6 +149,8 @@ def generate(config, day, kind, history):
         raise RuntimeError('AI generation failed; no paid fallback')
     result = raw['result']
     text = result.get('response') or result.get('choices',[{}])[0].get('message',{}).get('content','')
+    if isinstance(text,dict):
+        return validate(text,history)
     text = re.sub(r'<think>.*?</think>','',text,flags=re.S).strip()
     text = re.sub(r'^```(?:json)?\s*|\s*```$','',text).strip()
     return validate(json.loads(text),history)
