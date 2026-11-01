@@ -1,0 +1,57 @@
+name: Ride cloud publishing
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: 'Connection check, build reservations, publish due Threads, or monitor'
+        type: choice
+        options: [diagnose, build, threads, monitor]
+        default: diagnose
+  schedule:
+    - cron: '27 0 * * *'
+    - cron: '7 7 * * *'
+    - cron: '7,37 13 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: ride-cloud-publishing
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: vars.RIDE_CLOUD_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install media tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk
+          python -m pip install -r social/requirements.txt
+      - name: Configure journal commits
+        run: |
+          git config user.name 'ride-publishing-bot'
+          git config user.email 'ride-publishing-bot@users.noreply.github.com'
+      - name: Check scheduling and content safeguards
+        run: python -m unittest discover -s tests -p 'test_ride_cloud.py'
+      - name: Verify and operate Ride only
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          RIDE_THREADS_ACCESS_TOKEN: ${{ secrets.RIDE_THREADS_ACCESS_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          OPERATION: ${{ inputs.operation }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [ -n "$OPERATION" ]; then
+            python social/ride_runner.py "$OPERATION"
+          elif [ "$EVENT_SCHEDULE" = '27 0 * * *' ]; then
+            python social/ride_runner.py build
+          elif [ "$EVENT_SCHEDULE" = '7,37 13 * * *' ]; then
+            python social/ride_runner.py threads
+          else
+            python social/ride_runner.py monitor
+          fi
