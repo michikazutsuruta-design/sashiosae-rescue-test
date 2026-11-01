@@ -2,6 +2,7 @@ import datetime as dt
 import importlib.util
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 spec=importlib.util.spec_from_file_location('runner',Path(__file__).resolve().parents[1]/'social/runner.py')
 r=importlib.util.module_from_spec(spec); spec.loader.exec_module(r)
@@ -45,5 +46,10 @@ class SocialCloudTests(unittest.TestCase):
     def test_four_short_slides_only(self):
         item=self.content(); item['slides'].append('追加')
         with self.assertRaises(ValueError): r.validate(item,[])
+
+    def test_structured_ai_response(self):
+        item=self.content()
+        with patch.dict(r.os.environ,{'CLOUDFLARE_ACCOUNT_ID':'example','CLOUDFLARE_API_TOKEN':'example'}), patch.object(r,'request_json',return_value={'success':True,'result':{'response':item}}):
+            self.assertEqual(r.generate({'topics':['相談準備'],'model':'example'},dt.date(2026,11,4),'post',[]),item)
 
 if __name__=='__main__': unittest.main()
