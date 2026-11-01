@@ -1,0 +1,43 @@
+{
+  "journal": {
+    "2026-11-02/reel/instagram": {
+      "status": "scheduled",
+      "id": "6ae67c23f69bc56624e8b4c1",
+      "dueAt": "2026-11-02T06:00:00+00:00",
+      "url": null
+    },
+    "2026-11-02/post/instagram": {
+      "status": "scheduled",
+      "id": "6ae5dcde7e4ec96cc850aa76",
+      "dueAt": "2026-11-02T12:00:00+00:00",
+      "url": null
+    },
+    "2026-11-02/post/threads": {
+      "status": "scheduled",
+      "id": "6ae5dcde7e4ec96cc850aa77",
+      "dueAt": "2026-11-02T12:00:00+00:00",
+      "url": null
+    },
+    "2026-11-03/post/instagram": {
+      "status": "scheduled",
+      "id": "6ae5dd5199bda825ee02a352",
+      "dueAt": "2026-11-03T12:00:00+00:00",
+      "url": null
+    },
+    "2026-11-03/post/threads": {
+      "status": "scheduled",
+      "id": "6ae5dd5199bda825ee02a353",
+      "dueAt": "2026-11-03T12:00:00+00:00",
+      "url": null
+    },
+    "2026-11-04/reel/instagram": {
+      "status": "scheduled",
+      "id": "6ae67c4a938f2105fe18f9c5",
+      "dueAt": "2026-11-04T06:00:00+00:00",
+      "url": null
+    }
+  },
+  "history": [
+    "競売通知の内容を確認する際には、不明な点を通知元や専門家に質問する準備をしましょう。"
+  ]
+}
