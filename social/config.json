@@ -1,5 +1,5 @@
 {
-  "enabled": false,
+  "enabled": true,
   "cloudflare_free_plan_confirmed": true,
   "repository": "michikazutsuruta-design/sashiosae-rescue-test",
   "branch": "main",
