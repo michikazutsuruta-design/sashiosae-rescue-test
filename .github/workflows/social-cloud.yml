@@ -1,0 +1,53 @@
+name: Sashiosae cloud publishing
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: 'Read-only connection test, publish, or monitor'
+        type: choice
+        options: [diagnose, publish, monitor]
+        default: diagnose
+  schedule:
+    - cron: '17 0 * * *'
+    - cron: '37 6,12 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: sashiosae-cloud-publishing
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: vars.SOCIAL_CLOUD_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.operation == 'diagnose')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install media tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg fonts-noto-cjk
+          python -m pip install -r social/requirements.txt
+      - name: Configure journal commits
+        run: |
+          git config user.name 'social-publishing-bot'
+          git config user.email 'social-publishing-bot@users.noreply.github.com'
+      - name: Validate
+        run: python -m unittest discover -s tests -p 'test_social_cloud.py'
+      - name: Generate and schedule, or check publication
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          OPERATION: ${{ inputs.operation }}
+        run: |
+          if [ "$OPERATION" = 'diagnose' ]; then
+            python social/runner.py --diagnose
+          elif [ "$EVENT_SCHEDULE" = '37 6,12 * * *' ] || [ "$OPERATION" = 'monitor' ]; then
+            python social/runner.py --monitor-only
+          else
+            python social/runner.py
+          fi
