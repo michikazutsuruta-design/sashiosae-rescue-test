@@ -142,9 +142,14 @@ def generate(config, day, kind, history):
         'JSONのみ返す: {"title":"短い見出し","body":"本文","slides":["一枚目","二枚目","三枚目","四枚目"]}。'
         '最後のスライドはプロフィールの公式サイトへの案内。フッターやCTAはプログラムが付ける。/no_think')
     url = f'https://api.cloudflare.com/client/v4/accounts/{os.environ["CLOUDFLARE_ACCOUNT_ID"]}/ai/run/{config["model"]}'
+    schema={'type':'object','additionalProperties':False,'properties':{
+        'title':{'type':'string','minLength':2,'maxLength':18},
+        'body':{'type':'string','minLength':30,'maxLength':170},
+        'slides':{'type':'array','minItems':4,'maxItems':4,'items':{'type':'string','minLength':2,'maxLength':42}}},
+        'required':['title','body','slides']}
     raw = request_json(url, {'messages':[{'role':'system','content':instruction},
         {'role':'user','content':json.dumps({'theme':topic,'format':kind,'avoid':history[-12:]},ensure_ascii=False)}],
-        'max_tokens':1800,'temperature':0.65}, os.environ['CLOUDFLARE_API_TOKEN'])
+        'max_tokens':1800,'temperature':0.65,'response_format':{'type':'json_schema','json_schema':schema}}, os.environ['CLOUDFLARE_API_TOKEN'])
     if not raw.get('success',False):
         raise RuntimeError('AI generation failed; no paid fallback')
     result = raw['result']
