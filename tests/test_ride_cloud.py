@@ -6,7 +6,8 @@ import ride_runner as r
 class RideSafety(unittest.TestCase):
     def test_no_overlap_with_existing_publer_bridge(self):
         now=dt.datetime(2026,11,1,tzinfo=dt.timezone.utc)
-        self.assertTrue(all(day>=dt.date(2026,11,4) for _,day,_ in r.slots(now)))
+        self.assertTrue(all(day>=dt.date(2026,11,4) for _,day,kind in r.slots(now) if kind=='post'))
+        self.assertIn(dt.date(2026,11,2),[day for _,day,kind in r.slots(now) if kind=='reel'])
 
     def test_times_and_reel_days(self):
         for stamp,day,kind in r.slots(dt.datetime(2026,11,4,tzinfo=dt.timezone.utc)):
