@@ -50,8 +50,8 @@ def slots(now):
     result=[]
     for n in range(5):
         day=now.astimezone(shared.JST).date()+dt.timedelta(days=n)
-        if day<START: continue
         for kind,hour in [('post',22)]+([('reel',16)] if day.weekday() in (0,2,4) else []):
+            if day<START and (kind=='post' or day<dt.date(2026,11,2)): continue
             stamp=shared.due(day,hour)
             if stamp>now+dt.timedelta(minutes=20): result.append((stamp,day,kind))
     return sorted(result)
