@@ -5,7 +5,7 @@ on:
       operation:
         description: 'Connection check, build reservations, publish due Threads, or monitor'
         type: choice
-        options: [diagnose, build, threads, monitor]
+        options: [diagnose, build, threads, monitor, photos]
         default: diagnose
   schedule:
     - cron: '27 0 * * *'
