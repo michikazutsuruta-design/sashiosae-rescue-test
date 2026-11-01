@@ -76,10 +76,13 @@ def validate(c,history):
 def generate(day,kind,history):
     fields={'title_en':48,'title_yue':22,'body_en':155,'body_yue':100}
     props={k:{'type':'string','minLength':3,'maxLength':n} for k,n in fields.items()}
+    props['body_yue']['pattern']='.*[嘅唔睇喺撳咩搵].*'
     props.update({k:{'type':'array','minItems':4,'maxItems':4,'items':{'type':'string','minLength':2,'maxLength':60}} for k in ('slides_en','slides_yue')})
     instruction=('Write original RE/MAX RIDE home-search preparation content. English AND natural Hong Kong Cantonese written with Traditional characters, not Mandarin. '
         'Only general organization, everyday home preferences and viewing questions. No laws, tax, finance, investment advice, numerical claims, listings, prices, availability, achievements or guarantees. '
         'No personal names, URLs, hashtags or digits. English body max155 characters and Cantonese body max100 characters. '
+        'The body_yue must use spoken Cantonese words such as 嘅, 睇, 撳; avoid Mandarin expressions 的, 看房, 請瀏覽. '
+        'Example Cantonese style: 睇樓之前，寫低你重視嘅條件。撳個人檔案入面嘅官方網站。 '
         'Invite readers to use the official website in the profile. Four short parallel bilingual slides. Output only JSON matching schema. /no_think')
     payload={'messages':[{'role':'system','content':instruction},{'role':'user','content':json.dumps({'theme':TOPICS[(day.toordinal()+(4 if kind=='reel' else 0))%len(TOPICS)],'kind':kind,'avoid':history[-10:]})}],
              'max_tokens':1800,'temperature':.65,'response_format':{'type':'json_schema','json_schema':{'type':'object','additionalProperties':False,'properties':props,'required':list(props)}}}
@@ -148,7 +151,9 @@ def run(mode):
             found=[p for p in posts if shared.same_slot(p,IG,stamp)]
             if len(found)>1: raise RuntimeError('Multiple Instagram reservations at '+key)
             if found:
-                state['journal'][key]={'id':found[0]['id'],'status':found[0]['status'],'dueAt':stamp.isoformat()}; continue
+                entry=state['journal'].setdefault(key,{})
+                entry.update(id=found[0]['id'],status=found[0]['status'],dueAt=stamp.isoformat())
+                continue
             if key in state['journal'] or count>=10: continue
             folder=BASE/f'{day}-{kind}'; content=folder/'content.json'
             if content.exists(): c=shared.load(content,{})
