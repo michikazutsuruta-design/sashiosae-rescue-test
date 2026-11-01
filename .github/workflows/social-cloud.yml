@@ -16,6 +16,21 @@ concurrency:
   group: sashiosae-cloud-publishing
   cancel-in-progress: false
 jobs:
+  key-renewal-reminder:
+    if: github.event_name == 'schedule' && github.event.schedule == '17 0 * * *'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Notify before Buffer key expiry without stopping publishing
+        run: |
+          python - <<'PY'
+          import datetime
+          today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date()
+          if today == datetime.date(2027, 10, 25):
+              raise SystemExit('Buffer key expires 2027-11-01. Renew Sashiosae cloud posting, update BUFFER_API_KEY in repository Secrets, and run Social connection check. Do not paste keys in chat. Publishing runs independently of this reminder.')
+          print('No key renewal reminder due today.')
+          PY
   publish:
     if: vars.SOCIAL_CLOUD_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.operation == 'diagnose')
     runs-on: ubuntu-24.04
