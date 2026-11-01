@@ -1,0 +1,20 @@
+{
+  "enabled": false,
+  "cloudflare_free_plan_confirmed": true,
+  "repository": "michikazutsuruta-design/sashiosae-rescue-test",
+  "branch": "main",
+  "instagram": "6ae593ee2f1f5ed6482deee6",
+  "threads": "6ae595592f1f5ed6482e108e",
+  "handle": "sashiosae_rescue",
+  "model": "@cf/qwen/qwen3-30b-a3b-fp8",
+  "lookahead_days": 3,
+  "queue_limit": 10,
+  "topics": [
+    "通知の書類名・差出人・日付を手元で整理する",
+    "住宅ローンの相談前に困っていることをメモする",
+    "相続空き家の現在の利用状況と困りごとを整理する",
+    "任意売却の相談で確認したい質問を整理する。制度の説明はしない",
+    "競売の通知の不明点を通知元や専門家に質問する準備。制度の説明はしない",
+    "相談フォームへ短く状況を伝える準備。機微情報を入力させない"
+  ]
+}
