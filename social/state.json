@@ -1,10 +1,10 @@
 {
   "journal": {
     "2026-11-02/reel/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae67c23f69bc56624e8b4c1",
       "dueAt": "2026-11-02T06:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/reel/DfOnUYMDcN7/"
     },
     "2026-11-02/post/instagram": {
       "status": "scheduled",
@@ -65,5 +65,5 @@
     "競売通知の内容を確認する際には、不明な点を通知元や専門家に質問する準備をしましょう。",
     "状況を簡潔に整理し、必要な情報を明確に伝えましょう。機微な情報は控え、基本的な内容に集中します。"
   ],
-  "last_check": "2026-11-02T01:25:24.743696+00:00"
+  "last_check": "2026-11-02T07:55:51.406506+00:00"
 }
