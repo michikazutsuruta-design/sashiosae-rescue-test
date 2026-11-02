@@ -7,16 +7,16 @@
       "url": "https://www.instagram.com/reel/DfOnUYMDcN7/"
     },
     "2026-11-02/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae5dcde7e4ec96cc850aa76",
       "dueAt": "2026-11-02T12:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/p/DfPQu3KFPT4/"
     },
     "2026-11-02/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae5dcde7e4ec96cc850aa77",
       "dueAt": "2026-11-02T12:00:00+00:00",
-      "url": null
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfPQur-FdMd"
     },
     "2026-11-03/post/instagram": {
       "status": "scheduled",
@@ -65,5 +65,5 @@
     "競売通知の内容を確認する際には、不明な点を通知元や専門家に質問する準備をしましょう。",
     "状況を簡潔に整理し、必要な情報を明確に伝えましょう。機微な情報は控え、基本的な内容に集中します。"
   ],
-  "last_check": "2026-11-02T07:55:51.406506+00:00"
+  "last_check": "2026-11-02T13:44:35.738734+00:00"
 }
