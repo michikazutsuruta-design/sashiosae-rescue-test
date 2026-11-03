@@ -69,7 +69,7 @@ def validate(c,history):
     if re.search(r'鶴田|Tsuruta|https?://|[0-9０-９]|guarantee|yield|return on|tax.free|profit|回報|保證|穩賺|免稅|獨家|放盤|筍盤',joined,re.I):
         raise ValueError('Unapproved claim')
     if not re.search(r'嘅|唔|睇|喺|撳|咩|搵|你哋|佢|諗|點樣|買嘢|啲|冇|咁',c['body_yue']): raise ValueError('Cantonese required')
-    caption=c['body_en']+'\n\n'+c['body_yue']+'\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\n'+SITE
+    caption=c['body_en']+'\n\n'+c['body_yue']+'\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nEnglish: '+SITE+'en\n繁體中文: '+SITE
     if len(caption)>500: raise ValueError('Threads caption too long')
     if any(SequenceMatcher(None,c['body_en'],s).ratio()>.82 for s in history): raise ValueError('Repeated copy')
     return caption
@@ -240,3 +240,4 @@ def run(mode):
 if __name__=='__main__':
     import argparse
     p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos']); run(p.parse_args().mode)
+
