@@ -16,7 +16,8 @@ CONFIG = ROOT / 'social/config.json'
 FOOTER = ('初回相談無料。プロフィールの公式サイトへ。フォームは24時間受付、担当者確認後に返信します。'
           '\n※相談だけで差押え・競売の手続は停止しません。期限や法的判断は通知元・専門家へ確認してください。'
           '\n個人番号・口座情報はコメントやDMに送らないでください。'
-          '\n運営：株式会社ライドエステート\n#差押えレスキュー #不動産相談')
+          '\n運営：株式会社ライドエステート\n#差押えレスキュー #不動産相談'
+          '\nhttps://michikazutsuruta-design.github.io/sashiosae-rescue-test/')
 
 def load(path, default):
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else default
@@ -300,3 +301,4 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.diagnose: diagnose()
     else: run(args.monitor_only)
+
