@@ -73,8 +73,10 @@
       "url": null
     },
     "2026-11-06/post/threads": {
-      "status": "attempting",
-      "dueAt": "2026-11-06T12:00:00+00:00"
+      "status": "scheduled",
+      "id": "6ae937927996caf141c397d5",
+      "dueAt": "2026-11-06T12:00:00.000Z",
+      "url": null
     }
   },
   "history": [
