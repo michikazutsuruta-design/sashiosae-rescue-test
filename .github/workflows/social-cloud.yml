@@ -5,7 +5,7 @@ on:
       operation:
         description: 'Read-only connection test, publish, or monitor'
         type: choice
-        options: [diagnose, publish, monitor]
+        options: [diagnose, publish, monitor, redesign]
         default: diagnose
   schedule:
     - cron: '17 0 * * *'
@@ -63,8 +63,11 @@ jobs:
         run: |
           if [ "$OPERATION" = 'diagnose' ]; then
             python social/runner.py --diagnose
+          elif [ "$OPERATION" = 'redesign' ]; then
+            python social/rescue_redesign.py
           elif [ "$EVENT_SCHEDULE" = '37 6,12 * * *' ] || [ "$OPERATION" = 'monitor' ]; then
             python social/runner.py --monitor-only
           else
             python social/runner.py
           fi
+
