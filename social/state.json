@@ -31,10 +31,10 @@
       "url": "https://www.threads.com/@sashiosae_rescue/post/DfR1kiDoF76"
     },
     "2026-11-04/reel/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae67c4a938f2105fe18f9c5",
       "dueAt": "2026-11-04T06:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/reel/DfTw8v4DhXp/",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/8c88487ad96f993af4547e9a3208dee2ebdf7c7a/social/media/2026-11-04-reel-illustrated-v2/reel.mp4"
@@ -127,5 +127,5 @@
     "通知の書類名・差出人・日付を手元で整理する際には、一覧にして確認しやすくしましょう。必要な情報を明確にし、見落としを防ぎます。整理することで、後での対応がスムーズになります。",
     "何を整理すれば良いか迷いますね。まずは気になる点をメモしてみましょう。どんなことでも構いません。後で見直すと気づきがあるかもしれません。"
   ],
-  "last_check": "2026-11-04T01:24:12.596555+00:00"
+  "last_check": "2026-11-04T07:50:48.746960+00:00"
 }
