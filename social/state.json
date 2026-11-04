@@ -62,7 +62,9 @@
       "id": "6ae7e68ad016796999ffb88d",
       "dueAt": "2026-11-05T12:00:00+00:00",
       "url": null,
-      "visual_update": "attempting"
+      "visual_update": "complete",
+      "visual_version": "illustrated-house-v2",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/ccf50ba715484f239645fd090d4e2b30ec3179c5/social/media/2026-11-05-post-illustrated-v2/0.png"
     },
     "2026-11-05/post/threads": {
       "status": "scheduled",
