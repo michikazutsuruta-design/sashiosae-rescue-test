@@ -187,6 +187,12 @@ def run(mode):
         key=f'{day}/post/threads'
         if key in state['journal']: return  # Unknown attempts stop; never retry blindly.
         source=state['journal'].get(f'{day}/post/instagram',{})
+        # Public campaign data only: do not upload or replace the existing publication journal.
+        override=shared.load(BASE/'campaign-overrides.json',{}).get(str(day))
+        if override:
+            if set(override)!={'media','caption'} or len(override['caption'])>500:
+                raise RuntimeError('Invalid public campaign override')
+            source={**source,**override}
         if not source.get('caption') or not source.get('media'): raise RuntimeError('No prepared daily Ride content')
         recent=threads('me/threads?fields=id,text,permalink&limit=100').get('data',[])
         matched=[p for p in recent if p.get('text')==source['caption']]

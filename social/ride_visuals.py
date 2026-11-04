@@ -1,6 +1,7 @@
 """Real-photo editorial images. No generated rooms or text-only fallback."""
 import datetime as dt
 import os
+import json
 from pathlib import Path
 import subprocess
 from PIL import Image, ImageDraw, ImageFont, ImageOps
@@ -71,11 +72,14 @@ def render_post(c,folder,base):
     folder.mkdir(parents=True,exist_ok=True)
     photos=asset_pool(base)
     day=dt.date.fromisoformat(folder.name[:10])
-    return frame(photos[day.toordinal()%len(photos)],c['title_en'],c['title_yue'],folder/'photo-first.jpg')
+    photo=photos[day.toordinal()%len(photos)]
+    (folder/'visual.json').write_text(json.dumps({'scheduled_for':str(day),'kind':'post','photo':photo.name,'reuse_interval_days':len(photos),'version':VERSION},indent=2),encoding='utf-8')
+    return frame(photo,c['title_en'],c['title_yue'],folder/'photo-first.jpg')
 
 def render_reel(c,folder,base):
     folder.mkdir(parents=True,exist_ok=True)
-    photos=asset_pool(base);day=dt.date.fromisoformat(folder.name[:10]);offset=day.toordinal()%len(photos)
+    photos=asset_pool(base);day=dt.date.fromisoformat(folder.name[:10]);offset=(day.toordinal()+2)%len(photos)
+    (folder/'visual.json').write_text(json.dumps({'scheduled_for':str(day),'kind':'reel','photos':[photos[(offset+i)%len(photos)].name for i in range(4)],'version':VERSION},indent=2),encoding='utf-8')
     # Fixed visual-led headlines avoid displaying long generated advice over rooms.
     headlines=[('SPACE. LIGHT. TOKYO.','空間・光線・東京'),('A DIFFERENT VIEW','換個角度，睇東京。'),('THE DETAILS MATTER','生活細節，值得留意。'),('FIND YOUR PLACE','搵到你嘅東京生活。')]
     clips=[];ffmpeg=os.environ.get('SOCIAL_FFMPEG','ffmpeg')
