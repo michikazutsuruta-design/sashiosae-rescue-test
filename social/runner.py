@@ -139,7 +139,7 @@ def generate(config, day, kind, history):
     instruction = ('日本語の不動産相談窓口の短い投稿を作成。対象テーマの相談準備・情報整理だけを扱う。'
         '法律・制度・期限・費用・結果・金融判断を説明しない。恐怖訴求、架空事例、個人名、数値、URL、ハッシュタグは禁止。'
         '相談の効果や停止を約束しない。個人番号や口座情報、画像などの送信を求めない。'
-        '本文は三十〜百七十文字、見出しは十八文字以下、スライド四枚は各四十二文字以下。'
+        '本文は三十〜百七十文字、見出しは十八文字以下で、相談者に語りかける短く自然な言葉にする。事務作業名の羅列は禁止。例：家のこと、一人で抱えない。届いた通知、まずは整理。、スライド四枚は各四十二文字以下。'
         'JSONのみ返す: {"title":"短い見出し","body":"本文","slides":["一枚目","二枚目","三枚目","四枚目"]}。'
         '最後のスライドはプロフィールの公式サイトへの案内。フッターやCTAはプログラムが付ける。/no_think')
     url = f'https://api.cloudflare.com/client/v4/accounts/{os.environ["CLOUDFLARE_ACCOUNT_ID"]}/ai/run/{config["model"]}'
@@ -164,28 +164,53 @@ def generate(config, day, kind, history):
 def wrapped(text, limit):
     return '\n'.join(text[i:i+limit] for i in range(0,len(text),limit))
 
+VISUAL_VERSION = 'illustrated-house-v2'
+
 def render(content, folder, kind):
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw, ImageFont, ImageOps
     folder.mkdir(parents=True,exist_ok=True)
-    font_path = os.environ.get('SOCIAL_FONT','/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
-    height = 1920 if kind=='reel' else 1080
+    font_path=os.environ.get('SOCIAL_FONT','/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
+    source=ROOT/'social/assets/house-illustration-v2.png'
+    if not source.exists(): raise RuntimeError('Housing illustration missing; no text-card fallback')
+    with Image.open(source) as original:
+        original.load()
+        background=ImageOps.fit(original.convert('RGB'),(1080,1350),method=Image.Resampling.LANCZOS)
+    height=1920 if kind=='reel' else 1350
     def slide(text,index):
-        im=Image.new('RGB',(1080,height),'#F7F3E9'); d=ImageDraw.Draw(im)
-        d.rectangle((0,0,1080,180),fill='#142C46')
-        def draw(t,size,y,color='#142C46',chars=16):
-            f=ImageFont.truetype(font_path,size)
-            d.multiline_text((70,y),wrapped(t,chars),font=f,fill=color,spacing=24)
-        draw('差押えレスキュー',50,50,'white')
-        draw(content['title'],52,240,chars=17)
-        if kind=='reel': draw(text,48,480,chars=17)
-        else: draw(text,40,420,chars=23)
-        draw('初回相談無料',36,height-350)
-        draw('プロフィールの公式サイトへ',30,height-280,chars=25)
-        draw('株式会社ライドエステート｜RE/MAX RIDE',24,height-190,chars=40)
+        im=Image.new('RGB',(1080,height),'#061b38')
+        im.paste(background,(0,height-1350))
+        d=ImageDraw.Draw(im)
+        def font(size): return ImageFont.truetype(font_path,size)
+        def lines(value,f,width):
+            result=[]; current=''
+            for ch in value:
+                if ch=='\n': result.append(current); current=''; continue
+                if current and d.textlength(current+ch,font=f)>width:
+                    result.append(current); current=ch
+                else: current+=ch
+            return result+[current] if current else result
+        headline=text.strip()
+        if not 2<=len(headline)<=42: raise ValueError('Unreadable headline length')
+        for size in range(112,71,-2):
+            rows=lines(headline,font(size),936)
+            if len(rows)*(size+14)<=370: break
+        else: raise ValueError('Headline does not fit at readable size')
+        d.text((70,55),'差押えレスキュー',font=font(44),fill='#fff1d6')
+        d.rounded_rectangle((70,122,350,130),radius=4,fill='#ffb63d')
+        top=165 if kind=='post' else 270
+        for row in rows:
+            d.text((70,top),row,font=font(size),fill='#fff1d6',stroke_width=1)
+            top+=size+14
+        d.rounded_rectangle((64,height-198,1016,height-99),radius=36,fill='#ffb63d')
+        cta='相談の準備から、一緒に。'
+        d.text(((1080-d.textlength(cta,font=font(47)))/2,height-181),cta,font=font(47),fill='#071d37')
+        d.text((72,height-82),'プロフィールの公式サイトへ',font=font(35),fill='#fff1d6')
+        d.text((72,height-36),'住宅はイメージイラスト',font=font(25),fill='#fff1d6')
         path=folder/f'{index}.png'; im.save(path); return path
-    if kind=='post':
-        return slide(' '.join(content['slides'][:2]),0)
-    for i,text in enumerate(content['slides']): slide(text,i)
+    if kind=='post': return slide(content['title'],0)
+    # Short visual headlines carry the message; long explanations stay in the caption.
+    cards=[content['title'],'分かるところから、\nメモで大丈夫。','聞きたいことを、\n一つずつ。','相談の入口は、\nプロフィールへ。']
+    for i,text in enumerate(cards): slide(text,i)
     playlist=folder/'concat.txt'
     playlist.write_text(''.join(f"file '{i}.png'\nduration 5\n" for i in range(4))+"file '3.png'\n")
     output=folder/'reel.mp4'
@@ -239,7 +264,7 @@ def run(monitor_only=False):
             found=[p for p in posts if same_slot(p,config[service],timestamp)]
             if found:
                 if len(found)>1: problems.append('Multiple posts at '+key)
-                state['journal'][key]={'status':found[0]['status'],'id':found[0]['id'],'dueAt':timestamp.isoformat(),'url':found[0].get('externalLink')}
+                state['journal'][key]={**state['journal'].get(key,{}),'status':found[0]['status'],'id':found[0]['id'],'dueAt':timestamp.isoformat(),'url':found[0].get('externalLink')}
                 continue
             previous=state['journal'].get(key)
             if previous:
@@ -301,4 +326,5 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.diagnose: diagnose()
     else: run(args.monitor_only)
+
 
