@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 from urllib.error import HTTPError
 from difflib import SequenceMatcher
 import runner as shared
-import ride_photos
+import ride_visuals as ride_photos
 
 ROOT = shared.ROOT
 BASE = ROOT/'social/ride'
@@ -14,9 +14,9 @@ STATE = BASE/'state.json'
 IG = '6ae6e299e29c69a1712300e4'
 START = dt.date(2026,11,4)  # Existing Publer reservations own Nov 1-3.
 SITE = 'https://www.remaxride-tsuruta.com/'
-TOPICS = ['daily transport and local amenities','preparing viewing questions','comparing home layouts',
-          'organizing a remote enquiry','clarifying intended home use','preparing an area shortlist',
-          'considering everyday storage needs','planning a viewing itinerary','noting daylight preferences']
+TOPICS = ['space and daylight','Tokyo skyline views','the entrance experience',
+          'room flow and comfort','details of everyday living','finding a home in Tokyo',
+          'light and open living space','neighbourhood views','a place to feel at home']
 
 def persist(state):
     BASE.mkdir(parents=True,exist_ok=True)
@@ -75,16 +75,16 @@ def validate(c,history):
     return caption
 
 def generate(day,kind,history):
-    fields={'title_en':48,'title_yue':22,'body_en':155,'body_yue':100}
+    fields={'title_en':28,'title_yue':16,'body_en':140,'body_yue':90}
     props={k:{'type':'string','minLength':3,'maxLength':n} for k,n in fields.items()}
     props.update({k:{'type':'array','minItems':4,'maxItems':4,'items':{'type':'string','minLength':2,'maxLength':60}} for k in ('slides_en','slides_yue')})
-    instruction=('Write original RE/MAX RIDE home-search preparation content. English AND natural Hong Kong Cantonese written with Traditional characters, not Mandarin. '
+    instruction=('Write photo-led RE/MAX RIDE Tokyo residence editorial copy. Headlines must be short and visually engaging: two to five English words and a short Cantonese phrase. Keep headlines about space, daylight, skyline views, entrance or everyday living; do not use administrative checklist titles. English AND natural Hong Kong Cantonese written with Traditional characters, not Mandarin. '
         'Only general organization, everyday home preferences and viewing questions. No laws, tax, finance, investment advice, numerical claims, listings, prices, availability, achievements or guarantees. '
-        'No personal names, URLs, hashtags or digits. English body max155 characters and Cantonese body max100 characters. '
+        'No personal names, URLs, hashtags or digits. English body max140 characters and Cantonese body max90 characters. '
         'The body_yue must use spoken Cantonese words such as 嘅, 睇, 撳; avoid Mandarin expressions 的, 看房, 請瀏覽. '
         'Example Cantonese style: 睇樓之前，寫低你重視嘅條件。撳個人檔案入面嘅官方網站。 '
         'Use exactly these keys: title_en, title_yue, body_en, body_yue, slides_en, slides_yue. '
-        'slides_en and slides_yue must each contain four strings of at most sixty characters. title_en max forty eight characters, title_yue max twenty two. '
+        'slides_en and slides_yue must each contain four strings of at most sixty characters. title_en max twenty eight characters, title_yue max sixteen. '
         'Invite readers to use the official website in the profile. Output only the JSON object, not schema definitions. /no_think')
     payload={'messages':[{'role':'system','content':instruction},{'role':'user','content':json.dumps({'theme':TOPICS[(day.toordinal()+(4 if kind=='reel' else 0))%len(TOPICS)],'kind':kind,'avoid':history[-10:]})}],
              'max_tokens':1800,'temperature':.65,'response_format':{'type':'json_schema','json_schema':{'type':'object','additionalProperties':False,'properties':props,'required':list(props)}}}
@@ -101,31 +101,8 @@ def generate(day,kind,history):
 
 def render(c,folder,kind):
     if kind=='reel': return ride_photos.render_reel(c,folder,BASE)
-    from PIL import Image,ImageDraw,ImageFont
-    folder.mkdir(parents=True,exist_ok=True)
-    h=1920 if kind=='reel' else 1350
-    font=os.environ.get('SOCIAL_FONT','/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
-    def make(i,en,yue):
-        im=Image.new('RGB',(1080,h),'#F4F0E7'); d=ImageDraw.Draw(im)
-        d.rectangle((0,0,1080,180),fill='#173249')
-        def draw(text,size,y,color='#173249',width=26):
-            f=ImageFont.truetype(font,size)
-            d.multiline_text((72,y),'\n'.join(textwrap.wrap(text,width=width,break_long_words=True)),font=f,fill=color,spacing=22)
-        draw('RE/MAX RIDE',58,45,'white')
-        draw(c['title_en'],45,245,width=32)
-        draw(c['title_yue'],48,430,width=18)
-        draw(en,40,650 if kind=='reel' else 610,width=35)
-        draw(yue,44,1000 if kind=='reel' else 880,width=19)
-        draw('Official website in profile',28,h-220,width=45)
-        draw('撳個人檔案入面嘅官方網站',30,h-155,width=28)
-        draw('Ride Estate Co., Ltd.',24,h-80,width=45)
-        path=folder/f'{i}.png'; im.save(path); return path
-    if kind=='post': return make(0,c['slides_en'][0],c['slides_yue'][0])
-    for i in range(4): make(i,c['slides_en'][i],c['slides_yue'][i])
-    (folder/'concat.txt').write_text(''.join(f"file '{i}.png'\nduration 5\n" for i in range(4))+"file '3.png'\n")
-    target=folder/'reel.mp4'
-    subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',str(folder/'concat.txt'),'-f','lavfi','-i','anullsrc=channel_layout=stereo:sample_rate=48000','-t','20','-r','30','-c:v','libx264','-preset','fast','-crf','25','-pix_fmt','yuv420p','-c:a','aac','-movflags','+faststart',str(target)],check=True)
-    return target
+    return ride_photos.render_post(c,folder,BASE)
+
 
 def public_media(state,path):
     persist(state)
@@ -195,15 +172,15 @@ def run(mode):
                 folder.mkdir(parents=True,exist_ok=True); content.write_text(json.dumps(c,ensure_ascii=False,indent=2),encoding='utf8')
                 state['history']=(state['history']+[c['body_en']])[-120:]
             caption=validate(c,[])
-            if kind=='reel': caption+='\n\n'+ride_photos.DISCLAIMER_EN+'\n'+ride_photos.DISCLAIMER_YUE
+            caption+='\n\n'+ride_photos.DISCLAIMER_EN+'\n'+ride_photos.DISCLAIMER_YUE
             media=render(c,folder,kind); url=public_media(state,media)
             state['journal'][key]={'status':'attempting','dueAt':stamp.isoformat()}; persist(state)
             payload={'text':caption,'channelId':IG,'assets':[{('video' if kind=='reel' else 'image'):{'url':url}}],
                      'schedulingType':'automatic','mode':'customScheduled','dueAt':stamp.isoformat(),'needsApproval':False,'aiAssisted':True,
-                     'metadata':{'instagram':{'type':kind,'shouldShareToFeed':True,'isAiGenerated':kind!='reel'}}}
+                     'metadata':{'instagram':{'type':kind,'shouldShareToFeed':True,'isAiGenerated':False}}}
             result=shared.graphql(shared.CREATE,{'input':payload})['createPost']
             if not result.get('post'): raise RuntimeError('Instagram scheduling requires reconciliation')
-            p=result['post']; state['journal'][key]={'id':p['id'],'status':p['status'],'dueAt':p['dueAt'],'media':url,'caption':caption,'visual_version':ride_photos.VERSION if kind=='reel' else 'text-v1'}; count+=1; posts.append(p); persist(state)
+            p=result['post']; state['journal'][key]={'id':p['id'],'status':p['status'],'dueAt':p['dueAt'],'media':url,'caption':caption,'visual_version':ride_photos.VERSION}; count+=1; posts.append(p); persist(state)
     if mode=='threads':
         day=now.astimezone(shared.JST).date(); stamp=shared.due(day,22)
         if day<START or not stamp<=now<=stamp+dt.timedelta(hours=2): return
@@ -240,4 +217,5 @@ def run(mode):
 if __name__=='__main__':
     import argparse
     p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos']); run(p.parse_args().mode)
+
 
