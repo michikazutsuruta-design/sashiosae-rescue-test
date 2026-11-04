@@ -88,7 +88,8 @@
       "status": "scheduled",
       "id": "6ae9378f5d11dd638e995284",
       "dueAt": "2026-11-06T12:00:00.000Z",
-      "url": null
+      "url": null,
+      "visual_update": "attempting"
     },
     "2026-11-06/post/threads": {
       "status": "scheduled",
