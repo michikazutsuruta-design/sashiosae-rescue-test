@@ -101,6 +101,10 @@
       "visual_update": "complete",
       "visual_version": "illustrated-house-v2",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/e3781ab330567ff4177e8dcf600b45acd591a3cd/social/media/2026-11-06-post-illustrated-v2/0.png"
+    },
+    "2026-11-07/post/instagram": {
+      "status": "attempting",
+      "dueAt": "2026-11-07T12:00:00+00:00"
     }
   },
   "history": [
