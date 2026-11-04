@@ -52,4 +52,20 @@ class SocialCloudTests(unittest.TestCase):
         with patch.dict(r.os.environ,{'CLOUDFLARE_ACCOUNT_ID':'example','CLOUDFLARE_API_TOKEN':'example'}), patch.object(r,'request_json',return_value={'success':True,'result':{'response':item}}):
             self.assertEqual(r.generate({'topics':['相談準備'],'model':'example'},dt.date(2026,11,4),'post',[]),item)
 
+    def test_illustrated_post_is_portrait_and_image_rich(self):
+        from PIL import Image
+        path=r.render(self.content(),r.ROOT/'.test-artifacts/post','post')
+        with Image.open(path) as im:
+            self.assertEqual(im.size,(1080,1350))
+            sample=im.resize((108,135)).convert('RGB')
+            self.assertGreater(len(set(sample.getdata())),2000)
+            nearly_white=sum(min(p)>235 for p in sample.getdata())
+            self.assertLess(nearly_white/(108*135),0.10)
+
+    def test_missing_illustration_never_falls_back_to_text_card(self):
+        with patch.object(r,'ROOT',r.ROOT/'.test-artifacts/missing'):
+            with self.assertRaises(RuntimeError):
+                r.render(self.content(),r.ROOT/'out','post')
+
 if __name__=='__main__': unittest.main()
+
