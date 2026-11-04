@@ -89,9 +89,9 @@
       "id": "6ae9378f5d11dd638e995284",
       "dueAt": "2026-11-06T12:00:00+00:00",
       "url": null,
-      "visual_update": "attempting",
-      "visual_version": "illustrated-house-v2",
-      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/1225d8fe6bf68c5955004113eb484fb7be2c1d43/social/media/2026-11-06-post-illustrated-v2/0.png"
+      "visual_update": "complete",
+      "visual_version": "illustrated-house-v3",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/98a482851c096787e50b60e4e3c3566ad5e26b42/social/media/2026-11-06-post-illustrated-v2/0.png"
     },
     "2026-11-06/post/threads": {
       "status": "scheduled",
