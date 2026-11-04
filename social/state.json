@@ -106,7 +106,8 @@
       "status": "scheduled",
       "id": "6aea894269ad1ef03b6d15c5",
       "dueAt": "2026-11-07T12:00:00.000Z",
-      "url": null
+      "url": null,
+      "visual_update": "attempting"
     },
     "2026-11-07/post/threads": {
       "status": "scheduled",
