@@ -164,21 +164,27 @@ def generate(config, day, kind, history):
 def wrapped(text, limit):
     return '\n'.join(text[i:i+limit] for i in range(0,len(text),limit))
 
-VISUAL_VERSION = 'illustrated-house-v2'
+VISUAL_VERSION = 'illustrated-house-v3'
 
 def render(content, folder, kind):
     from PIL import Image, ImageDraw, ImageFont, ImageOps
     folder.mkdir(parents=True,exist_ok=True)
     font_path=os.environ.get('SOCIAL_FONT','/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
-    source=ROOT/'social/assets/house-illustration-v2.png'
-    if not source.exists(): raise RuntimeError('Housing illustration missing; no text-card fallback')
-    with Image.open(source) as original:
-        original.load()
-        background=ImageOps.fit(original.convert('RGB'),(1080,1350),method=Image.Resampling.LANCZOS)
+    sources=[ROOT/'social/assets'/name for name in (
+        'house-illustration-v2.png','house-daylight-v2.png','apartment-v2.png')]
+    backgrounds=[]
+    for source in sources:
+        if not source.exists(): raise RuntimeError('Housing illustration missing; no text-card fallback')
+        with Image.open(source) as original:
+            original.load()
+            backgrounds.append(ImageOps.fit(original.convert('RGB'),(1080,1350),method=Image.Resampling.LANCZOS))
+    match=re.match(r'(\d{4}-\d{2}-\d{2})',folder.name)
+    day=dt.date.fromisoformat(match[1]) if match else dt.date(2026,11,4)
+    first=(day-dt.date(2026,11,4)).days%len(backgrounds)
     height=1920 if kind=='reel' else 1350
     def slide(text,index):
         im=Image.new('RGB',(1080,height),'#061b38')
-        im.paste(background,(0,height-1350))
+        im.paste(backgrounds[(first+index)%len(backgrounds)],(0,height-1350))
         d=ImageDraw.Draw(im)
         def font(size): return ImageFont.truetype(font_path,size)
         def lines(value,f,width):
