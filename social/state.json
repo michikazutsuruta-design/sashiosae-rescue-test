@@ -79,7 +79,8 @@
       "status": "scheduled",
       "id": "6ae67c715e3a52d8c6233dce",
       "dueAt": "2026-11-06T06:00:00+00:00",
-      "url": null
+      "url": null,
+      "visual_update": "attempting"
     },
     "2026-11-06/post/instagram": {
       "status": "scheduled",
