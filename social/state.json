@@ -71,7 +71,9 @@
       "id": "6ae7e68d48ce42a6b4389efc",
       "dueAt": "2026-11-05T12:00:00+00:00",
       "url": null,
-      "visual_update": "attempting"
+      "visual_update": "complete",
+      "visual_version": "illustrated-house-v2",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/1c89dc6b1a7b05d677577cb8a0aca111959373b0/social/media/2026-11-05-post-illustrated-v2/0.png"
     },
     "2026-11-06/reel/instagram": {
       "status": "scheduled",
