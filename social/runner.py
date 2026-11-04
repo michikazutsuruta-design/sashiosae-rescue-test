@@ -190,6 +190,12 @@ def render(content, folder, kind):
                 else: current+=ch
             return result+[current] if current else result
         headline=text.strip()
+        headline={
+            '競売通知の確認':'届いた通知、\nまずは整理。',
+            '相談準備・情報整理':'家のこと、\n一人で\n抱えない。',
+            '書類の整理のポイント':'その書類、\n一緒に整理。',
+            '家のこと、一人で抱えない。':'家のこと、\n一人で\n抱えない。',
+        }.get(headline,headline)
         if not 2<=len(headline)<=42: raise ValueError('Unreadable headline length')
         for size in range(112,71,-2):
             rows=lines(headline,font(size),936)
