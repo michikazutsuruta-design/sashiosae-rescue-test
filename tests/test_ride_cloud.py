@@ -2,6 +2,7 @@ import sys, unittest, datetime as dt
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'social'))
 import ride_runner as r
+from test_ride_visuals import PhotoFirstChecks
 
 class RideSafety(unittest.TestCase):
     def test_no_overlap_with_existing_publer_bridge(self):
@@ -26,3 +27,4 @@ class RideSafety(unittest.TestCase):
         with self.assertRaises(ValueError): r.validate(c,[])
 
 if __name__=='__main__': unittest.main()
+
