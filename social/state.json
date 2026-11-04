@@ -115,7 +115,8 @@
       "status": "scheduled",
       "id": "6aea894569ad1ef03b6d16c7",
       "dueAt": "2026-11-07T12:00:00.000Z",
-      "url": null
+      "url": null,
+      "visual_update": "attempting"
     }
   },
   "history": [
