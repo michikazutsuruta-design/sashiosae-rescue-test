@@ -96,7 +96,7 @@ def validate(c,history):
     if any(SequenceMatcher(None,c['body_en'],s).ratio()>.82 for s in history): raise ValueError('Repeated copy')
     return caption
 
-def generate(day,kind,history):
+def generate_draft(day,kind,history):
     fields={'title_en':28,'title_yue':16,'body_en':140,'body_yue':90}
     props={k:{'type':'string','minLength':3,'maxLength':n} for k,n in fields.items()}
     props.update({k:{'type':'array','minItems':4,'maxItems':4,'items':{'type':'string','minLength':2,'maxLength':60}} for k in ('slides_en','slides_yue')})
@@ -120,6 +120,41 @@ def generate(day,kind,history):
         # Draft text is public marketing copy, never credentials or account metadata.
         raise ValueError(str(error)+'; generated draft='+json.dumps(c,ensure_ascii=False)) from None
     return c
+
+
+EDITORIAL_BACKUP = [
+ ('A brighter morning','朝早嘅自然光','Picture your morning routine in a light-filled room. Explore our official website through the profile.','朝早入屋嘅自然光，會點樣影響你嘅生活節奏？撳個人檔案睇官方網站。'),
+ ('Space for your day','日常需要嘅空間','Think about the space your daily routines need, from reading to sharing a meal. Find our official website in the profile.','睇空間之前，諗吓平日閱讀同食飯需要啲咩。想了解更多，撳個人檔案入面嘅官方網站。'),
+ ('A view to pause for','停低睇吓風景','A window can frame a moment of calm. Consider the outlook you enjoy and explore our official website in the profile.','窗外嘅風景，可以令你想停低一陣。你鍾意點樣嘅景觀？撳個人檔案睇官方網站。'),
+ ('Arrive at your own pace','返到屋企嘅一刻','Imagine the feeling of coming home. Which entrance details matter to you? Visit the official website linked in our profile.','返到屋企嗰一刻，你最重視入口嘅邊啲細節？撳個人檔案入面嘅官方網站了解更多。'),
+ ('Room to gather','一齊相聚嘅空間','From quiet evenings to time with friends, consider how a living room fits your plans. Official website in our profile.','由自己靜靜休息，到同朋友相聚，客廳要點樣配合你嘅生活？撳個人檔案睇官方網站。'),
+ ('The everyday details','留意生活細節','Look closer at materials, light and the connections between rooms. Explore more through the official website in our profile.','物料、光線，同房間之間嘅連接，都值得慢慢睇。想了解更多，撳個人檔案入面嘅官方網站。'),
+ ('Find your daily rhythm','搵到生活節奏','Picture an ordinary day at home, from your first coffee to winding down. Talk to us through the website in our profile.','由第一杯咖啡，到夜晚放鬆，你想喺屋企過點樣嘅一日？撳個人檔案入面嘅官方網站同我哋傾吓。'),
+ ('A place for quiet','留啲空間畀自己','Consider where you would read, rest or simply enjoy the light. Discover our official website through the profile link.','你會揀邊個角落睇書、休息，或者靜靜享受光線？想了解更多，撳個人檔案嘅官方網站。'),
+ ('See how rooms connect','睇吓空間點樣連接','Notice how rooms connect and imagine moving through your day. Visit our official website via the profile link.','睇吓房間之間點樣連接，再諗平日行出行入順唔順。撳個人檔案入面嘅官方網站了解更多。'),
+ ('Make room for comfort','住得自在啲','Comfort starts with your own priorities. Share what matters to you through the official website linked in our profile.','住得舒服，每個人重視嘅條件都唔同。撳個人檔案入面嘅官方網站，同我哋講吓你嘅需要。'),
+ ('A different perspective','換個角度睇空間','Take a second look at the relationship between windows and living space. Our official website is linked in the profile.','換個角度睇吓窗戶同客廳嘅關係，可能會留意到唔同細節。更多介紹請撳個人檔案嘅官方網站。'),
+ ('Your next chapter','你嘅下一段生活','Start with the everyday moments you want a home to support. Explore the official website through our profile.','搵屋企，不妨由你想過嘅日常開始諗。想了解更多，撳個人檔案入面嘅官方網站。'),
+]
+
+def generate(day,kind,history):
+    # Bounded generation retries; vetted editorial copy keeps daily preparation running.
+    for attempt in range(3):
+        try: return generate_draft(day,kind,history)
+        except (ValueError,RuntimeError,OSError):
+            print('Draft did not pass checks; trying another safe draft.')
+    start=(day.toordinal()+(4 if kind=='reel' else 0))%len(EDITORIAL_BACKUP)
+    for offset in range(len(EDITORIAL_BACKUP)):
+        en,zh,body,yue=EDITORIAL_BACKUP[(start+offset)%len(EDITORIAL_BACKUP)]
+        c={'title_en':en,'title_yue':zh,'body_en':body,'body_yue':yue,
+           'slides_en':['Natural light','Everyday space','Look closer','Official website in profile'],
+           'slides_yue':['自然光入屋','日常生活空間','細節值得睇吓','撳個人檔案睇網站']}
+        try: validate(c,history[-7:])
+        except ValueError: continue
+        print('Using checked editorial backup for daily continuity.')
+        return c
+    raise RuntimeError('No safe distinct editorial backup available')
+
 
 def render(c,folder,kind):
     if kind=='reel': return ride_photos.render_reel(c,folder,BASE)
@@ -182,7 +217,7 @@ def run(mode):
             folder=BASE/f'{day}-{kind}'; content=folder/'content.json'
             if content.exists(): c=shared.load(content,{})
             else:
-                if generated>=2: break
+                if generated>=8: break
                 c=generate(day,kind,state['history']); generated+=1
                 folder.mkdir(parents=True,exist_ok=True); content.write_text(json.dumps(c,ensure_ascii=False,indent=2),encoding='utf8')
                 state['history']=(state['history']+[c['body_en']])[-120:]
@@ -238,6 +273,7 @@ def run(mode):
 def catch_up_today():
     """User-authorized daily recovery. Unknown outcomes never retry."""
     now=dt.datetime.now(dt.timezone.utc);day=now.astimezone(shared.JST).date()
+    if now.astimezone(shared.JST).hour<22: return  # A delayed run must not post the next day early.
     channel=accounts();state=shared.load(STATE,{'journal':{},'history':[]})
     key=f'{day}/post/instagram'
     posts=shared.fetch_posts({'instagram':channel},now)
@@ -282,5 +318,6 @@ if __name__=='__main__':
     import argparse
     p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos','catchup']); mode=p.parse_args().mode
     catch_up_today() if mode=='catchup' else run(mode)
+
 
 

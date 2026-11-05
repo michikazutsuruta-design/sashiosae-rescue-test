@@ -6,17 +6,51 @@ from pathlib import Path
 import subprocess
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
-VERSION='photo-first-editorial-v2'
+VERSION='photo-first-editorial-v3-history'
 DISCLAIMER_EN='Property photographs; current availability on enquiry.'
 DISCLAIMER_YUE='物業實景照片，最新放售情況請查詢。'
 
+HISTORIC_USES = {
+    # Nov 4 was a manually replaced FIVE-photo carousel, not a single-date rotation.
+    '2026-11-04': ['photo-first-source-%02d.jpg'%i for i in range(1,6)],
+    '2026-11-05': ['photo-first-source-01.jpg','city-06.jpg'],
+}
+
 def asset_pool(base):
-    paths=[base/'assets'/f'photo-first-source-{i:02d}.jpg' for i in range(1,6)]
+    paths=sorted((base/'assets').glob('*.jpg'))
+    if not paths: raise FileNotFoundError('Actual photo library missing')
     for path in paths:
         with Image.open(path) as im:
-            if min(im.size)<800:raise ValueError('Photo source too small: '+path.name)
+            if min(im.size)<800: raise ValueError('Photo source too small: '+path.name)
             im.verify()
     return paths
+
+def usage_history(base,ignore=None):
+    uses={dt.date.fromisoformat(k):set(v) for k,v in HISTORIC_USES.items()}
+    for path in sorted(base.glob('*/visual.json')):
+        if ignore and path.parent.name==ignore: continue
+        data=json.loads(path.read_text(encoding='utf8'))
+        day=dt.date.fromisoformat(data['scheduled_for'])
+        names=data.get('photos') or [data.get('photo')]
+        uses.setdefault(day,set()).update(n for n in names if n)
+    return uses
+
+def choose_photos(base,day,kind,count):
+    import hashlib
+    pool=asset_pool(base);uses=usage_history(base,str(day)+'-'+kind)
+    # Include ALL photos used by posts, carousels and reels, including same-day slots.
+    recent=[d for d in uses if d<=day]
+    previous=max((d for d in recent if d<day),default=None)
+    blocked=set(uses.get(day,set()))
+    if previous is not None: blocked.update(uses[previous])
+    candidates=[p for p in pool if p.name not in blocked]
+    if len(candidates)<count:
+        raise ValueError('Not enough unused photos; stop instead of repeating adjacent posts')
+    def priority(path):
+        last=max((d for d,names in uses.items() if d<=day and path.name in names),default=dt.date.min)
+        tie=hashlib.sha256((str(day)+'/'+kind+'/'+path.name).encode()).hexdigest()
+        return (last,tie)
+    return sorted(candidates,key=priority)[:count]
 
 def get_font(size,serif=False):
     env='SOCIAL_SERIF_FONT' if serif else 'SOCIAL_FONT'
@@ -70,15 +104,14 @@ def frame(photo,title,zh,target,size=(1080,1350)):
 
 def render_post(c,folder,base):
     folder.mkdir(parents=True,exist_ok=True)
-    photos=asset_pool(base)
     day=dt.date.fromisoformat(folder.name[:10])
-    photo=photos[day.toordinal()%len(photos)]
-    (folder/'visual.json').write_text(json.dumps({'scheduled_for':str(day),'kind':'post','photo':photo.name,'reuse_interval_days':len(photos),'version':VERSION},indent=2),encoding='utf-8')
+    photo=choose_photos(base,day,'post',1)[0]
+    (folder/'visual.json').write_text(json.dumps({'scheduled_for':str(day),'kind':'post','photo':photo.name,'selection':'actual-usage-history-no-adjacent-reuse','version':VERSION},indent=2),encoding='utf-8')
     return frame(photo,c['title_en'],c['title_yue'],folder/'photo-first.jpg')
 
 def render_reel(c,folder,base):
     folder.mkdir(parents=True,exist_ok=True)
-    photos=asset_pool(base);day=dt.date.fromisoformat(folder.name[:10]);offset=(day.toordinal()+2)%len(photos)
+    day=dt.date.fromisoformat(folder.name[:10]);photos=choose_photos(base,day,'reel',4);offset=0
     (folder/'visual.json').write_text(json.dumps({'scheduled_for':str(day),'kind':'reel','photos':[photos[(offset+i)%len(photos)].name for i in range(4)],'version':VERSION},indent=2),encoding='utf-8')
     # Fixed visual-led headlines avoid displaying long generated advice over rooms.
     headlines=[('SPACE. LIGHT. TOKYO.','空間・光線・東京'),('A DIFFERENT VIEW','換個角度，睇東京。'),('THE DETAILS MATTER','生活細節，值得留意。'),('FIND YOUR PLACE','搵到你嘅東京生活。')]
@@ -93,3 +126,4 @@ def render_reel(c,folder,base):
     for clip in clips:clip.unlink()
     listing.unlink()
     return target
+
