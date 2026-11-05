@@ -58,19 +58,19 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/82e917078941483957c06b2177b0274cd2e03989/social/media/2026-11-04-post-illustrated-v2/0.png"
     },
     "2026-11-05/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae7e68ad016796999ffb88d",
       "dueAt": "2026-11-05T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/p/DfW_N01HPjI/",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/2394b6a2300f8cc4b08600f7306e32e47349c470/social/media/2026-11-05-post-illustrated-v2/0.png"
     },
     "2026-11-05/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae7e68d48ce42a6b4389efc",
       "dueAt": "2026-11-05T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfW_PMIkXxB",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/455eb6d72d26003ae3dcd71b0fa8f681c2ecec3a/social/media/2026-11-05-post-illustrated-v2/0.png"
@@ -140,5 +140,5 @@
     "何を整理すれば良いか迷いますね。まずは気になる点をメモしてみましょう。どんなことでも構いません。後で見直すと気づきがあるかもしれません。",
     "家の状況や困りごとを整理するには、まずは気になる点をメモするのがおすすめです。何でもいいので書き出してみましょう。後で見直すと気づきがあるかもしれません。"
   ],
-  "last_check": "2026-11-05T07:51:19.960831+00:00"
+  "last_check": "2026-11-05T13:49:29.981628+00:00"
 }
