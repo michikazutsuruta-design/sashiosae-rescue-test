@@ -127,8 +127,10 @@
       "url": null
     },
     "2026-11-08/post/threads": {
-      "status": "attempting",
-      "dueAt": "2026-11-08T12:00:00+00:00"
+      "status": "scheduled",
+      "id": "6aebdb4601b5398f87a13739",
+      "dueAt": "2026-11-08T12:00:00.000Z",
+      "url": null
     }
   },
   "history": [
