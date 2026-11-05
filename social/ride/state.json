@@ -54,7 +54,7 @@
     "2026-11-06/reel/instagram": {
       "id": "6aec919d01e9d82de81e0ac6",
       "status": "scheduled",
-      "dueAt": "2026-11-06T07:00:00.000Z",
+      "dueAt": "2026-11-06T07:00:00+00:00",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/c2df4d24c22434d9178eda2e1c507d27441f35b6/social/ride/2026-11-06-reel/reel.mp4",
       "caption": "Explore how everyday life unfolds in Tokyo homes.\n\n睇睇日常生活中點樣喺東京屋企展現\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nEnglish: https://www.remaxride-tsuruta.com/en\n繁體中文: https://www.remaxride-tsuruta.com/\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
       "visual_version": "photo-first-editorial-v3-history",
@@ -67,7 +67,8 @@
     "Think about how easy it is to get around and what's nearby.",
     "Organize your home preferences and questions before viewing.",
     "Explore daylight, flow and storage in Tokyo homes. Visit our official website through the profile to discuss what matters to you.",
-    "Explore how everyday life unfolds in Tokyo homes."
+    "Explore how everyday life unfolds in Tokyo homes.",
+    "Maximize natural light and open spaces for a bright living experience."
   ],
   "token_refresh_warning": "Renewed token requires encrypted secret update"
 }
