@@ -5,12 +5,14 @@ on:
       operation:
         description: 'Connection check, build reservations, publish due Threads, or monitor'
         type: choice
-        options: [diagnose, build, threads, monitor, photos]
+        options: [diagnose, build, threads, monitor, photos, catchup]
         default: diagnose
   schedule:
-    - cron: '27 0 * * *'
+    - cron: '27 0,3,6,9 * * *'
     - cron: '7 7 * * *'
     - cron: '7,37 13 * * *'
+    - cron: '7 14 * * *'
+    - cron: '37 14 * * *'
 permissions:
   contents: write
 concurrency:
@@ -48,9 +50,11 @@ jobs:
         run: |
           if [ -n "$OPERATION" ]; then
             python social/ride_runner.py "$OPERATION"
-          elif [ "$EVENT_SCHEDULE" = '27 0 * * *' ]; then
+          elif [ "$EVENT_SCHEDULE" = '27 0,3,6,9 * * *' ]; then
             python social/ride_runner.py build
-          elif [ "$EVENT_SCHEDULE" = '7,37 13 * * *' ]; then
+          elif [ "$EVENT_SCHEDULE" = '37 14 * * *' ]; then
+            python social/ride_runner.py catchup
+          elif [ "$EVENT_SCHEDULE" = '7,37 13 * * *' ] || [ "$EVENT_SCHEDULE" = '7 14 * * *' ]; then
             python social/ride_runner.py threads
           else
             python social/ride_runner.py monitor
