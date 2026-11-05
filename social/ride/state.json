@@ -60,6 +60,10 @@
       "visual_version": "photo-first-editorial-v3-history",
       "url": null,
       "photo_update": "complete"
+    },
+    "2026-11-06/post/instagram": {
+      "status": "attempting",
+      "dueAt": "2026-11-06T13:00:00+00:00"
     }
   },
   "history": [
