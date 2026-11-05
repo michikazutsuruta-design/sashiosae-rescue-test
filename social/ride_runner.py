@@ -37,6 +37,28 @@ def threads(path, values=None):
     except HTTPError as e:
         raise RuntimeError('Threads HTTP '+str(e.code)+'; no automatic mutation retry') from None
 
+def refresh_threads_token(state, now):
+    """Use the unversioned OAuth endpoint without logging credentials."""
+    last=shared.parsed(state.get('token_refreshed_at'))
+    if last and now-last<=dt.timedelta(days=7): return
+    token=os.environ['RIDE_THREADS_ACCESS_TOKEN']
+    url='https://graph.threads.net/refresh_access_token?'+urlencode({'grant_type':'th_refresh_token','access_token':token})
+    try:
+        with urlopen(Request(url,headers={'Authorization':'Bearer '+token}),timeout=60) as response:
+            renewed=json.load(response)
+        if renewed.get('access_token')!=token:
+            state['token_refresh_warning']='Renewed token requires encrypted secret update'
+        else:
+            state['token_refreshed_at']=now.isoformat()
+            state.pop('token_refresh_warning',None)
+    except HTTPError as error:
+        state['token_refresh_warning']='Threads renewal HTTP '+str(error.code)
+    except (OSError,ValueError):
+        state['token_refresh_warning']='Threads renewal could not be verified'
+    persist(state)
+    if state.get('token_refresh_warning'):
+        print('Token maintenance needs attention; verified accounts may continue publishing.')
+
 def accounts():
     account=threads('me?fields=id,username')
     if account.get('username') != 'rideestate': raise RuntimeError('Wrong Threads account')
@@ -114,14 +136,7 @@ def run(mode):
     print('Both Ride accounts verified; no access to other brands.')
     if mode=='diagnose': return
     state=shared.load(STATE,{'journal':{},'history':[]})
-    if mode=='build' and now.astimezone(shared.JST).date()>=dt.date(2026,11,3):
-        last=shared.parsed(state.get('token_refreshed_at'))
-        if not last or now-last>dt.timedelta(days=7):
-            renewed=threads('refresh_access_token?grant_type=th_refresh_token')
-            if renewed.get('access_token')!=os.environ['RIDE_THREADS_ACCESS_TOKEN']:
-                raise RuntimeError('Threads returned a changed token. Update encrypted RIDE_THREADS_ACCESS_TOKEN; token is not logged.')
-            state['token_refreshed_at']=now.isoformat()
-            persist(state)
+    if mode=='build': refresh_threads_token(state,now)
     posts=shared.fetch_posts({'instagram':channel},now)
     byid={p['id']:p for p in posts}
     for entry in state['journal'].values():
@@ -220,8 +235,52 @@ def run(mode):
             raise RuntimeError('Ride publication overdue '+key)
     persist(state)
 
+def catch_up_today():
+    """User-authorized daily recovery. Unknown outcomes never retry."""
+    now=dt.datetime.now(dt.timezone.utc);day=now.astimezone(shared.JST).date()
+    channel=accounts();state=shared.load(STATE,{'journal':{},'history':[]})
+    key=f'{day}/post/instagram'
+    posts=shared.fetch_posts({'instagram':channel},now)
+    regular=[p for p in posts if p.get('dueAt') and shared.parsed(p['dueAt']).astimezone(shared.JST).date()==day and p.get('status')!='draft' and (p.get('metadata') or {}).get('type') not in ('reel','story')]
+    if len(regular)>1: raise RuntimeError('Multiple daily Instagram posts; reconcile first')
+    entry=state['journal'].get(key)
+    if regular:
+        p=regular[0]
+        if p['status']=='error': raise RuntimeError('Existing daily Instagram error; reconcile first')
+        if entry and entry.get('id') and entry['id']!=p['id']: raise RuntimeError('Daily identity mismatch')
+        entry=state['journal'].setdefault(key,{})
+        entry.update(id=p['id'],status=p['status'],dueAt=p['dueAt'],url=p.get('externalLink'));persist(state)
+    elif entry:
+        raise RuntimeError('Existing daily journal needs reconciliation; no repost')
+    else:
+        folder=BASE/f'{day}-post';content=folder/'content.json'
+        if content.exists(): c=shared.load(content,{})
+        elif day==dt.date(2026,11,5):
+            c={'title_en':'Room to feel at home','title_yue':'住得舒服嘅空間',
+               'body_en':'Explore daylight, flow and storage in Tokyo homes. Visit our official website through the profile to discuss what matters to you.',
+               'body_yue':'想搵住得舒服嘅東京屋企？由採光、動線同收納睇起。撳個人檔案入面嘅官方網站，同我哋傾吓你嘅需要。',
+               'slides_en':['Natural light','Space that flows','Storage for everyday life','Explore our official website'],
+               'slides_yue':['自然光入屋','行得順嘅動線','日常收納空間','撳個人檔案睇官方網站']}
+        else: c=generate(day,'post',state['history'])
+        caption=validate(c,[])+'\n\n'+ride_photos.DISCLAIMER_EN+'\n'+ride_photos.DISCLAIMER_YUE
+        if len(caption)>500: raise ValueError('Caption exceeds Threads limit')
+        folder.mkdir(parents=True,exist_ok=True);content.write_text(json.dumps(c,ensure_ascii=False,indent=2),encoding='utf8')
+        media=render(c,folder,'post');url=public_media(state,media);stamp=now+dt.timedelta(minutes=2)
+        state['journal'][key]={'status':'attempting','dueAt':stamp.isoformat(),'media':url,'caption':caption};persist(state)
+        result=shared.graphql(shared.CREATE,{'input':{'text':caption,'channelId':IG,'assets':[{'image':{'url':url}}],
+            'schedulingType':'automatic','mode':'customScheduled','dueAt':stamp.isoformat(),'needsApproval':False,'aiAssisted':True,
+            'metadata':{'instagram':{'type':'post','shouldShareToFeed':True,'isAiGenerated':False}}}})['createPost']
+        p=result.get('post')
+        if not p: raise RuntimeError('Recovery outcome requires reconciliation')
+        state['journal'][key].update(id=p['id'],status=p['status'],url=p.get('externalLink'),visual_version=ride_photos.VERSION)
+        state['history']=(state['history']+[c['body_en']])[-120:];persist(state)
+    if not state['journal'][key].get('caption') or not state['journal'][key].get('media'):
+        raise RuntimeError('Daily content missing; do not invent a second post')
+    run('threads')
+
 if __name__=='__main__':
     import argparse
-    p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos']); run(p.parse_args().mode)
+    p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos','catchup']); mode=p.parse_args().mode
+    catch_up_today() if mode=='catchup' else run(mode)
 
 
