@@ -102,8 +102,12 @@
       "visual_version": "photo-first-editorial-v3-history"
     },
     "2026-11-10/post/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-10T13:00:00+00:00"
+      "id": "6aed15edc1e74b84e5b3ec34",
+      "status": "scheduled",
+      "dueAt": "2026-11-10T13:00:00.000Z",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/7e6862de89ed05b8726907425caecdc646f63d09/social/ride/2026-11-10-post/photo-first.jpg",
+      "caption": "Take a second look at the relationship between windows and living space. Our official website is linked in the profile.\n\n換個角度睇吓窗戶同客廳嘅關係，可能會留意到唔同細節。更多介紹請撳個人檔案嘅官方網站。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nEnglish: https://www.remaxride-tsuruta.com/en\n繁體中文: https://www.remaxride-tsuruta.com/\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
+      "visual_version": "photo-first-editorial-v3-history"
     }
   },
   "history": [
