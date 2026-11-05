@@ -17,7 +17,7 @@ HISTORIC_USES = {
 }
 
 def asset_pool(base):
-    paths=sorted((base/'assets').glob('*.jpg'))
+    paths=sorted(p for p in (base/'assets').glob('*.jpg') if p.name.startswith(('photo-first-source-','foret-','proud-','city-','classy-')))
     if not paths: raise FileNotFoundError('Actual photo library missing')
     for path in paths:
         with Image.open(path) as im:
