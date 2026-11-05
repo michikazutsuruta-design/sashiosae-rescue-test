@@ -57,5 +57,6 @@
     "Think about how easy it is to get around and what's nearby.",
     "Organize your home preferences and questions before viewing.",
     "Explore daylight, flow and storage in Tokyo homes. Visit our official website through the profile to discuss what matters to you."
-  ]
+  ],
+  "token_refresh_warning": "Renewed token requires encrypted secret update"
 }
