@@ -120,7 +120,10 @@ def refresh_scheduled_links(posts,state,save,channel_ids,now):
         stamp=parsed(post.get('dueAt'))
         if not stamp or stamp<=now+dt.timedelta(minutes=10): continue
         text=normalized_site_links(post['text'])
-        if text==post['text']: continue
+        if text==post['text']:
+            if 'caption' in entry and entry['caption']!=text:
+                entry['caption']=text;save(state)
+            continue
         entry['link_update']='attempting';save(state)
         query='''mutation Edit($input: EditPostInput!) { editPost(input:$input) {
           ... on PostActionSuccess { post { id channelId dueAt status text externalLink } }
