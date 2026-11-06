@@ -85,19 +85,19 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/fd6b4e54c0bf7a7b475c23c5f4037c949bd9e703/social/media/2026-11-06-reel-illustrated-v2/reel.mp4"
     },
     "2026-11-06/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae9378f5d11dd638e995284",
       "dueAt": "2026-11-06T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/p/DfZkH6aG6Gy/",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/98a482851c096787e50b60e4e3c3566ad5e26b42/social/media/2026-11-06-post-illustrated-v2/0.png"
     },
     "2026-11-06/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6ae937927996caf141c397d5",
       "dueAt": "2026-11-06T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfZkCaAFj5k",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/83e8294c2edcee0e3207b50a78ad825a4681554e/social/media/2026-11-06-post-illustrated-v2/0.png"
@@ -162,5 +162,5 @@
     "届いた通知を手元で整理しましょう。書類名や差出人、日付を確認し、一覧にまとめます。これで後での対応がスムーズになります。",
     "通知の内容を確認する際、不明な点をメモしておきましょう。何でもいいので書き出してみてください。後で見直すと気づきがあるかもしれません。"
   ],
-  "last_check": "2026-11-06T07:48:20.606829+00:00"
+  "last_check": "2026-11-06T13:44:44.582473+00:00"
 }
