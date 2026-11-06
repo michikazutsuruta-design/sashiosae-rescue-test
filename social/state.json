@@ -133,8 +133,10 @@
       "url": null
     },
     "2026-11-09/reel/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-09T06:00:00+00:00"
+      "status": "scheduled",
+      "id": "6aed2d37dbada656bee6ae44",
+      "dueAt": "2026-11-09T06:00:00.000Z",
+      "url": null
     }
   },
   "history": [
