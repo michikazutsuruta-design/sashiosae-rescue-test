@@ -88,7 +88,7 @@ class TokenMaintenance(unittest.TestCase):
 
 import unittest,datetime as dt
 from unittest.mock import patch,Mock
-import runner as r
+import runner as shared_links
 class Links(unittest.TestCase):
  def setUp(self):
   self.now=dt.datetime(2026,11,6,tzinfo=dt.timezone.utc)
@@ -97,25 +97,25 @@ class Links(unittest.TestCase):
  def test_changes_only_text_of_known_future_post(self):
   updated={**self.p,'text':'Official https://tinyurl.com/RIDEESTATE'}
   save=Mock()
-  with patch.object(r,'graphql',return_value={'editPost':{'post':updated}}) as api:
-   r.refresh_scheduled_links([self.p],self.state,save,{'ride'},self.now)
+  with patch.object(shared_links,'graphql',return_value={'editPost':{'post':updated}}) as api:
+   shared_links.refresh_scheduled_links([self.p],self.state,save,{'ride'},self.now)
    self.assertEqual(api.call_args.args[1],{'input':{'id':'owned','text':updated['text']}})
   self.assertEqual(self.state['journal']['today']['caption'],updated['text'])
   self.assertEqual(self.state['journal']['today']['link_update'],'complete')
   self.assertEqual(save.call_count,2)
  def test_unknown_attempt_and_changed_response_stop(self):
   self.state['journal']['today']['link_update']='attempting'
-  with patch.object(r,'graphql') as api:
-   with self.assertRaises(RuntimeError):r.refresh_scheduled_links([self.p],self.state,Mock(),{'ride'},self.now)
+  with patch.object(shared_links,'graphql') as api:
+   with self.assertRaises(RuntimeError):shared_links.refresh_scheduled_links([self.p],self.state,Mock(),{'ride'},self.now)
    api.assert_not_called()
   self.state['journal']['today'].pop('link_update')
-  with patch.object(r,'graphql',return_value={'editPost':{'post':{**self.p,'dueAt':'2026-11-07T13:00:00+00:00'}}}):
-   with self.assertRaises(RuntimeError):r.refresh_scheduled_links([self.p],self.state,Mock(),{'ride'},self.now)
+  with patch.object(shared_links,'graphql',return_value={'editPost':{'post':{**self.p,'dueAt':'2026-11-07T13:00:00+00:00'}}}):
+   with self.assertRaises(RuntimeError):shared_links.refresh_scheduled_links([self.p],self.state,Mock(),{'ride'},self.now)
   self.assertEqual(self.state['journal']['today']['link_update'],'attempting')
  def test_other_channel_and_published_posts_are_untouched(self):
-  with patch.object(r,'graphql') as api:
-   r.refresh_scheduled_links([self.p],self.state,Mock(),{'rescue'},self.now)
+  with patch.object(shared_links,'graphql') as api:
+   shared_links.refresh_scheduled_links([self.p],self.state,Mock(),{'rescue'},self.now)
    self.p['status']='sent'
-   r.refresh_scheduled_links([self.p],self.state,Mock(),{'ride'},self.now)
+   shared_links.refresh_scheduled_links([self.p],self.state,Mock(),{'ride'},self.now)
    api.assert_not_called()
 if __name__=='__main__':unittest.main()
