@@ -17,7 +17,7 @@ FOOTER = ('初回相談無料。プロフィールの公式サイトへ。フォ
           '\n※相談だけで差押え・競売の手続は停止しません。期限や法的判断は通知元・専門家へ確認してください。'
           '\n個人番号・口座情報はコメントやDMに送らないでください。'
           '\n運営：株式会社ライドエステート\n#差押えレスキュー #不動産相談'
-          '\nhttps://michikazutsuruta-design.github.io/sashiosae-rescue-test/')
+          '\nhttps://tinyurl.com/SASHIOSAERESCUE')
 
 def load(path, default):
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else default
@@ -95,6 +95,38 @@ def fetch_posts(channel_map, now):
             return result
         after = page['pageInfo']['endCursor']
     raise RuntimeError('Too many posts to reconcile safely')
+
+def normalized_site_links(text):
+    # Public destinations approved by the owner; do not modify other links.
+    return re.sub(r'https://www\.remaxride-tsuruta\.com(?:/en)?/?',
+                  'https://tinyurl.com/RIDEESTATE',text).replace(
+        'https://michikazutsuruta-design.github.io/sashiosae-rescue-test/',
+        'https://tinyurl.com/SASHIOSAERESCUE')
+
+def refresh_scheduled_links(posts,state,save,channel_ids,now):
+    entries={v.get('id'):v for v in state['journal'].values() if v.get('id')}
+    for post in posts:
+        if post['channelId'] not in channel_ids or post['id'] not in entries: continue
+        entry=entries[post['id']]
+        if entry.get('link_update')=='attempting':
+            raise RuntimeError('Uncertain link update requires reconciliation: '+post['id'])
+        if post['status']!='scheduled': continue
+        stamp=parsed(post.get('dueAt'))
+        if not stamp or stamp<=now+dt.timedelta(minutes=10): continue
+        text=normalized_site_links(post['text'])
+        if text==post['text']: continue
+        entry['link_update']='attempting';save(state)
+        query='''mutation Edit($input: EditPostInput!) { editPost(input:$input) {
+          ... on PostActionSuccess { post { id channelId dueAt status text externalLink } }
+          ... on MutationError { message } } }'''
+        result=graphql(query,{'input':{'id':post['id'],'text':text}})['editPost']
+        updated=result.get('post')
+        if not updated or updated['id']!=post['id'] or updated['channelId']!=post['channelId'] or parsed(updated['dueAt'])!=stamp or updated['text']!=text:
+            raise RuntimeError('Link edit outcome requires reconciliation: '+post['id'])
+        post.update(updated)
+        if 'caption' in entry:entry['caption']=text
+        entry['link_update']='complete';save(state)
+        print('Updated scheduled website link; post identity and time preserved.')
 
 def due(date, hour):
     return dt.datetime.combine(date, dt.time(hour), JST).astimezone(dt.timezone.utc)
@@ -256,6 +288,7 @@ def run(monitor_only=False):
     for folder in ('content','media'): (ROOT/'social'/folder).mkdir(exist_ok=True)
     channel_map=channels(config)
     posts=fetch_posts(channel_map,now)
+    refresh_scheduled_links(posts,state,persist,{c['id'] for c in channel_map.values()},now)
     # Refresh past reservations as well as upcoming slots during monitor-only runs.
     remote_by_id={p['id']:p for p in posts}
     for entry in state['journal'].values():
@@ -338,5 +371,6 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.diagnose: diagnose()
     else: run(args.monitor_only)
+
 
 
