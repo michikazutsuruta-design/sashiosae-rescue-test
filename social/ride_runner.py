@@ -13,7 +13,7 @@ BASE = ROOT/'social/ride'
 STATE = BASE/'state.json'
 IG = '6ae6e299e29c69a1712300e4'
 START = dt.date(2026,11,4)  # Existing Publer reservations own Nov 1-3.
-SITE = 'https://www.remaxride-tsuruta.com/'
+SITE = 'https://tinyurl.com/RIDEESTATE'
 TOPICS = ['space and daylight','Tokyo skyline views','the entrance experience',
           'room flow and comfort','details of everyday living','finding a home in Tokyo',
           'light and open living space','neighbourhood views','a place to feel at home']
@@ -136,7 +136,7 @@ def validate(c,history):
     if re.search(r'鶴田|Tsuruta|https?://|[0-9０-９]|guarantee|yield|return on|tax.free|profit|回報|保證|穩賺|免稅|獨家|放盤|筍盤',joined,re.I):
         raise ValueError('Unapproved claim')
     if not re.search(r'嘅|唔|睇|喺|撳|咩|搵|你哋|佢|諗|點樣|買嘢|啲|冇|咁',c['body_yue']): raise ValueError('Cantonese required')
-    caption=c['body_en']+'\n\n'+c['body_yue']+'\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nEnglish: '+SITE+'en\n繁體中文: '+SITE
+    caption=c['body_en']+'\n\n'+c['body_yue']+'\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: '+SITE
     if len(caption)>500: raise ValueError('Threads caption too long')
     if any(SequenceMatcher(None,c['body_en'],s).ratio()>.82 for s in history): raise ValueError('Repeated copy')
     return caption
@@ -219,6 +219,7 @@ def run(mode):
     state=shared.load(STATE,{'journal':{},'history':[]})
     if mode=='build': refresh_threads_token(state,now)
     posts=shared.fetch_posts({'instagram':channel},now)
+    shared.refresh_scheduled_links(posts,state,persist,{IG},now)
     byid={p['id']:p for p in posts}
     for entry in state['journal'].values():
         if entry.get('id') in byid:
@@ -365,6 +366,7 @@ if __name__=='__main__':
     import argparse
     p=argparse.ArgumentParser(); p.add_argument('mode',choices=['diagnose','build','threads','monitor','photos','catchup']); mode=p.parse_args().mode
     catch_up_today() if mode=='catchup' else run(mode)
+
 
 
 
