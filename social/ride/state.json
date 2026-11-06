@@ -116,9 +116,10 @@
       "url": null
     },
     "2026-11-06/post/threads": {
-      "status": "attempting",
+      "status": "published",
       "dueAt": "2026-11-06T13:00:00+00:00",
-      "container_id": "17900499879675007"
+      "container_id": "17900499879675007",
+      "id": "18115830512133604"
     }
   },
   "history": [
