@@ -148,7 +148,8 @@
       "status": "scheduled",
       "id": "6aed2d4207f945cca9332e35",
       "dueAt": "2026-11-09T12:00:00.000Z",
-      "url": null
+      "url": null,
+      "link_update": "attempting"
     }
   },
   "history": [
