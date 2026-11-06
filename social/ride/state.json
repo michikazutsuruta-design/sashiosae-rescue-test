@@ -129,5 +129,6 @@
     "Comfort starts with your own priorities. Share what matters to you through the official website linked in our profile.",
     "Take a second look at the relationship between windows and living space. Our official website is linked in the profile."
   ],
-  "token_refresh_warning": "Renewed token requires encrypted secret update"
+  "token_refreshed_at": "2026-11-06T04:35:51.324247+00:00",
+  "token_expires_at": "2027-01-04T14:24:08.324247+00:00"
 }
