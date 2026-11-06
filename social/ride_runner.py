@@ -27,8 +27,8 @@ def persist(state):
         subprocess.run(['git','pull','--rebase','origin','main'],cwd=ROOT,check=True)
         subprocess.run(['git','push','origin','HEAD'],cwd=ROOT,check=True)
 
-def threads(path, values=None):
-    token=os.environ['RIDE_THREADS_ACCESS_TOKEN']
+def threads(path, values=None, token=None):
+    token=token or _active_threads_token or os.environ['RIDE_THREADS_ACCESS_TOKEN']
     req=Request('https://graph.threads.net/v1.0/'+path,
                 None if values is None else urlencode(values).encode(),
                 {'Authorization':'Bearer '+token})
@@ -37,24 +37,69 @@ def threads(path, values=None):
     except HTTPError as e:
         raise RuntimeError('Threads HTTP '+str(e.code)+'; no automatic mutation retry') from None
 
+# The existing GitHub secret remains the root key; refreshed credentials are
+# authenticated ciphertext only. Neither plaintext token nor key enters Git/logs.
+_active_threads_token = None
+TOKEN_CACHE = BASE/'threads-token.enc'
+
+def token_cipher():
+    import base64, hashlib
+    from cryptography.fernet import Fernet
+    root=os.environ['RIDE_THREADS_ACCESS_TOKEN'].encode()
+    key=hashlib.sha256(b'ride-threads-token-cache-v1\0'+root).digest()
+    return Fernet(base64.urlsafe_b64encode(key))
+
+def load_threads_token():
+    global _active_threads_token
+    if not TOKEN_CACHE.exists():
+        _active_threads_token=os.environ['RIDE_THREADS_ACCESS_TOKEN']
+        return
+    try:
+        value=json.loads(token_cipher().decrypt(TOKEN_CACHE.read_bytes()))
+        if value.get('account')!='rideestate' or not value.get('access_token'):
+            raise ValueError('Unexpected token cache')
+        _active_threads_token=value['access_token']
+    except Exception:
+        raise RuntimeError('Encrypted Threads credential cannot be verified; inspect secret rotation before proceeding') from None
+
 def refresh_threads_token(state, now):
-    """Use the unversioned OAuth endpoint without logging credentials."""
+    """Refresh, verify the same account, then persist authenticated ciphertext."""
+    global _active_threads_token
     last=shared.parsed(state.get('token_refreshed_at'))
     if last and now-last<=dt.timedelta(days=7): return
-    token=os.environ['RIDE_THREADS_ACCESS_TOKEN']
+    token=_active_threads_token or os.environ['RIDE_THREADS_ACCESS_TOKEN']
     url='https://graph.threads.net/refresh_access_token?'+urlencode({'grant_type':'th_refresh_token','access_token':token})
     try:
         with urlopen(Request(url,headers={'Authorization':'Bearer '+token}),timeout=60) as response:
             renewed=json.load(response)
-        if renewed.get('access_token')!=token:
-            state['token_refresh_warning']='Renewed token requires encrypted secret update'
-        else:
-            state['token_refreshed_at']=now.isoformat()
-            state.pop('token_refresh_warning',None)
+        candidate=renewed.get('access_token')
+        lifetime=renewed.get('expires_in')
+        if not isinstance(candidate,str) or not candidate or not isinstance(lifetime,int) or lifetime<=0:
+            raise ValueError('Invalid renewal response')
+        verified=threads('me?fields=id,username',token=candidate)
+        if verified.get('username')!='rideestate':
+            raise ValueError('Unexpected renewed account')
+        encrypted=token_cipher().encrypt(json.dumps({
+            'account':'rideestate','access_token':candidate,
+            'refreshed_at':now.isoformat()
+        }).encode())
+        BASE.mkdir(parents=True,exist_ok=True)
+        temporary=TOKEN_CACHE.with_suffix('.tmp')
+        temporary.write_bytes(encrypted)
+        temporary.replace(TOKEN_CACHE)
     except HTTPError as error:
         state['token_refresh_warning']='Threads renewal HTTP '+str(error.code)
-    except (OSError,ValueError):
+    except (OSError,ValueError,RuntimeError):
         state['token_refresh_warning']='Threads renewal could not be verified'
+    else:
+        state['token_refreshed_at']=now.isoformat()
+        state['token_expires_at']=(now+dt.timedelta(seconds=lifetime)).isoformat()
+        state.pop('token_refresh_warning',None)
+        # A failed push stops the run. Do not claim durable renewal before it succeeds.
+        persist(state)
+        _active_threads_token=candidate
+        print('Threads renewal verified and stored as authenticated ciphertext.')
+        return
     persist(state)
     if state.get('token_refresh_warning'):
         print('Token maintenance needs attention; verified accounts may continue publishing.')
@@ -167,6 +212,7 @@ def public_media(state,path):
     return 'https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/'+sha+'/'+path.relative_to(ROOT).as_posix()
 
 def run(mode):
+    load_threads_token()
     now=dt.datetime.now(dt.timezone.utc); channel=accounts()
     print('Both Ride accounts verified; no access to other brands.')
     if mode=='diagnose': return
@@ -272,6 +318,7 @@ def run(mode):
 
 def catch_up_today():
     """User-authorized daily recovery. Unknown outcomes never retry."""
+    load_threads_token()
     now=dt.datetime.now(dt.timezone.utc);day=now.astimezone(shared.JST).date()
     if now.astimezone(shared.JST).hour<22: return  # A delayed run must not post the next day early.
     channel=accounts();state=shared.load(STATE,{'journal':{},'history':[]})
