@@ -109,7 +109,13 @@ def refresh_scheduled_links(posts,state,save,channel_ids,now):
         if post['channelId'] not in channel_ids or post['id'] not in entries: continue
         entry=entries[post['id']]
         if entry.get('link_update')=='attempting':
-            raise RuntimeError('Uncertain link update requires reconciliation: '+post['id'])
+            approved=('https://tinyurl.com/RIDEESTATE' if post['channelId']=='6ae6e299e29c69a1712300e4' else 'https://tinyurl.com/SASHIOSAERESCUE')
+            if post['status']=='scheduled' and approved in post['text'] and normalized_site_links(post['text'])==post['text']:
+                entry['link_update']='complete'
+                if 'caption' in entry:entry['caption']=post['text']
+                save(state)
+            else:
+                raise RuntimeError('Uncertain link update requires reconciliation: '+post['id'])
         if post['status']!='scheduled': continue
         stamp=parsed(post.get('dueAt'))
         if not stamp or stamp<=now+dt.timedelta(minutes=10): continue
