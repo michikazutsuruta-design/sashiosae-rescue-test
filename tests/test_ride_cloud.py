@@ -26,5 +26,61 @@ class RideSafety(unittest.TestCase):
         c['body_en']='Prepare questions before a viewing.'; c['body_yue']='歡迎瀏覽網站了解更多住宅資訊。'
         with self.assertRaises(ValueError): r.validate(c,[])
 
-if __name__=='__main__': unittest.main()
 
+
+
+
+import unittest, tempfile, os, json, datetime as dt
+from pathlib import Path
+from unittest.mock import patch, MagicMock
+import ride_runner as r
+
+class TokenMaintenance(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory(dir=Path(__file__).parent)
+        self.base=Path(self.tmp.name)
+        self.patches=[patch.object(r,'BASE',self.base),patch.object(r,'TOKEN_CACHE',self.base/'threads-token.enc'),patch.dict(os.environ,{'RIDE_THREADS_ACCESS_TOKEN':'test-root-secret-only'})]
+        for p in self.patches:p.start()
+        r._active_threads_token=None
+        self.now=dt.datetime(2026,11,6,tzinfo=dt.timezone.utc)
+    def tearDown(self):
+        for p in reversed(self.patches):p.stop()
+        self.tmp.cleanup()
+    def response(self,token='test-renewed-token'):
+        response=MagicMock()
+        response.__enter__.return_value.read.return_value=json.dumps({'access_token':token,'expires_in':5184000})
+        return response
+    def test_refresh_survives_fresh_process_without_plaintext(self):
+        state={'token_refresh_warning':'old warning'}
+        with patch.object(r,'urlopen',return_value=self.response()),patch.object(r,'threads',return_value={'username':'rideestate'}) as api,patch.object(r,'persist') as save:
+            r.load_threads_token();r.refresh_threads_token(state,self.now)
+            api.assert_called_once_with('me?fields=id,username',token='test-renewed-token')
+            save.assert_called_once()
+        ciphertext=r.TOKEN_CACHE.read_bytes()
+        self.assertNotIn(b'test-renewed-token',ciphertext)
+        self.assertNotIn(b'test-root-secret-only',ciphertext)
+        self.assertNotIn('token_refresh_warning',state)
+        r._active_threads_token=None;r.load_threads_token()
+        self.assertEqual(r._active_threads_token,'test-renewed-token')
+        with patch.object(r,'urlopen',return_value=self.response('test-second-token')),patch.object(r,'threads',return_value={'username':'rideestate'}),patch.object(r,'persist'):
+            r.refresh_threads_token(state,self.now+dt.timedelta(days=8))
+        r._active_threads_token=None;r.load_threads_token()
+        self.assertEqual(r._active_threads_token,'test-second-token')
+    def test_wrong_account_does_not_store_or_clear_warning(self):
+        state={}
+        with patch.object(r,'urlopen',return_value=self.response()),patch.object(r,'threads',return_value={'username':'other'}),patch.object(r,'persist'):
+            r.refresh_threads_token(state,self.now)
+        self.assertFalse(r.TOKEN_CACHE.exists());self.assertIn('token_refresh_warning',state)
+    def test_tampering_or_changed_root_fails_closed(self):
+        r.TOKEN_CACHE.write_bytes(r.token_cipher().encrypt(json.dumps({'account':'rideestate','access_token':'test-only'}).encode()))
+        with patch.dict(os.environ,{'RIDE_THREADS_ACCESS_TOKEN':'different-test-root'}):
+            with self.assertRaises(RuntimeError):r.load_threads_token()
+        r.TOKEN_CACHE.write_bytes(b'corrupted')
+        with self.assertRaises(RuntimeError):r.load_threads_token()
+    def test_failed_persistence_does_not_activate_new_token(self):
+        r.load_threads_token()
+        with patch.object(r,'urlopen',return_value=self.response()),patch.object(r,'threads',return_value={'username':'rideestate'}),patch.object(r,'persist',side_effect=RuntimeError('push failed')):
+            with self.assertRaises(RuntimeError):r.refresh_threads_token({},self.now)
+        self.assertEqual(r._active_threads_token,'test-root-secret-only')
+
+if __name__=='__main__':unittest.main()
