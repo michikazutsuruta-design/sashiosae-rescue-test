@@ -103,19 +103,19 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/83e8294c2edcee0e3207b50a78ad825a4681554e/social/media/2026-11-06-post-illustrated-v2/0.png"
     },
     "2026-11-07/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6aea894269ad1ef03b6d15c5",
       "dueAt": "2026-11-07T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/p/DfcIsXKkVaS/",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d648fcd4a34d2d854d551aaecb0e97971a9e4d61/social/media/2026-11-07-post-illustrated-v2/0.png"
     },
     "2026-11-07/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6aea894569ad1ef03b6d16c7",
       "dueAt": "2026-11-07T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfcIx1wFLxX",
       "visual_update": "complete",
       "visual_version": "illustrated-house-v3",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/a08e2850c5ca8204abc9dcb65f76a6c472c74a6f/social/media/2026-11-07-post-illustrated-v2/0.png"
@@ -175,5 +175,5 @@
     "通知の内容を確認する際、不明な点をメモしておきましょう。何でもいいので書き出してみてください。後で見直すと気づきがあるかもしれません。",
     "届いた競売の通知、まずは整理しましょう。気になる点をメモして、確認したいことを明確にします。"
   ],
-  "last_check": "2026-11-07T07:37:51.777724+00:00"
+  "last_check": "2026-11-07T13:28:35.132060+00:00"
 }
