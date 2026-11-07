@@ -140,9 +140,10 @@
       "url": null
     },
     "2026-11-07/post/threads": {
-      "status": "attempting",
+      "status": "published",
       "dueAt": "2026-11-07T13:00:00+00:00",
-      "container_id": "17900652960675007"
+      "container_id": "17900652960675007",
+      "id": "17974072017172724"
     }
   },
   "history": [
