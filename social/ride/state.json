@@ -122,8 +122,12 @@
       "id": "18115830512133604"
     },
     "2026-11-11/reel/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-11T07:00:00+00:00"
+      "id": "6aee7f409214322f68c2a446",
+      "status": "scheduled",
+      "dueAt": "2026-11-11T07:00:00.000Z",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/eff24dab02368d0902d495ba5232054df5e9e5b3/social/ride/2026-11-11-reel/reel.mp4",
+      "caption": "Imagine the feeling of coming home. Which entrance details matter to you? Visit the official website linked in our profile.\n\n返到屋企嗰一刻，你最重視入口嘅邊啲細節？撳個人檔案入面嘅官方網站了解更多。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
+      "visual_version": "photo-first-editorial-v3-history"
     }
   },
   "history": [
