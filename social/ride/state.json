@@ -130,8 +130,12 @@
       "visual_version": "photo-first-editorial-v3-history"
     },
     "2026-11-11/post/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-11T13:00:00+00:00"
+      "id": "6aee7f48a7751de7c9bbd3f1",
+      "status": "scheduled",
+      "dueAt": "2026-11-11T13:00:00.000Z",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/6276bbad5e9c4d35ed412f96f19a1f90766a63f5/social/ride/2026-11-11-post/photo-first.jpg",
+      "caption": "Discover how light and views shape daily life. Explore the space that fits your needs.\n\n睇睇光線同景觀點樣影響日常生活。尋找適合你嘅空間。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
+      "visual_version": "photo-first-editorial-v3-history"
     }
   },
   "history": [
