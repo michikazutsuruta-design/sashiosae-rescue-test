@@ -121,16 +121,16 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/a08e2850c5ca8204abc9dcb65f76a6c472c74a6f/social/media/2026-11-07-post-illustrated-v2/0.png"
     },
     "2026-11-08/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6aebdb4301b5398f87a1369e",
       "dueAt": "2026-11-08T12:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/p/Dfetil3m8Lu/"
     },
     "2026-11-08/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6aebdb4601b5398f87a13739",
       "dueAt": "2026-11-08T12:00:00+00:00",
-      "url": null
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfetojHkfyx"
     },
     "2026-11-09/reel/instagram": {
       "status": "scheduled",
@@ -175,5 +175,5 @@
     "通知の内容を確認する際、不明な点をメモしておきましょう。何でもいいので書き出してみてください。後で見直すと気づきがあるかもしれません。",
     "届いた競売の通知、まずは整理しましょう。気になる点をメモして、確認したいことを明確にします。"
   ],
-  "last_check": "2026-11-08T07:38:31.445455+00:00"
+  "last_check": "2026-11-08T13:27:40.895889+00:00"
 }
