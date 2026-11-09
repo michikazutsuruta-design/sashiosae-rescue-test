@@ -52,6 +52,23 @@ class SocialCloudTests(unittest.TestCase):
         with patch.dict(r.os.environ,{'CLOUDFLARE_ACCOUNT_ID':'example','CLOUDFLARE_API_TOKEN':'example'}), patch.object(r,'request_json',return_value={'success':True,'result':{'response':item}}):
             self.assertEqual(r.generate({'topics':['相談準備'],'model':'example'},dt.date(2026,11,4),'post',[]),item)
 
+    def test_invalid_generation_uses_validated_fallback(self):
+        with patch.object(r, '_generate_once', side_effect=ValueError('Unapproved claim')):
+            item = r.generate({'topics':['相談準備']}, dt.date(2026,11,11), 'post', [])
+        self.assertEqual(r.validate(item, []), item)
+
+    def test_fallback_skips_recent_duplicate_and_exhausts_safely(self):
+        history = [body for _, body in r.SAFE_DRAFTS]
+        with patch.object(r, '_generate_once', side_effect=ValueError('bad')):
+            with self.assertRaises(ValueError):
+                r.generate({}, dt.date(2026,11,11), 'post', history)
+
+    def test_network_failure_is_not_retried(self):
+        with patch.object(r, '_generate_once', side_effect=RuntimeError('HTTP 429')) as generate:
+            with self.assertRaises(RuntimeError):
+                r.generate({}, dt.date(2026,11,11), 'post', [])
+            self.assertEqual(generate.call_count, 1)
+
     def test_illustrated_post_is_portrait_and_image_rich(self):
         from PIL import Image
         path=r.render(self.content(),r.ROOT/'.test-artifacts/post','post')
