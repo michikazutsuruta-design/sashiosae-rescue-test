@@ -175,7 +175,7 @@ def validate(content, history):
         raise ValueError('Content too similar to recent posts')
     return content
 
-def generate(config, day, kind, history):
+def _generate_once(config, day, kind, history):
     topic = config['topics'][(day.toordinal()+(3 if kind=='reel' else 0))%len(config['topics'])]
     instruction = ('日本語の不動産相談窓口の短い投稿を作成。対象テーマの相談準備・情報整理だけを扱う。'
         '法律・制度・期限・費用・結果・金融判断を説明しない。恐怖訴求、架空事例、個人名、数値、URL、ハッシュタグは禁止。'
@@ -201,6 +201,38 @@ def generate(config, day, kind, history):
     text = re.sub(r'<think>.*?</think>','',text,flags=re.S).strip()
     text = re.sub(r'^```(?:json)?\s*|\s*```$','',text).strip()
     return validate(json.loads(text),history)
+
+
+# Prewritten preparation-only copy goes through exactly the same checks as AI copy.
+SAFE_DRAFTS = (
+    ('相談前の気持ちをメモ', '住まいのことで気になっていることを、今の言葉で書き留めてみましょう。うまく説明できない気持ちも、そのまま相談の入口になります。'),
+    ('空き家の今を振り返る', '空き家について相談する前に、普段どのように使われているかを思い出してみましょう。気がかりな場所や、これから話したいことを手元のメモに残せます。'),
+    ('聞きたいことを手元に', '相談の途中で聞きたかったことを忘れないように、質問を手元に置いておくと安心です。答えが分からない項目は、無理に埋めずに残しておきましょう。'),
+    ('家族と話した内容は', '住まいについて家族と話した内容を振り返ってみませんか。それぞれが気にしていることや、まだ話し合えていないことを分けてメモすると、相談で伝える内容を考えやすくなります。'),
+    ('書類の置き場所から', '届いた書類がどこにあるか、落ち着いて確かめてみましょう。見つかった書類と探している書類を手元で分けておくと、相談前の確認を進めやすくなります。'),
+    ('相談で伝えたい希望', 'これからの暮らしで大切にしたいことを考えてみませんか。住まいの悩みと合わせて、ご自身の希望も手元に書き留めておくと、相談で話したいことが見えてきます。'),
+    ('分からないままでも', '何が分からないのかを言葉にするのが難しいときもあります。今ひっかかっている言葉や、気持ちを短くメモするところから、相談の準備を始めてみましょう。'),
+    ('話したい順番を考える', '相談で最初に話したいことは何でしょうか。気になっていることを書き出した後、先に聞いておきたい内容に目印を付けると、ご自身の考えを振り返れます。'),
+)
+
+def generate(config, day, kind, history):
+    for _ in range(2):
+        try:
+            return _generate_once(config, day, kind, history)
+        except (ValueError, TypeError, KeyError):
+            print('Draft did not pass checks; trying another safe draft.')
+    start = (day.toordinal() + (3 if kind == 'reel' else 0)) % len(SAFE_DRAFTS)
+    for offset in range(len(SAFE_DRAFTS)):
+        title, body = SAFE_DRAFTS[(start + offset) % len(SAFE_DRAFTS)]
+        draft = {'title': title, 'body': body,
+                 'slides': [title, '分かるところからメモ', '聞きたいことを整理', 'プロフィールの公式サイトへ']}
+        try:
+            checked = validate(draft, history)
+        except ValueError:
+            continue
+        print('Using validated preparation-only fallback copy.')
+        return checked
+    raise ValueError('No distinct validated copy available; no post scheduled')
 
 def wrapped(text, limit):
     return '\n'.join(text[i:i+limit] for i in range(0,len(text),limit))
