@@ -189,8 +189,10 @@
       "url": null
     },
     "2026-11-12/post/threads": {
-      "status": "attempting",
-      "dueAt": "2026-11-12T12:00:00+00:00"
+      "status": "scheduled",
+      "id": "6af14188cac9d7525f675005",
+      "dueAt": "2026-11-12T12:00:00.000Z",
+      "url": null
     }
   },
   "history": [
