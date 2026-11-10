@@ -153,16 +153,16 @@
       "link_update": "complete"
     },
     "2026-11-10/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6aee7cb2d6bbae6fa15a1a39",
       "dueAt": "2026-11-10T12:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/p/Dfj3J27Ee3s/"
     },
     "2026-11-10/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6aee7cb6d6bbae6fa15a1af3",
       "dueAt": "2026-11-10T12:00:00+00:00",
-      "url": null
+      "url": "https://www.threads.com/@sashiosae_rescue/post/Dfj3K54lB-a"
     },
     "2026-11-11/reel/instagram": {
       "status": "scheduled",
@@ -228,5 +228,5 @@
     "住まいのことで気になっていることを、今の言葉で書き留めてみましょう。うまく説明できない気持ちも、そのまま相談の入口になります。",
     "家のこと、一人で抱えない。届いた通知、まずは整理。気になる点をメモしてみましょう。どんなことでも構いません。"
   ],
-  "last_check": "2026-11-10T07:46:31.246281+00:00"
+  "last_check": "2026-11-10T13:45:31.343705+00:00"
 }
