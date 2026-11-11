@@ -165,10 +165,10 @@
       "url": "https://www.threads.com/@sashiosae_rescue/post/Dfj3K54lB-a"
     },
     "2026-11-11/reel/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af140da2f1ff83d451291b0",
       "dueAt": "2026-11-11T06:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/reel/DflyhUAj1Bv/"
     },
     "2026-11-11/post/instagram": {
       "status": "scheduled",
@@ -241,5 +241,5 @@
     "家のこと、一人で抱えない。届いた通知、まずは整理。気になる点をメモしてみましょう。どんなことでも構いません。",
     "相談で最初に話したいことは何でしょうか。気になっていることを書き出した後、先に聞いておきたい内容に目印を付けると、ご自身の考えを振り返れます。"
   ],
-  "last_check": "2026-11-11T01:23:31.146689+00:00"
+  "last_check": "2026-11-11T07:48:53.658846+00:00"
 }
