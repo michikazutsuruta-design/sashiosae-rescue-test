@@ -216,8 +216,12 @@
       "url": "https://www.threads.com/@rideestate/post/DfmruwJIFBC"
     },
     "2026-11-16/reel/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-16T07:00:00+00:00"
+      "id": "6af51a612f7f0a6952e30f3d",
+      "status": "scheduled",
+      "dueAt": "2026-11-16T07:00:00.000Z",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/96a2224a3849dd9a5617c5e970ca91ae48ded751/social/ride/2026-11-16-reel/reel.mp4",
+      "caption": "Notice how rooms connect and imagine moving through your day. Visit our official website via the profile link.\n\n睇吓房間之間點樣連接，再諗平日行出行入順唔順。撳個人檔案入面嘅官方網站了解更多。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
+      "visual_version": "photo-first-editorial-v3-history"
     }
   },
   "history": [
