@@ -1,1 +1,24 @@
-{"token_refreshed_at":"2026-11-12T06:30:00+00:00","token_expires_at":"2027-01-11T06:30:00+00:00","journal":{"2026-11-12/instagram":{"status":"sent","url":"https://www.instagram.com/p/DfoAwq4yBrq/","photo":"social-01.jpg","origin":"UI launch verified"},"2026-11-12/threads":{"status":"sent","url":"https://www.threads.com/@littlecompassjapan/post/DfoBz-DDx3e","photo":"social-01.jpg","origin":"UI launch verified"}}}
+{
+  "token_refreshed_at": "2026-11-12T06:30:00+00:00",
+  "token_expires_at": "2027-01-11T06:30:00+00:00",
+  "journal": {
+    "2026-11-12/instagram": {
+      "status": "sent",
+      "url": "https://www.instagram.com/p/DfoAwq4yBrq/",
+      "photo": "social-01.jpg",
+      "origin": "UI launch verified"
+    },
+    "2026-11-12/threads": {
+      "status": "sent",
+      "url": "https://www.threads.com/@littlecompassjapan/post/DfoBz-DDx3e",
+      "photo": "social-01.jpg",
+      "origin": "UI launch verified"
+    }
+  },
+  "checked_at": "2026-11-12T13:25:39.012352+00:00",
+  "accounts": {
+    "instagram": "17841427674452731",
+    "threads": "40113600558254919",
+    "username": "littlecompassjapan"
+  }
+}
