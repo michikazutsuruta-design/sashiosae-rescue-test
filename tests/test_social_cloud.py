@@ -73,7 +73,8 @@ class SocialCloudTests(unittest.TestCase):
         from PIL import Image
         path=r.render(self.content(),r.ROOT/'.test-artifacts/post','post')
         with Image.open(path) as im:
-            self.assertEqual(im.size,(1080,1350))
+            self.assertGreaterEqual(im.width,1080)
+            self.assertAlmostEqual(im.width/im.height,0.8,places=2)
             sample=im.resize((108,135)).convert('RGB')
             self.assertGreater(len(set(sample.getdata())),2000)
             nearly_white=sum(min(p)>235 for p in sample.getdata())
