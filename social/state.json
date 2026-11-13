@@ -264,8 +264,10 @@
       "url": null
     },
     "2026-11-16/post/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-16T12:00:00+00:00"
+      "status": "scheduled",
+      "id": "6af6677fba218f32636ec527",
+      "dueAt": "2026-11-16T12:00:00.000Z",
+      "url": null
     }
   },
   "history": [
