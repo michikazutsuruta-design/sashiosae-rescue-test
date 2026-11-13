@@ -235,9 +235,9 @@
       "id": "6af3c39fd9a6812579c243ad",
       "dueAt": "2026-11-14T12:00:00+00:00",
       "url": null,
-      "visual_update": "attempting",
-      "visual_version": "editorial-scenes-v4",
-      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/f20a7a637acb217f3feab334c86539089ed17fea/social/media/2026-11-14-post-illustrated-v2/0.png"
+      "visual_update": "complete",
+      "visual_version": "photo-editorial-v5",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/8b59f8af76f42d80dae5b70a52f78252ca62d919/social/media/2026-11-14-post-illustrated-v2/0.png"
     },
     "2026-11-15/post/instagram": {
       "status": "scheduled",
