@@ -234,7 +234,8 @@
       "status": "scheduled",
       "id": "6af3c39fd9a6812579c243ad",
       "dueAt": "2026-11-14T12:00:00+00:00",
-      "url": null
+      "url": null,
+      "visual_update": "attempting"
     },
     "2026-11-15/post/instagram": {
       "status": "scheduled",
