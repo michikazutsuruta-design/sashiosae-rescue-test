@@ -256,6 +256,10 @@
       "visual_update": "complete",
       "visual_version": "photo-editorial-v5",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/f9465400dc0dfa92bb15b730b927d009a7f6e614/social/media/2026-11-15-post-illustrated-v2/0.png"
+    },
+    "2026-11-16/reel/instagram": {
+      "status": "attempting",
+      "dueAt": "2026-11-16T06:00:00+00:00"
     }
   },
   "history": [
