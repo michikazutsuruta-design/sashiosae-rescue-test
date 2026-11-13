@@ -237,186 +237,38 @@ def generate(config, day, kind, history):
 def wrapped(text, limit):
     return '\n'.join(text[i:i+limit] for i in range(0,len(text),limit))
 
-VISUAL_VERSION = 'editorial-scenes-v4'
+VISUAL_VERSION = 'photo-editorial-v5'
 
 def render(content, folder, kind):
-    """Original scene illustrations, chosen by topic; no stock or customer data."""
-    from PIL import Image, ImageDraw, ImageFont
-    # Keep the existing asset prerequisite: configuration errors must stop output.
-    if not (ROOT/'social/assets/house-illustration-v2.png').exists():
-        raise RuntimeError('Housing illustration missing; no text-card fallback')
-    folder.mkdir(parents=True, exist_ok=True)
-    font_path = os.environ.get('SOCIAL_FONT','/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
-    match = re.match(r'(\d{4}-\d{2}-\d{2})', folder.name)
-    day = dt.date.fromisoformat(match[1]) if match else dt.date(2026,11,4)
-    text = content['title'] + content.get('body','')
-    if any(w in text for w in ('空き家','相続')): topic = 0
-    elif any(w in text for w in ('通知','書類','差出人')): topic = 1
-    elif any(w in text for w in ('家族','話し合')): topic = 2
-    elif any(w in text for w in ('質問','聞きたい','不明')): topic = 3
-    elif any(w in text for w in ('フォーム','相談先')): topic = 4
-    else: topic = 5
-    palettes = [('#103e48','#225b60','#f0d7a6','#e9b565'),
-                ('#243652','#405577','#eedac0','#edaa81'),
-                ('#3d3850','#625371','#f0dcc4','#d3ac80'),
-                ('#164b51','#367574','#e3d7b2','#efba62'),
-                ('#223a56','#416b88','#e9dabd','#79bdbc'),
-                ('#4b3a39','#80645b','#f0d5b0','#dba474')]
-    height = 1920 if kind == 'reel' else 1350
-    def font(size): return ImageFont.truetype(font_path,size)
-    def frame(headline, index):
-        scene = (topic+index) % 6
-        bg, light, paper, accent = palettes[(topic+day.toordinal()+index)%6]
-        im = Image.new('RGB',(1080,height),bg)
-        d = ImageDraw.Draw(im)
-        # A subtle full-bleed gradient, rather than a white text card.
-        import math
-        a=tuple(bytes.fromhex(bg[1:])); b=tuple(bytes.fromhex(light[1:]))
-        for y in range(height):
-            mix=(y/height)*0.8
-            d.line((0,y,1080,y),fill=tuple(int(a[k]*(1-mix)+b[k]*mix) for k in range(3)))
-        from PIL import ImageChops
-        glow=ImageChops.invert(Image.radial_gradient('L').resize(im.size)).point(lambda v:int(v*.60))
-        im=Image.composite(Image.new('RGB',im.size,accent),im,glow)
-        im=Image.blend(im,Image.effect_noise(im.size,18).convert('RGB'),0.035)
-        d=ImageDraw.Draw(im)
-        d.text((66,48),'差押えレスキュー',font=font(38),fill=paper)
-        labels=['住まいのこれから','届いた書類','家族と話す','聞きたいこと','相談の入口','相談前のメモ']
-        d.text((68,112),labels[topic],font=font(27),fill=accent)
-        rows=[]; line=''
-        for ch in headline.replace('、','、\n').replace('。','。\n'):
-            if ch=='\n' or (line and d.textlength(line+ch,font=font(91))>944):
-                rows.append(line); line='' if ch=='\n' else ch
-            else: line+=ch
-        if line: rows.append(line)
-        if len(rows)>3:
-            rows=[]; line=''
-            for ch in headline:
-                if line and d.textlength(line+ch,font=font(73))>944: rows.append(line);line=ch
-                else: line+=ch
-            if line: rows.append(line)
-            size=73
-        else: size=91
-        if len(rows)>4: raise ValueError('Headline too long')
-        for n,row in enumerate(rows): d.text((64,171+n*(size+14)),row,font=font(size),fill=paper)
-        # Illustration canvas: individual objects and human scenes occupy most of lower image.
-        art=Image.new('RGBA',(1080,740)); p=ImageDraw.Draw(art)
-        ink='#182d3b'; shadow='#102d39'; cream=paper
-        def rr(box, fill, radius=20, outline=None,width=3):
-            p.rounded_rectangle(box,radius,fill=fill,outline=outline,width=width)
-        def sheet(x,y,w=270,h=330):
-            rr((x+12,y+14,x+w+12,y+h+14),shadow)
-            rr((x,y,x+w,y+h),cream,12)
-            for z in range(4): p.line((x+30,y+75+z*42,x+w-34,y+75+z*42),fill='#b5ad9b',width=9)
-            p.rectangle((x+30,y+25,x+112,y+39),fill=accent)
-        def plant(x,y):
-            p.line((x,y,x,y-185),fill='#a6b5a0',width=9)
-            for j in range(3):
-                p.ellipse((x-75,y-200+j*45,x+5,y-140+j*45),fill='#83a59c')
-                p.ellipse((x,y-230+j*45,x+75,y-170+j*45),fill='#aac3ae')
-            p.polygon([(x-70,y-15),(x+70,y-15),(x+48,y+120),(x-48,y+120)],fill=accent)
-        def person(x,y,shirt,flip=False):
-            # Stylised people are illustrative, never presented as customers.
-            p.ellipse((x-48,y-105,x+48,y-9),fill='#dbac8b')
-            p.pieslice((x-51,y-119,x+51,y-26),180,360,fill=ink)
-            rr((x-82,y,x+82,y+225),shirt,50)
-            p.line((x-55,y+65,x+(-130 if flip else 130),y+167),fill='#dbac8b',width=36)
-        p.ellipse((65,588,1020,725),fill=shadow)
-        if scene==0:
-            # A house with a path and garden, viewed as a whole, not the old background.
-            p.ellipse((44,10,782,641),fill=light)
-            p.polygon([(140,330),(485,75),(825,330)],fill=accent)
-            rr((202,320,765,635),cream,6)
-            p.rectangle((438,413,540,635),fill=ink)
-            for x in (259,593):
-                rr((x,385,x+105,490),light,4)
-                p.line((x+52,385,x+52,490),fill=cream,width=7)
-                p.line((x,438,x+105,438),fill=cream,width=7)
-            p.polygon([(438,635),(540,635),(680,740),(300,740)],fill='#b4b9aa')
-            plant(895,501)
-        elif scene==1:
-            # Letters, a dated blank document and a folder; no invented official notice.
-            rr((80,220,1000,660),'#896d59',55)
-            rr((115,281,533,622),accent,14)
-            sheet(394,77,355,429)
-            p.polygon([(155,410),(585,410),(585,651),(155,651)],fill='#e5c69b')
-            p.line([(155,410),(370,550),(585,410)],fill='#b28a67',width=6)
-            p.ellipse((816,405,966,555),fill=cream)
-            p.ellipse((842,431,940,529),fill='#66554a')
-        elif scene==2:
-            # Two people at a shared table.
-            p.ellipse((132,30,950,680),fill=light)
-            person(310,290,accent)
-            person(760,290,'#98b5b1',True)
-            rr((135,465,945,537),'#b68e70',25)
-            p.rectangle((200,534,228,716),fill='#b68e70')
-            p.rectangle((850,534,878,716),fill='#b68e70')
-            rr((421,405,647,471),cream,6)
-            p.ellipse((153,36,469,184),fill=cream)
-            p.polygon([(290,175),(342,175),(312,220)],fill=cream)
-            for x in (229,300,371):p.ellipse((x,93,x+18,111),fill=light)
-        elif scene==3:
-            # Question notebook with tangible check marks and pencil.
-            rr((190,100,899,661),accent,28)
-            rr((165,73,510,631),cream,12)
-            rr((517,73,864,631),'#dfcfb2',12)
-            for y in (210,310,410,510):
-                rr((219,y,261,y+42),None,5,light,5)
-                p.line([(225,y+20),(238,y+31),(258,y+8)],fill=light,width=6)
-                p.line((289,y+22,447,y+22),fill='#aaab9c',width=9)
-                p.line((562,y+22,797,y+22),fill='#b0a797',width=9)
-            p.line((735,135,943,583),fill=accent,width=30)
-            p.polygon([(931,579),(957,568),(958,629)],fill=cream)
-        elif scene==4:
-            # Phone with a simple fictional form, no names/contact details.
-            plant(197,455)
-            rr((355,50,746,685),ink,45)
-            rr((375,76,726,657),cream,29)
-            rr((479,89,623,105),ink,9)
-            for y in (202,303,404):rr((411,y,688,y+65),'#c1cbbf',10)
-            rr((411,526,688,595),light,18)
-            p.line([(511,558),(535,579),(587,542)],fill=cream,width=12)
-            p.ellipse((775,171,985,381),fill=accent)
-            p.line([(823,276),(862,315),(941,229)],fill=ink,width=15)
-        else:
-            # A quiet writing desk, warm light, notebook and pencil.
-            rr((78,326,1010,678),'#9a7a62',40)
-            sheet(242,209,356,381)
-            p.line((644,252,807,564),fill=accent,width=26)
-            p.polygon([(794,563),(819,551),(826,604)],fill=cream)
-            p.line((834,327,878,126),fill=cream,width=18)
-            p.polygon([(775,154),(937,154),(904,58),(818,58)],fill=accent)
-            p.ellipse((781,327,956,357),fill=cream)
-            plant(127,214)
-        # Alternating mirrored composition keeps objects apart from a fixed headline.
-        if scene in (0,1,5) and (day.toordinal()+index)%2:
-            art=art.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-        art_y=height-900
-        if kind=='reel':
-            art=art.resize((1080,900),Image.Resampling.LANCZOS); art_y=height-1080
-        im.paste(art,(0,art_y),art)
-        d=ImageDraw.Draw(im)
-        d.rounded_rectangle((64,height-167,1016,height-70),radius=27,fill=accent)
-        cta='プロフィールの公式サイトへ'
-        d.text(((1080-d.textlength(cta,font=font(43)))/2,height-148),cta,font=font(43),fill=ink)
-        d.text((69,height-52),'場面・人物・住宅はイメージイラスト',font=font(24),fill=paper)
-        path=folder/f'{index}.png'; im.save(path)
-        return path
-    if kind=='post':return frame(content['title'],0)
-    cards=[content['title']]+content.get('slides',[])[1:4]
-    if len(cards)!=4:raise ValueError('Four reel scenes required')
-    for i,headline in enumerate(cards):frame(headline,i)
-    playlist=folder/'concat.txt'
-    playlist.write_text(''.join(f"file '{i}.png'\nduration 4\n" for i in range(4))+"file '3.png'\n")
+    """Use reviewed finished photographic creatives without rebuilding their artwork."""
+    import shutil
+    sources=[ROOT/'social/assets'/name for name in (
+        'rescue-notice-v5.png','rescue-family-v5.png','rescue-home-v5.png')]
+    if not all(p.exists() for p in sources):
+        raise RuntimeError('Reviewed photographic creative missing; no illustration fallback')
+    folder.mkdir(parents=True,exist_ok=True)
+    text=content['title']+content.get('body','')
+    if any(word in text for word in ('空き家','相続')): selected=2
+    elif any(word in text for word in ('家族','希望','暮らし')): selected=1
+    else: selected=0
+    if kind=='post':
+        target=folder/'0.png'
+        shutil.copyfile(sources[selected],target)
+        return target
+    ordered=[sources[selected]]+[p for n,p in enumerate(sources) if n!=selected]
+    command=['ffmpeg','-hide_banner','-loglevel','error','-y']
+    for p in ordered:command+=['-loop','1','-t','5','-i',str(p)]
+    command+=['-f','lavfi','-i','anullsrc=channel_layout=stereo:sample_rate=48000']
+    filters=[]
+    for i in range(3):
+        filters.append(f'[{i}:v]scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2:color=0x0a1b2d,setsar=1,fps=30,format=yuv420p,settb=AVTB[v{i}]')
+    filters+=['[v0][v1]xfade=transition=fade:duration=0.6:offset=4.4[x1]',
+              '[x1][v2]xfade=transition=fade:duration=0.6:offset=8.8[out]']
     output=folder/'reel.mp4'
-    subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',str(playlist),
-        '-f','lavfi','-i','anullsrc=channel_layout=stereo:sample_rate=48000','-t','16','-r','30',
-        '-c:v','libx264','-preset','fast','-crf','25','-pix_fmt','yuv420p','-c:a','aac','-movflags','+faststart',str(output)],check=True)
+    command+=['-filter_complex',';'.join(filters),'-map','[out]','-map','3:a','-t','13.8',
+              '-c:v','libx264','-preset','fast','-crf','23','-pix_fmt','yuv420p','-c:a','aac','-movflags','+faststart',str(output)]
+    subprocess.run(command,check=True)
     return output
-
-
-
-
 
 def checkpoint_media(state,config,path):
     persist(state)
