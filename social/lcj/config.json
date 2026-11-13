@@ -1,1 +1,8 @@
-{"enabled":false,"timezone":"Asia/Tokyo","target_time":"14:00","username":"littlecompassjapan","language":"en","max_daily_posts_per_platform":1}
+{
+  "enabled": true,
+  "timezone": "Asia/Tokyo",
+  "target_time": "14:00",
+  "username": "littlecompassjapan",
+  "language": "en",
+  "max_daily_posts_per_platform": 1
+}
