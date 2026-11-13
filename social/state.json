@@ -270,8 +270,10 @@
       "url": null
     },
     "2026-11-16/post/threads": {
-      "status": "attempting",
-      "dueAt": "2026-11-16T12:00:00+00:00"
+      "status": "scheduled",
+      "id": "6af66782fb90ccefdd0feba7",
+      "dueAt": "2026-11-16T12:00:00.000Z",
+      "url": null
     }
   },
   "history": [
