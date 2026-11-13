@@ -195,10 +195,10 @@
       "url": "https://www.threads.com/@sashiosae_rescue/post/DfpA6hoERFb"
     },
     "2026-11-13/reel/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af271e0d35dff5701cf15f2",
       "dueAt": "2026-11-13T06:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/reel/Dfq8NLfid6s/",
       "visual_update": "complete",
       "visual_version": "photo-editorial-v5",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/a5c01bcdf2ef01e20463d70b087ca9f9f7743fba/social/media/2026-11-13-reel-illustrated-v2/reel.mp4"
@@ -295,5 +295,5 @@
     "届いた書類がどこにあるか、落ち着いて確かめてみましょう。見つかった書類と探している書類を手元で分けておくと、相談前の確認を進めやすくなります。",
     "相談の途中で聞きたかったことを忘れないように、質問を手元に置いておくと安心です。答えが分からない項目は、無理に埋めずに残しておきましょう。"
   ],
-  "last_check": "2026-11-13T01:27:01.861431+00:00"
+  "last_check": "2026-11-13T07:51:27.598468+00:00"
 }
