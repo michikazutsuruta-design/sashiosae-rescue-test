@@ -15,11 +15,12 @@
       "origin": "UI launch verified"
     },
     "2026-11-13/instagram": {
-      "status": "preparing",
+      "status": "ready",
       "text": "Ready to pay? お会計をお願いします。\nOkaikei o onegaishimasu.\nThe bill, please.\nPayment routines vary between restaurants. Follow the staff's instructions and check whether you should pay at the counter. Keep one useful phrase ready instead of trying to memorise a whole conversation.\n\nJapan With Ease: an English PDF companion for your first Japan trip. Japanese + romaji + English, practical checklists and planning pages. Free 12-page preview through the profile link.\n\n#JapanTravel #FirstTimeInJapan #LittleCompassJapan",
       "photo": "social-02.jpg",
       "source": "https://unsplash.com/photos/KRYuPwvyEys",
-      "started_at": "2026-11-13T05:51:00.701140+00:00"
+      "started_at": "2026-11-13T05:51:00.701140+00:00",
+      "container": "18118324396922482"
     }
   },
   "checked_at": "2026-11-13T05:51:00.701140+00:00",
