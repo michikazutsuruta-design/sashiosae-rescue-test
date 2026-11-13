@@ -35,6 +35,7 @@ def persist(state):
     changed = subprocess.run(['git', 'diff', '--cached', '--quiet'], cwd=ROOT)
     if changed.returncode == 1:
         subprocess.run(['git', 'commit', '-m', 'Update social publishing journal and media'], cwd=ROOT, check=True)
+        subprocess.run(['git', 'pull', '--rebase', 'origin', 'main'], cwd=ROOT, check=True)
         subprocess.run(['git', 'push', 'origin', 'HEAD'], cwd=ROOT, check=True)
     elif changed.returncode != 0:
         raise RuntimeError('Cannot inspect journal changes')
