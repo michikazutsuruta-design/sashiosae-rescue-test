@@ -265,8 +265,12 @@
       "visual_version": "photo-first-editorial-v3-history"
     },
     "2026-11-18/post/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-18T13:00:00+00:00"
+      "id": "6af7bb0981e1228421d75875",
+      "status": "scheduled",
+      "dueAt": "2026-11-18T13:00:00.000Z",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/bd3cf2b90c240bf57a033077f425317216a5d0f6/social/ride/2026-11-18-post/photo-first.jpg",
+      "caption": "Maximize natural light and enjoy skyline views. How do these elements enhance your living space?\n\n善用自然光同天際線景觀。呢啲元素點樣提升你嘅生活空間？\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
+      "visual_version": "photo-first-editorial-v3-history"
     }
   },
   "history": [
