@@ -282,8 +282,10 @@
       "url": null
     },
     "2026-11-17/post/threads": {
-      "status": "attempting",
-      "dueAt": "2026-11-17T12:00:00+00:00"
+      "status": "scheduled",
+      "id": "6af7b8039257ce3398222e73",
+      "dueAt": "2026-11-17T12:00:00.000Z",
+      "url": null
     }
   },
   "history": [
