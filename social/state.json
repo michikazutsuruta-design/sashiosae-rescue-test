@@ -222,19 +222,19 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/10dfcc366a961dca5f174f8455c86ae66c1e82ad/social/media/2026-11-13-post-illustrated-v2/0.png"
     },
     "2026-11-14/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af3c39a61555afe9eece115",
       "dueAt": "2026-11-14T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/p/DfuKP1jIV_L/",
       "visual_update": "complete",
       "visual_version": "photo-editorial-v5",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/05fbd21cac0f57c21e2cfc3d0ec6808ffb78d43d/social/media/2026-11-14-post-illustrated-v2/0.png"
     },
     "2026-11-14/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af3c39fd9a6812579c243ad",
       "dueAt": "2026-11-14T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfuKph7m5hv",
       "visual_update": "complete",
       "visual_version": "photo-editorial-v5",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/8b59f8af76f42d80dae5b70a52f78252ca62d919/social/media/2026-11-14-post-illustrated-v2/0.png"
@@ -308,5 +308,5 @@
     "相談の途中で聞きたかったことを忘れないように、質問を手元に置いておくと安心です。答えが分からない項目は、無理に埋めずに残しておきましょう。",
     "相談の内容を整理する際、まずは何が気になっているかを書き出してみましょう。どんな小さなことでも構いません。自分の言葉で伝えることが大切です。"
   ],
-  "last_check": "2026-11-14T07:39:27.923392+00:00"
+  "last_check": "2026-11-14T13:29:51.445783+00:00"
 }
