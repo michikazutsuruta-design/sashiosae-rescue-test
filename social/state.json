@@ -240,19 +240,19 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/8b59f8af76f42d80dae5b70a52f78252ca62d919/social/media/2026-11-14-post-illustrated-v2/0.png"
     },
     "2026-11-15/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af517192f7f0a6952e22d68",
       "dueAt": "2026-11-15T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.instagram.com/p/DfwvBsqFRIY/",
       "visual_update": "complete",
       "visual_version": "photo-editorial-v5",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/6411aad15a4425c706c88405ec41f5db793b0e8f/social/media/2026-11-15-post-illustrated-v2/0.png"
     },
     "2026-11-15/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af5171e3d8c751bfd0804b0",
       "dueAt": "2026-11-15T12:00:00+00:00",
-      "url": null,
+      "url": "https://www.threads.com/@sashiosae_rescue/post/DfwvLIjFvVK",
       "visual_update": "complete",
       "visual_version": "photo-editorial-v5",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/f9465400dc0dfa92bb15b730b927d009a7f6e614/social/media/2026-11-15-post-illustrated-v2/0.png"
@@ -328,5 +328,5 @@
     "相談前に気になる点を書き出してみましょう。どんなことでも構いません。後で見直すと気づきがあるかもしれません。",
     "これからの暮らしで大切にしたいことを考えてみませんか。住まいの悩みと合わせて、ご自身の希望も手元に書き留めておくと、相談で話したいことが見えてきます。"
   ],
-  "last_check": "2026-11-15T07:42:00.559977+00:00"
+  "last_check": "2026-11-15T13:30:35.905767+00:00"
 }
