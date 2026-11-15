@@ -282,8 +282,12 @@
       "url": "https://www.threads.com/@rideestate/post/DfuXFcsFmXZ"
     },
     "2026-11-19/post/instagram": {
-      "status": "attempting",
-      "dueAt": "2026-11-19T13:00:00+00:00"
+      "id": "6af90df3c5b364e0622a32ae",
+      "status": "scheduled",
+      "dueAt": "2026-11-19T13:00:00.000Z",
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/c005d536567cafb4696b01cc7905a15cc31cbd7f/social/ride/2026-11-19-post/photo-first.jpg",
+      "caption": "Consider where you would read, rest or simply enjoy the light. Discover our official website through the profile link.\n\n你會揀邊個角落睇書、休息，或者靜靜享受光線？想了解更多，撳個人檔案嘅官方網站。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
+      "visual_version": "photo-first-editorial-v3-history"
     }
   },
   "history": [
