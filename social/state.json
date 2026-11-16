@@ -258,10 +258,10 @@
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/f9465400dc0dfa92bb15b730b927d009a7f6e614/social/media/2026-11-15-post-illustrated-v2/0.png"
     },
     "2026-11-16/reel/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af66776da25c4db3e89d97f",
       "dueAt": "2026-11-16T06:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/reel/DfyqfMDDQyL/"
     },
     "2026-11-16/post/instagram": {
       "status": "scheduled",
@@ -341,5 +341,5 @@
     "これからの暮らしで大切にしたいことを考えてみませんか。住まいの悩みと合わせて、ご自身の希望も手元に書き留めておくと、相談で話したいことが見えてきます。",
     "家のことで悩んでいること、まずはメモしてみましょう。どんな小さなことでも構いません。後で見直すと気づきがあるかもしれません。"
   ],
-  "last_check": "2026-11-16T01:42:40.383382+00:00"
+  "last_check": "2026-11-16T09:21:41.941582+00:00"
 }
