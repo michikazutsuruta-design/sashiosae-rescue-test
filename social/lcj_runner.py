@@ -132,16 +132,29 @@ def publish_one(platform,token,owner,state,now,topics,pack):
         topic=topics[offset%len(topics)]
         photo=pack[offset%len(pack)]
         if photo['file']==previous: photo=next(p for p in pack if p['file']!=previous)
+        planned=load(BASE/'growth-plan.json',{}).get(day.isoformat(),{}).get(platform)
+        if planned:
+            topic=planned['topic']; photo=planned['media']
+            if Path(photo['file']).name!=photo['file'] or not photo.get('commercial_use') or not photo.get('modification_allowed'):
+                raise RuntimeError('Unreviewed planned media')
+            if (Path(photo['file']).name!=photo['file'] or not photo.get('source')
+                or photo.get('license')!='https://unsplash.com/license'
+                or not photo.get('commercial_use') or not photo.get('modification_allowed')):
+                raise RuntimeError('Unverified planned media')
+        video=photo['file'].endswith('.mp4')
+        if video and platform!='instagram': raise RuntimeError('Video plan is Instagram only')
         url=f'https://raw.githubusercontent.com/{REPO}/main/social/lcj/media/'+photo['file']
         with urlopen(url,timeout=60) as response:
-            if response.status!=200 or not response.headers.get('Content-Type','').startswith('image/'):
+            if response.status!=200 or not response.headers.get('Content-Type','').startswith('video/' if video else 'image/'):
                 raise RuntimeError('Public media unavailable')
         text=caption(topic,platform,day)
         entry={'status':'preparing','text':text,'photo':photo['file'],'source':photo['source'],
                'started_at':now.isoformat()}
         state['journal'][key]=entry;persist(state)
         try:
-            if platform=='instagram': created=graph(owner+'/media',token,{'image_url':url,'caption':text})
+            if platform=='instagram':
+                payload={'video_url':url,'media_type':'REELS','share_to_feed':'true','caption':text} if video else {'image_url':url,'caption':text}
+                created=graph(owner+'/media',token,payload)
             else: created=threads(owner+'/threads',token,{'media_type':'IMAGE','image_url':url,'text':text})
         except Exception:
             entry['status']='unknown';persist(state);raise
