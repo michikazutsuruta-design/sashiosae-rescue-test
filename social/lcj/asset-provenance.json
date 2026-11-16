@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-11-16",
+  "assets": [
+    "arrival-01.jpg",
+    "arrival-02.jpg",
+    "arrival-03.jpg",
+    "arrival-reel.mp4"
+  ],
+  "photo": {
+    "file": "tokyo-night.jpg",
+    "author": "mos design",
+    "source": "https://unsplash.com/photos/13hAeb_-Yts",
+    "license": "https://unsplash.com/license",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false,
+    "previous_license_check": "2026-11-12"
+  },
+  "sample-demo.jpg": "Original layout using actual free-sample pages 2 and 5; source PDF and photo credits retained."
+}
