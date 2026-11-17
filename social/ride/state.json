@@ -315,12 +315,13 @@
     },
     "2026-11-20/reel/instagram": {
       "id": "6afa626b8e87c256a3a6241d",
-      "status": "scheduled",
+      "status": "cancelled",
       "dueAt": "2026-11-20T07:00:00+00:00",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/bc5d1bbc44427553d6b8569bf1dd7d3849835731/social/ride/2026-11-20-reel/reel.mp4",
       "caption": "Picture your morning routine in a light-filled room. Explore our official website through the profile.\n\n朝早入屋嘅自然光，會點樣影響你嘅生活節奏？撳個人檔案睇官方網站。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
       "visual_version": "photo-first-editorial-v3-history",
-      "url": null
+      "url": null,
+      "experiment_note": "Replaced by one daily experiment slot"
     },
     "2026-11-20/post/instagram": {
       "id": "6afa6270ff465c57dac705d7",
@@ -378,7 +379,7 @@
         "day": "2026-11-19"
       },
       "delete/6afa626b8e87c256a3a6241d": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-20"
       }
     },
