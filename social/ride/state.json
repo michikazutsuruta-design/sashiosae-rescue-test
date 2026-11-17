@@ -291,11 +291,20 @@
     "2026-11-19/post/instagram": {
       "id": "6af90df3c5b364e0622a32ae",
       "status": "scheduled",
-      "dueAt": "2026-11-19T13:00:00+00:00",
-      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/c005d536567cafb4696b01cc7905a15cc31cbd7f/social/ride/2026-11-19-post/photo-first.jpg",
-      "caption": "Consider where you would read, rest or simply enjoy the light. Discover our official website through the profile link.\n\n你會揀邊個角落睇書、休息，或者靜靜享受光線？想了解更多，撳個人檔案嘅官方網站。\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
-      "visual_version": "photo-first-editorial-v3-history",
-      "url": null
+      "dueAt": "2026-11-19T13:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/3add802b32d9325b821e130c3d33a7d478f45c25/social/ride/experiment-media/2026-11-19/0.jpg",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/3add802b32d9325b821e130c3d33a7d478f45c25/social/ride/experiment-media/2026-11-19/0.jpg",
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/3add802b32d9325b821e130c3d33a7d478f45c25/social/ride/experiment-media/2026-11-19/1.jpg",
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/3add802b32d9325b821e130c3d33a7d478f45c25/social/ride/experiment-media/2026-11-19/2.jpg",
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/3add802b32d9325b821e130c3d33a7d478f45c25/social/ride/experiment-media/2026-11-19/3.jpg"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/3add802b32d9325b821e130c3d33a7d478f45c25/social/ride/experiment-media/2026-11-19/poster.jpg",
+      "caption": "PROUD Jingumae | 150.20 m² · 3LDK · 4F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n入面細節慢慢睇。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "proud",
+      "format": "carousel",
+      "experiment_version": "single-property-experiment-v1"
     },
     "2026-11-15/post/threads": {
       "status": "published",
@@ -365,7 +374,7 @@
         "day": "2026-11-18"
       },
       "edit/2026-11-19": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-19"
       }
     },
