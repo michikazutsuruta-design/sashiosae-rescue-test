@@ -363,6 +363,10 @@
       "edit/2026-11-18": {
         "status": "complete",
         "day": "2026-11-18"
+      },
+      "edit/2026-11-19": {
+        "status": "attempting",
+        "day": "2026-11-19"
       }
     },
     "baseline": {
