@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-19",
+  "property_id": "proud",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/proud-en.html",
+  "photos": [
+    "0.jpg",
+    "1.jpg",
+    "2.jpg",
+    "3.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/living.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/windows.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/dining.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/kitchen.webp"
+  ],
+  "format": "carousel"
+}
