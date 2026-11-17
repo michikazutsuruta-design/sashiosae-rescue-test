@@ -348,7 +348,12 @@
   "token_expires_at": "2027-01-12T07:47:58.600089+00:00",
   "experiment": {
     "id": "property-format-20261118",
-    "operations": {},
+    "operations": {
+      "delete/6af7bb02d16af15d4de601f4": {
+        "status": "attempting",
+        "day": "2026-11-18"
+      }
+    },
     "baseline": {
       "as_of": "2026-11-17T01:14:53.199346+00:00",
       "reach": null,
