@@ -381,6 +381,10 @@
       "delete/6afa626b8e87c256a3a6241d": {
         "status": "complete",
         "day": "2026-11-20"
+      },
+      "edit/2026-11-20": {
+        "status": "attempting",
+        "day": "2026-11-20"
       }
     },
     "baseline": {
