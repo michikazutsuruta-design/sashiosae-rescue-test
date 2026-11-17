@@ -352,6 +352,10 @@
       "property_id": "classy",
       "format": "reel",
       "experiment_version": "single-property-experiment-v1"
+    },
+    "2026-11-17/post/threads": {
+      "status": "attempting",
+      "dueAt": "2026-11-17T13:00:00+00:00"
     }
   },
   "history": [
