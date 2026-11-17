@@ -21,7 +21,7 @@ TOPICS = ['space and daylight','Tokyo skyline views','the entrance experience',
 def persist(state):
     BASE.mkdir(parents=True,exist_ok=True)
     STATE.write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding='utf8')
-    subprocess.run(['git','add','social/ride'],cwd=ROOT,check=True)
+    subprocess.run(['git','add','social/ride','social/ride_runner.py','social/ride_experiment.py','tests/test_ride_experiment.py'],cwd=ROOT,check=True)
     if subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT).returncode == 1:
         subprocess.run(['git','commit','-m','Update Ride publishing journal and media'],cwd=ROOT,check=True)
         subprocess.run(['git','pull','--rebase','origin','main'],cwd=ROOT,check=True)
@@ -212,6 +212,10 @@ def public_media(state,path):
     return 'https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/'+sha+'/'+path.relative_to(ROOT).as_posix()
 
 def run(mode):
+    import ride_experiment
+    if ride_experiment.applies(BASE,dt.datetime.now(dt.timezone.utc),mode):
+        import sys
+        return ride_experiment.run(sys.modules[__name__],mode)
     load_threads_token()
     now=dt.datetime.now(dt.timezone.utc); channel=accounts()
     print('Both Ride accounts verified; no access to other brands.')
@@ -319,6 +323,10 @@ def run(mode):
 
 def catch_up_today():
     """User-authorized daily recovery. Unknown outcomes never retry."""
+    import ride_experiment
+    if ride_experiment.applies(BASE,dt.datetime.now(dt.timezone.utc),'catchup'):
+        import sys
+        return ride_experiment.run(sys.modules[__name__],'threads') if dt.datetime.now(shared.JST).hour>=22 else None
     load_threads_token()
     now=dt.datetime.now(dt.timezone.utc);day=now.astimezone(shared.JST).date()
     if now.astimezone(shared.JST).hour<22: return  # A delayed run must not post the next day early.

@@ -345,5 +345,18 @@
     "Experience light-filled spaces. What views define your day?"
   ],
   "token_refreshed_at": "2026-11-13T07:47:58.600089+00:00",
-  "token_expires_at": "2027-01-12T07:47:58.600089+00:00"
+  "token_expires_at": "2027-01-12T07:47:58.600089+00:00",
+  "experiment": {
+    "id": "property-format-20261118",
+    "operations": {},
+    "baseline": {
+      "as_of": "2026-11-17T01:14:53.199346+00:00",
+      "reach": null,
+      "average_watch_seconds": null,
+      "profile_visits": null,
+      "website_clicks": null,
+      "enquiries": null,
+      "note": "Insights unavailable; missing is not zero. Compare per-post age and medians; not a randomized causal test."
+    }
+  }
 }

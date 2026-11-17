@@ -1,0 +1,356 @@
+[
+  {
+    "id": "foretseine",
+    "name": "Foretseine Akasaka Hinokizaka",
+    "region": "AKASAKA, MINATO-KU · TOKYO",
+    "facts": "155.37 m² · 3LDK · 3F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/foretseine-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/foretseine/0.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/approach.webp",
+        "sha256": "8c49513e7a1aa498a6f43b91ae848ea80cf6137360f8f3bf5a782286a93e0311"
+      },
+      {
+        "file": "experiment-assets/foretseine/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/exterior.webp",
+        "sha256": "fd73fdda77c9f8984a8e30479862d09db3e36a477bef83014dd073a262ee78c3"
+      },
+      {
+        "file": "experiment-assets/foretseine/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/entrance.webp",
+        "sha256": "3917a9e82a87452573f819b2d2362c8bb241d1d6d66459e11d63ac180c247c3d"
+      },
+      {
+        "file": "experiment-assets/foretseine/3.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/lounge.webp",
+        "sha256": "3640dc159e770296b48575bc96993bd28a10a786691ffc67dc25f857e3111694"
+      },
+      {
+        "file": "experiment-assets/foretseine/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/hall.webp",
+        "sha256": "a66bcef6a25ca931c31398354f75f796ec12b819e445e9cf2aba55f29d745b18"
+      },
+      {
+        "file": "experiment-assets/foretseine/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/shoes.webp",
+        "sha256": "4a8aeb5a5bd810f487c647bb5cd1cfd5f2dd1c556b1c2673075df5372024e986"
+      },
+      {
+        "file": "experiment-assets/foretseine/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/bedroom.webp",
+        "sha256": "4947250b7b036a3759154943ca455eccb11d903f21d5d3647031607fc4ceae9e"
+      },
+      {
+        "file": "experiment-assets/foretseine/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/room.webp",
+        "sha256": "b0ed9426f052959e617e23e07136d83734b6c3464921144789ce012615bb7e80"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  },
+  {
+    "id": "proud",
+    "name": "PROUD Jingumae",
+    "region": "JINGUMAE, SHIBUYA-KU · TOKYO",
+    "facts": "150.20 m² · 3LDK · 4F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/proud-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/proud/0.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/living.webp",
+        "sha256": "91f4c6f5a409ffe5a8ff5f45e13f4fe217c2b3d2bae9c7abd31ec8a6cf3bf50f"
+      },
+      {
+        "file": "experiment-assets/proud/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/windows.webp",
+        "sha256": "bd55e0241a17e47c296864ac30c4b3db62a8184f9acf1ac09639587f779cea1a"
+      },
+      {
+        "file": "experiment-assets/proud/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/dining.webp",
+        "sha256": "926f21ba80a85cd1bb303898990e2154a28a0045bc606f69caf6d9631f9e3ac9"
+      },
+      {
+        "file": "experiment-assets/proud/3.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/kitchen.webp",
+        "sha256": "094ba96c01d3898f10a8c3fdd850df02be51a4613de06727b651e4d45472f2bb"
+      },
+      {
+        "file": "experiment-assets/proud/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/counter.webp",
+        "sha256": "c7b3e11eda6b3f4b0c29d748bd8cf8bfa38fb71f547651e8a0054062cf46e9a1"
+      },
+      {
+        "file": "experiment-assets/proud/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/lounge.webp",
+        "sha256": "74260e8565c1585c227bef6b4f039d6af8b6d0b2277d6bd8df002d0f2e2294bb"
+      },
+      {
+        "file": "experiment-assets/proud/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/vanity.webp",
+        "sha256": "10d68a36c8df1c7165a407f090ab9585c94877b9c0660ab97a206bd81db8b534"
+      },
+      {
+        "file": "experiment-assets/proud/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/proud/hall.webp",
+        "sha256": "95da1219a92adb31ee5f19afafe2aa1b95a26b9c1d0f609f8120a91d974fcd4a"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  },
+  {
+    "id": "city-tower",
+    "name": "City Tower Takanawa",
+    "region": "TAKANAWA, MINATO-KU · TOKYO",
+    "facts": "226.12 m² · 5LDK · 34F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/city-tower-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/city-tower/0.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/living.webp",
+        "sha256": "86101a389529af9ed021af28fc15acb735358ebbd2b8827b5d5878a5b8dc0d04"
+      },
+      {
+        "file": "experiment-assets/city-tower/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/tatami-view.webp",
+        "sha256": "6368bea190f6916732739aad39f5c126610cf6b2ebb57608804ebd06d11ece48"
+      },
+      {
+        "file": "experiment-assets/city-tower/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/kitchen.webp",
+        "sha256": "fd2ac70c2ea856715e288bd891a6b41e6196f6f5c4926d829ff33d291ce75208"
+      },
+      {
+        "file": "experiment-assets/city-tower/3.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/living-storage.webp",
+        "sha256": "d63e7e999f63fac3f0c57d27ab30e451104b762cc780a2c75338d63f2be45212"
+      },
+      {
+        "file": "experiment-assets/city-tower/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/tatami.webp",
+        "sha256": "023c7a08434e57b7b959ac4a88616a8b1145d2d4eb1fafde3357ed520925470e"
+      },
+      {
+        "file": "experiment-assets/city-tower/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/vanity.webp",
+        "sha256": "65e9741620329d559fbf7e81fc9120aadd7c24abf2ecbdc173f67503f7c4a525"
+      },
+      {
+        "file": "experiment-assets/city-tower/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/bath.webp",
+        "sha256": "70a631d61185c2ead6f8edf7c6c7d33c993bf6b57810c04607fc5d38577d8ae3"
+      },
+      {
+        "file": "experiment-assets/city-tower/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/hall.webp",
+        "sha256": "a198b7e088b72f5161f41ba875fd8ddba0cd2498283835149209cea17303b638"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  },
+  {
+    "id": "classy",
+    "name": "Classy House Takanawa",
+    "region": "TAKANAWA, MINATO-KU · TOKYO",
+    "facts": "161.76 m² · 3LDK · 4F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/classy-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/classy/0.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/living.webp",
+        "sha256": "ffd20dfb0c08f13f9954871767310f433a8a190accf441adb55a399feb99eb91"
+      },
+      {
+        "file": "experiment-assets/classy/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/living-light.webp",
+        "sha256": "3c9e49febc3e8b7107ec35468ee9c60b0a789a1eb782d703afcd2fc3be5f1a36"
+      },
+      {
+        "file": "experiment-assets/classy/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/kitchen.webp",
+        "sha256": "9dcad1277ed9fd5d3fa23da2de19a49a801838206a197a71da8945ab88643f3f"
+      },
+      {
+        "file": "experiment-assets/classy/3.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/hall.webp",
+        "sha256": "276508539b6b9da2ead00df956eef4e4912a31eca65ff9a693ef7a22c8f43e80"
+      },
+      {
+        "file": "experiment-assets/classy/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/entrance.webp",
+        "sha256": "a1ba93aec70b8200739e6c9bb80708906313ab5dde0465388ab6b078b9c39234"
+      },
+      {
+        "file": "experiment-assets/classy/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/shoes.webp",
+        "sha256": "9aa89c9b8112aeb8633817162a82cd178198ab50d34240392c50d6728b48cb23"
+      },
+      {
+        "file": "experiment-assets/classy/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/bedroom.webp",
+        "sha256": "fb5658e4da8709792a76e06dedd9fd85f492ec4fa7a7cb77d4458dbd45cae619"
+      },
+      {
+        "file": "experiment-assets/classy/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/classy/vanity.webp",
+        "sha256": "d2ba043988c56214b24eba744e56e5c2272aec8e3aff4d09aad2c310ba0032c5"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  },
+  {
+    "id": "branz",
+    "name": "BRANZ The House Ichibancho",
+    "region": "ICHIBANCHO, CHIYODA-KU · TOKYO",
+    "facts": "149.91 m² · 3LDK · 11F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/branz-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/branz/0.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06765.webp",
+        "sha256": "1a21cfee5243302f3bf835ce5f7d17468316be9d9d425edb636f6f36aa112985"
+      },
+      {
+        "file": "experiment-assets/branz/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06739.webp",
+        "sha256": "25c8ef0a643d31b4b385a4ed97e9a706afdb81cb4a437b1a798cbc044af84434"
+      },
+      {
+        "file": "experiment-assets/branz/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06740.webp",
+        "sha256": "019e210f7ea2dc4cc275ea5008ff60ef65bf8596282b521bc9eb9009a298b245"
+      },
+      {
+        "file": "experiment-assets/branz/3.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06732.webp",
+        "sha256": "71b7c691b7c69e289310a262c0d76eadede910e70b2dcde8c37d86bade46337c"
+      },
+      {
+        "file": "experiment-assets/branz/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06733.webp",
+        "sha256": "198b853167a6eb12ad40b2210e58e367d78c1593453e3f43c5e3b6d105311dba"
+      },
+      {
+        "file": "experiment-assets/branz/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06738.webp",
+        "sha256": "b25a7691f6daf9ece120092f895a88f9a28a77b51efb024810c08d256ecf35af"
+      },
+      {
+        "file": "experiment-assets/branz/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06762.webp",
+        "sha256": "d71549febd1e90ee0f5fe9d00675f9f110cf326177ef97238bc1ed35368a1ee9"
+      },
+      {
+        "file": "experiment-assets/branz/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06795.webp",
+        "sha256": "19d499b3c273faee0d8bdbdb2325fd9085608aad13a00def740423df095c6169"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  },
+  {
+    "id": "ichibancho",
+    "name": "Park Court Ichibancho",
+    "region": "ICHIBANCHO, CHIYODA-KU · TOKYO",
+    "facts": "113.84 m² · 3LDK · 6F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/ichibancho-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/ichibancho/0.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/living.webp",
+        "sha256": "24da560178c68709ee4c278f9b8d48cfa494dd17006e9ac9adfaab7ebf2a0ecf"
+      },
+      {
+        "file": "experiment-assets/ichibancho/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/exterior.webp",
+        "sha256": "c94cb0bc950f9a4f775b3da75403c8b8177d38a1347b455e46a777eb5690b029"
+      },
+      {
+        "file": "experiment-assets/ichibancho/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/entrance.webp",
+        "sha256": "4d507f5d13cff9996aec2a50205b48915f7ee2f722d9291b853fb1c096a9c615"
+      },
+      {
+        "file": "experiment-assets/ichibancho/3.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/living-wide.webp",
+        "sha256": "c4845e5f2780b701716beb745e9ce0ee4eb67e02048f88036277abbcf7649f5c"
+      },
+      {
+        "file": "experiment-assets/ichibancho/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/dining.webp",
+        "sha256": "141cfff1ea34fa1500b46303d61ecf130d7f0b04d19fc5e81ce7ae7a93e5abbc"
+      },
+      {
+        "file": "experiment-assets/ichibancho/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/kitchen.webp",
+        "sha256": "07f7ecc1c5cbdc55b167690cdc4093c76bfbbf5c8047337ebdd8e20f66e0dde6"
+      },
+      {
+        "file": "experiment-assets/ichibancho/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/washroom.webp",
+        "sha256": "87add7c339cf089e10b06bade4fd014da3590c42f14603ea45cb773fc753b28c"
+      },
+      {
+        "file": "experiment-assets/ichibancho/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/bath.webp",
+        "sha256": "a80003caf0daec35d0ae30567ec2ebc8111e7b6e911d74c13b05dab8a2b79061"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  },
+  {
+    "id": "mita",
+    "name": "The Parkhouse Mita Tower",
+    "region": "MITA, MINATO-KU · TOKYO",
+    "facts": "102.73 m² · 2LDK · 23F",
+    "source_url": "https://rideestate.rusticdove4.chatgpt.site/mita-en.html",
+    "checked_at": "2026-11-17",
+    "photos": [
+      {
+        "file": "experiment-assets/mita/1.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/view-north.webp",
+        "sha256": "c0e968bd66db9438ef5c651db0c39822deb83dd241674cd6e2ea04f4f21508d7"
+      },
+      {
+        "file": "experiment-assets/mita/2.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/exterior-tower.webp",
+        "sha256": "fcd9cb9e4eb61200771d6c80016e1f0028d3c6bcba81515e7a08de9c5285997a"
+      },
+      {
+        "file": "experiment-assets/mita/4.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/bathroom.webp",
+        "sha256": "c294b2a990b02cc200bcc2133b25670eb9c11b618d66c0f9aef44bf31df4849a"
+      },
+      {
+        "file": "experiment-assets/mita/5.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/washroom.webp",
+        "sha256": "eff202e03013f8e3daeb0e64e8f9d5a2115df7d9cdf510cea20e6803b4988bc2"
+      },
+      {
+        "file": "experiment-assets/mita/6.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/laundry.webp",
+        "sha256": "effabbbb631ee1180ffb8fba826383ae960e34367167b03c46100b91c4635c9b"
+      },
+      {
+        "file": "experiment-assets/mita/7.jpg",
+        "source_url": "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/view-west.webp",
+        "sha256": "a53457eedf1becfb3bc15c7104fdadf32ff097862b4df52fafc61f981e8674b7"
+      }
+    ],
+    "availability": "unconfirmed",
+    "price_used": false
+  }
+]
