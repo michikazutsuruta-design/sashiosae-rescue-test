@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-18",
+  "property_id": "foretseine",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/foretseine-en.html",
+  "photos": [
+    "0.jpg",
+    "1.jpg",
+    "2.jpg",
+    "3.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/approach.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/exterior.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/entrance.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/foretseine/lounge.webp"
+  ],
+  "format": "reel"
+}
