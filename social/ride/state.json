@@ -376,6 +376,10 @@
       "edit/2026-11-19": {
         "status": "complete",
         "day": "2026-11-19"
+      },
+      "delete/6afa626b8e87c256a3a6241d": {
+        "status": "attempting",
+        "day": "2026-11-20"
       }
     },
     "baseline": {
