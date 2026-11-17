@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-21",
+  "property_id": "classy",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/classy-en.html",
+  "photos": [
+    "0.jpg",
+    "1.jpg",
+    "2.jpg",
+    "3.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/classy/living.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/classy/living-light.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/classy/kitchen.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/classy/hall.webp"
+  ],
+  "format": "reel"
+}
