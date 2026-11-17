@@ -269,11 +269,17 @@
     "2026-11-18/post/instagram": {
       "id": "6af7bb0981e1228421d75875",
       "status": "scheduled",
-      "dueAt": "2026-11-18T13:00:00+00:00",
-      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/bd3cf2b90c240bf57a033077f425317216a5d0f6/social/ride/2026-11-18-post/photo-first.jpg",
-      "caption": "Maximize natural light and enjoy skyline views. How do these elements enhance your living space?\n\n善用自然光同天際線景觀。呢啲元素點樣提升你嘅生活空間？\n\nRE/MAX RIDE | Ride Estate Co., Ltd.\nOfficial website / 官方網站: https://tinyurl.com/RIDEESTATE\n\nProperty photographs; current availability on enquiry.\n物業實景照片，最新放售情況請查詢。",
-      "visual_version": "photo-first-editorial-v3-history",
-      "url": null
+      "dueAt": "2026-11-18T07:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/77623ebcfe4a346d7d0f2cc8ad3a83b11aec5801/social/ride/experiment-media/2026-11-18/reel.mp4",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/77623ebcfe4a346d7d0f2cc8ad3a83b11aec5801/social/ride/experiment-media/2026-11-18/reel.mp4"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/77623ebcfe4a346d7d0f2cc8ad3a83b11aec5801/social/ride/experiment-media/2026-11-18/poster.jpg",
+      "caption": "Foretseine Akasaka Hinokizaka | 155.37 m² · 3LDK · 3F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n唔止睇物業相。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "foretseine",
+      "format": "reel",
+      "experiment_version": "single-property-experiment-v1"
     },
     "2026-11-14/post/threads": {
       "status": "published",
@@ -355,7 +361,7 @@
         "day": "2026-11-18"
       },
       "edit/2026-11-18": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-18"
       }
     },
