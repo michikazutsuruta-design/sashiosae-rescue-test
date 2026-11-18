@@ -359,6 +359,21 @@
       "container_id": "17902529892675007",
       "id": "18195326494404429",
       "url": "https://www.threads.com/@rideestate/post/Df2ItB1llNB"
+    },
+    "2026-11-22/post/instagram": {
+      "id": "6afd046493fa11d37dfb50a0",
+      "status": "scheduled",
+      "dueAt": "2026-11-22T07:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/7e577dcd50e82139e346c79b57710e16b749074f/social/ride/experiment-media/2026-11-22/reel.mp4",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/7e577dcd50e82139e346c79b57710e16b749074f/social/ride/experiment-media/2026-11-22/reel.mp4"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/7e577dcd50e82139e346c79b57710e16b749074f/social/ride/experiment-media/2026-11-22/poster.jpg",
+      "caption": "BRANZ The House Ichibancho | 149.91 m² · 3LDK · 11F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n揀之前，睇清楚。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "branz",
+      "format": "reel",
+      "experiment_version": "single-property-experiment-v1"
     }
   },
   "history": [
@@ -419,7 +434,7 @@
         "day": "2026-11-21"
       },
       "create/2026-11-22": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-22"
       }
     },
