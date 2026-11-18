@@ -288,10 +288,10 @@
       "url": "https://www.threads.com/@sashiosae_rescue/post/Df14zG9lqeX"
     },
     "2026-11-18/reel/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6af90a8db9a106584c7e301d",
       "dueAt": "2026-11-18T06:00:00+00:00",
-      "url": null
+      "url": "https://www.instagram.com/reel/Df30EfeFbyi/"
     },
     "2026-11-18/post/instagram": {
       "status": "scheduled",
@@ -341,5 +341,5 @@
     "これからの暮らしで大切にしたいことを考えてみませんか。住まいの悩みと合わせて、ご自身の希望も手元に書き留めておくと、相談で話したいことが見えてきます。",
     "家のことで悩んでいること、まずはメモしてみましょう。どんな小さなことでも構いません。後で見直すと気づきがあるかもしれません。"
   ],
-  "last_check": "2026-11-17T13:49:00.414688+00:00"
+  "last_check": "2026-11-18T07:51:00.078251+00:00"
 }
