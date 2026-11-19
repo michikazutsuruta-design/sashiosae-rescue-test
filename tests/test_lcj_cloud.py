@@ -8,6 +8,18 @@ spec=importlib.util.spec_from_file_location('lcj',SOURCE)
 lcj=importlib.util.module_from_spec(spec);spec.loader.exec_module(lcj)
 
 class Safeguards(unittest.TestCase):
+    def test_photo_selection_prefers_theme_without_cross_platform_repeats(self):
+        photo = {'file':'station.jpg','source':'https://example.com/station','tag':'rail'}
+        duplicate = dict(photo,file='station-crop.jpg')
+        fallback = {'file':'garden.jpg','source':'https://example.com/garden','tag':'garden'}
+        library = [fallback,photo,duplicate]
+        self.assertEqual(lcj.choose_photo(library,{},('rail',)),photo)
+        journal = {'2026-11-19/instagram':photo | {'photo':photo['file'],'status':'sent'}}
+        self.assertEqual(lcj.choose_photo(library,journal,('rail',),planned=duplicate),fallback)
+        journal['2026-11-19/threads'] = {'photo':'earlier.jpg','additional_sources':[fallback['source']+'/']}
+        with self.assertRaisesRegex(RuntimeError,'all are already used'):
+            lcj.choose_photo(library,journal,('rail',))
+
     def test_due_window_jst(self):
         for hour,expected in [(4,False),(5,True),(14,True),(15,False),(23,False)]:
             self.assertEqual(lcj.due(dt.datetime(2026,11,13,hour,tzinfo=dt.timezone.utc)),expected)

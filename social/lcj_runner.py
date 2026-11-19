@@ -82,16 +82,36 @@ def accounts(state,now):
 def due(now): return 14<=now.astimezone(JST).hour<24
 
 def media(state):
-    pack=load(BASE/'media-metadata.json',None)
-    if not pack or len(pack)<3: raise RuntimeError('Need at least three licensed photo designs')
+    pack=load(BASE/'photo-library.json',[])
+    if not pack: raise RuntimeError('No reviewed photos available')
     for item in pack:
-        if not item.get('source') or item.get('license')!='https://unsplash.com/license':
+        if (not item.get('source') or not item.get('author') or not item.get('checked_at')
+            or item.get('license')!='https://unsplash.com/license'
+            or not item.get('commercial_use') or not item.get('modification_allowed')):
             raise RuntimeError('Missing licensed source')
         path=BASE/'media'/item['file']
-        path.parent.mkdir(parents=True,exist_ok=True)
-        if not path.exists(): path.write_bytes(base64.b64decode(item['base64'],validate=True))
-    persist(state)
+        if path.name!=item['file'] or not path.is_file():
+            raise RuntimeError('Reviewed photo missing: '+item['file'])
     return pack
+
+def choose_photo(pack, journal, preferred_tags, planned=None):
+    used_files={entry.get('photo') for entry in journal.values()}
+    used_sources={entry.get('source', '').rstrip('/') for entry in journal.values()}
+    used_sources.update(
+        source.rstrip('/') for entry in journal.values()
+        for source in entry.get('additional_sources', [])
+    )
+    def available(photo):
+        sources=[photo['source'], *photo.get('additional_sources', [])]
+        return photo['file'] not in used_files and not any(
+            source.rstrip('/') in used_sources for source in sources
+        )
+    if planned and available(planned):
+        return planned
+    unused=[photo for photo in pack if available(photo)]
+    if not unused:
+        raise RuntimeError('Add reviewed photos before publishing; all are already used')
+    return next((photo for tag in preferred_tags for photo in unused if photo['tag']==tag), unused[0])
 
 def today_posts(platform,token,owner,day):
     if platform=='instagram':
@@ -126,21 +146,25 @@ def publish_one(platform,token,owner,state,now,topics,pack):
     if entry and entry.get('status') in ('preparing','publishing','unknown'):
         raise RuntimeError('Uncertain previous mutation for '+key+'; no resend')
     if entry is None:
-        sent=[v for k,v in sorted(state['journal'].items()) if k.endswith('/'+platform) and v.get('photo')]
-        previous=sent[-1].get('photo') if sent else None
         offset=(day-dt.date(2026,11,12)).days
-        topic=topics[offset%len(topics)]
-        photo=pack[offset%len(pack)]
-        if photo['file']==previous: photo=next(p for p in pack if p['file']!=previous)
+        topic_index=offset%len(topics)
+        topic=topics[topic_index]
+        topic_tags=[
+            ('street','rail'), ('food','street'), ('garden','coast'),
+            ('rural','coast'), ('food','street'), ('street','rural'),
+            ('rail','street'), ('temple','garden'), ('rail','street'),
+            ('street','food'), ('street','rail'), ('winter','garden'),
+            ('rail','street'), ('rural','coast'),
+        ]
+        planned_media=None
         planned=load(BASE/'growth-plan.json',{}).get(day.isoformat(),{}).get(platform)
         if planned:
-            topic=planned['topic']; photo=planned['media']
-            if Path(photo['file']).name!=photo['file'] or not photo.get('commercial_use') or not photo.get('modification_allowed'):
-                raise RuntimeError('Unreviewed planned media')
-            if (Path(photo['file']).name!=photo['file'] or not photo.get('source')
-                or photo.get('license')!='https://unsplash.com/license'
-                or not photo.get('commercial_use') or not photo.get('modification_allowed')):
+            topic=planned['topic']; planned_media=planned['media']
+            if (Path(planned_media['file']).name!=planned_media['file'] or not planned_media.get('source')
+                or planned_media.get('license')!='https://unsplash.com/license'
+                or not planned_media.get('commercial_use') or not planned_media.get('modification_allowed')):
                 raise RuntimeError('Unverified planned media')
+        photo=choose_photo(pack,state['journal'],topic_tags[topic_index%len(topic_tags)],planned_media)
         video=photo['file'].endswith('.mp4')
         if video and platform!='instagram': raise RuntimeError('Video plan is Instagram only')
         url=f'https://raw.githubusercontent.com/{REPO}/main/social/lcj/media/'+photo['file']
@@ -150,6 +174,8 @@ def publish_one(platform,token,owner,state,now,topics,pack):
         text=caption(topic,platform,day)
         entry={'status':'preparing','text':text,'photo':photo['file'],'source':photo['source'],
                'started_at':now.isoformat()}
+        if photo.get('additional_sources'):
+            entry['additional_sources']=photo['additional_sources']
         state['journal'][key]=entry;persist(state)
         try:
             if platform=='instagram':
