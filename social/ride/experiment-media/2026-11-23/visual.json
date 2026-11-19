@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-23",
+  "property_id": "ichibancho",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/ichibancho-en.html",
+  "photos": [
+    "0.jpg",
+    "1.jpg",
+    "2.jpg",
+    "3.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/living.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/exterior.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/entrance.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/ichibancho/living-wide.webp"
+  ],
+  "format": "reel"
+}
