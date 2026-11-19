@@ -443,6 +443,10 @@
       "create/2026-11-22": {
         "status": "complete",
         "day": "2026-11-22"
+      },
+      "create/2026-11-23": {
+        "status": "attempting",
+        "day": "2026-11-23"
       }
     },
     "baseline": {
