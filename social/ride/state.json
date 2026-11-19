@@ -396,6 +396,10 @@
       "property_id": "ichibancho",
       "format": "reel",
       "experiment_version": "single-property-experiment-v1"
+    },
+    "2026-11-19/post/threads": {
+      "status": "attempting",
+      "dueAt": "2026-11-19T13:00:00+00:00"
     }
   },
   "history": [
