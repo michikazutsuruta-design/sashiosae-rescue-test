@@ -1,0 +1,211 @@
+[
+  {
+    "file": "lcj-kanazawa-garden.jpg",
+    "tag": "garden",
+    "source": "https://unsplash.com/photos/a-garden-with-a-pond-and-stepping-stones-jsgKbIounRw",
+    "author": "Ronin",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kamakura-coast.jpg",
+    "tag": "coast",
+    "source": "https://unsplash.com/photos/beach-town-with-mount-fuji-in-the-distance-Y9jjsU3VkFc",
+    "author": "Cuvii",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-temple-steps.jpg",
+    "tag": "temple",
+    "source": "https://unsplash.com/photos/stone-steps-lead-up-to-a-temple-amidst-autumn-foliage-lBGabTPb4TI",
+    "author": "Hat Trick",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-moss-garden.jpg",
+    "tag": "garden",
+    "source": "https://unsplash.com/photos/autumn-leaves-frame-a-tranquil-japanese-garden-path-ifMuRfPU6qE",
+    "author": "Hat Trick",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-aichi-rice-terraces.jpg",
+    "tag": "rural",
+    "source": "https://unsplash.com/photos/terraced-rice-fields-in-a-lush-green-valley-h8y4x_NE0GU",
+    "author": "Sebastian S",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-yamagata-coast.jpg",
+    "tag": "coast",
+    "source": "https://unsplash.com/photos/coastal-village-nestled-between-green-hills-and-the-sea-JQ1wQMMPajo",
+    "author": "Sebastian S",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-japan-food-stall.jpg",
+    "tag": "food",
+    "source": "https://unsplash.com/photos/people-sitting-in-food-stall-DYI2AIZj2r8",
+    "author": "Amos Lee",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-lantern-alley.jpg",
+    "tag": "food",
+    "source": "https://unsplash.com/photos/japanese-lantern-over-city-bike-at-nighttime-oCZHIa1D4EU",
+    "author": "Jase Bloor",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-station.jpg",
+    "tag": "rail",
+    "source": "https://unsplash.com/photos/a-train-station-with-people-waiting-for-their-train-fqAcMnNpw0s",
+    "author": "Jason Low",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-arashiyama-platform.jpg",
+    "tag": "rail",
+    "source": "https://unsplash.com/photos/a-train-pulling-into-a-train-station-next-to-a-platform-j-kIvjlNhaY",
+    "author": "WANG Tianfang",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-japan-empty-platform.jpg",
+    "tag": "rail",
+    "source": "https://unsplash.com/photos/empty-railway-platform-in-a-city-OqI1U5y5SII",
+    "author": "realfish",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-neighborhood.jpg",
+    "tag": "street",
+    "source": "https://unsplash.com/photos/a-quiet-street-lined-with-houses-and-utility-poles-8ax2j-7KPpk",
+    "author": "Gavin Li",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-side-street.jpg",
+    "tag": "street",
+    "source": "https://unsplash.com/photos/a-narrow-street-in-japan-with-stop-sign-kFnbE8JpgLc",
+    "author": "Greg @greegorey",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-otaru-snowy-harbor.jpg",
+    "tag": "winter",
+    "source": "https://unsplash.com/photos/snowy-coastal-village-with-a-red-roofed-lighthouse-JaFHVBtbEoM/",
+    "author": "Cuvii",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-winter-mountain-village.jpg",
+    "tag": "winter",
+    "source": "https://unsplash.com/photos/a-snow-covered-village-nestled-in-a-valley-surrounded-by-mountains-nnRLVn3tjFg",
+    "author": "Noah Nothman",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-hillside-village.jpg",
+    "tag": "rural",
+    "source": "https://unsplash.com/photos/japanese-village-nestled-among-autumn-trees-and-hills-QbXnV2J63_k",
+    "author": "Kate Kasiutich",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-japan-rice-field.jpg",
+    "tag": "rural",
+    "source": "https://unsplash.com/photos/rice-field-Zy1E-DcH0uk",
+    "author": "Antonia Kampa",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-autumn-lane.jpg",
+    "tag": "garden",
+    "source": "https://unsplash.com/photos/a-path-lined-with-trees-displaying-vibrant-autumn-colors-G9hgcIOT-Xk",
+    "author": "Hat Trick",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  },
+  {
+    "file": "lcj-kyoto-garden-stones.jpg",
+    "tag": "temple",
+    "source": "https://unsplash.com/photos/stone-path-through-a-japanese-garden-in-autumn-qXKaDB0H1hI",
+    "author": "Hat Trick",
+    "license": "https://unsplash.com/license",
+    "checked_at": "2026-11-18",
+    "commercial_use": true,
+    "modification_allowed": true,
+    "attribution_required": false
+  }
+]
