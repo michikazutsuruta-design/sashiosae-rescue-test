@@ -381,6 +381,21 @@
       "container_id": "17902670463675007",
       "id": "18103771226558218",
       "url": "https://www.threads.com/@rideestate/post/Df4tY40m7YC"
+    },
+    "2026-11-23/post/instagram": {
+      "id": "6afe553ff6b6aa0cd4928690",
+      "status": "scheduled",
+      "dueAt": "2026-11-23T07:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/c5c0583fba9d361ab50399c37589da3f6348efff/social/ride/experiment-media/2026-11-23/reel.mp4",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/c5c0583fba9d361ab50399c37589da3f6348efff/social/ride/experiment-media/2026-11-23/reel.mp4"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/c5c0583fba9d361ab50399c37589da3f6348efff/social/ride/experiment-media/2026-11-23/poster.jpg",
+      "caption": "Park Court Ichibancho | 113.84 m² · 3LDK · 6F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n諗吓你嘅日常。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "ichibancho",
+      "format": "reel",
+      "experiment_version": "single-property-experiment-v1"
     }
   },
   "history": [
@@ -445,7 +460,7 @@
         "day": "2026-11-22"
       },
       "create/2026-11-23": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-23"
       }
     },
