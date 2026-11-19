@@ -306,16 +306,16 @@
       "url": "https://www.threads.com/@sashiosae_rescue/post/Df4draBEW0p"
     },
     "2026-11-19/post/instagram": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6afa5f9aff465c57dac65ab9",
       "dueAt": "2026-11-19T12:00:00.000Z",
-      "url": null
+      "url": "https://www.instagram.com/p/Df7CaHQFYeA/"
     },
     "2026-11-19/post/threads": {
-      "status": "scheduled",
+      "status": "sent",
       "id": "6afa5f9d60a910801c5f7627",
       "dueAt": "2026-11-19T12:00:00.000Z",
-      "url": null
+      "url": "https://www.threads.com/@sashiosae_rescue/post/Df7CbMLIaXH"
     }
   },
   "history": [
@@ -341,5 +341,5 @@
     "これからの暮らしで大切にしたいことを考えてみませんか。住まいの悩みと合わせて、ご自身の希望も手元に書き留めておくと、相談で話したいことが見えてきます。",
     "家のことで悩んでいること、まずはメモしてみましょう。どんな小さなことでも構いません。後で見直すと気づきがあるかもしれません。"
   ],
-  "last_check": "2026-11-19T08:02:09.725051+00:00"
+  "last_check": "2026-11-19T13:55:53.297376+00:00"
 }
