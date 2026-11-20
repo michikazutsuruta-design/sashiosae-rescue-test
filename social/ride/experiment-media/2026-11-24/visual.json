@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-24",
+  "property_id": "mita",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/mita-en.html",
+  "photos": [
+    "1.jpg",
+    "2.jpg",
+    "4.jpg",
+    "5.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/view-north.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/exterior-tower.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/bathroom.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/mita-added/washroom.webp"
+  ],
+  "format": "carousel"
+}
