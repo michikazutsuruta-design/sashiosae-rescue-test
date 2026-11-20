@@ -325,9 +325,9 @@
     },
     "2026-11-20/post/instagram": {
       "id": "6afa6270ff465c57dac705d7",
-      "status": "scheduled",
+      "status": "sent",
       "dueAt": "2026-11-20T07:00:00.000Z",
-      "url": null,
+      "url": "https://www.instagram.com/reel/Df9Epm-D986/",
       "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/a2bab09686c2199066d50fc20b434972ba514a54/social/ride/experiment-media/2026-11-20/reel.mp4",
       "assets": [
         "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/a2bab09686c2199066d50fc20b434972ba514a54/social/ride/experiment-media/2026-11-20/reel.mp4"
