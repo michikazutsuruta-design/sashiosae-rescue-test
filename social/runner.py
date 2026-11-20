@@ -238,10 +238,43 @@ def generate(config, day, kind, history):
 def wrapped(text, limit):
     return '\n'.join(text[i:i+limit] for i in range(0,len(text),limit))
 
-VISUAL_VERSION = 'photo-editorial-v5'
+VISUAL_VERSION = 'mixed-editorial-v6'
 
-def render(content, folder, kind):
-    """Use reviewed finished photographic creatives without rebuilding their artwork."""
+def render_card(content, target, index):
+    from PIL import Image, ImageDraw, ImageFont
+
+    font_path = Path('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc')
+    if os.name == 'nt':
+        font_path = Path(os.environ['WINDIR']) / 'Fonts/meiryo.ttc'
+    label_font = ImageFont.truetype(str(font_path), 32)
+    title_font = ImageFont.truetype(str(font_path), 84)
+    body_font = ImageFont.truetype(str(font_path), 44)
+    background, ink, accent, label = (
+        ('#F5E9D9', '#292623', '#9A482C', '相談の前に'),
+        ('#132F3C', '#F5F5ED', '#9BD5C9', '住まいの相談メモ'),
+        ('#E4EBE0', '#22332A', '#496C59', '話すことを整理する'),
+    )[index]
+    image = Image.new('RGB', (1080, 1350), background)
+    draw = ImageDraw.Draw(image)
+    draw.text((96, 92), label, fill=accent, font=label_font)
+    draw.multiline_text((96, 220), wrapped(content['title'], 10), fill=ink, font=title_font, spacing=22)
+    draw.line((96, 526, 984, 526), fill=accent, width=4)
+    if index == 0:
+        draw.multiline_text((96, 607), wrapped(content['body'], 20), fill=ink, font=body_font, spacing=16)
+    else:
+        for row, slide in enumerate(content['slides'][1:3]):
+            y = 605 + row * 250
+            if index == 1:
+                draw.rounded_rectangle((96, y + 13, 126, y + 43), radius=5, outline=accent, width=3)
+            else:
+                draw.ellipse((100, y + 20, 120, y + 40), fill=accent)
+            draw.multiline_text((156, y), wrapped(slide, 18), fill=ink, font=body_font, spacing=14)
+    draw.line((96, 1159, 984, 1159), fill=accent, width=4)
+    draw.text((96, 1201), '差押えレスキュー  ／  公式サイトはプロフィールへ', fill=ink, font=label_font)
+    image.save(target)
+
+def render(content, folder, kind, day=None):
+    """Alternate photographic covers with topic-specific cards in the feed."""
     import shutil
     sources=[ROOT/'social/assets'/name for name in (
         'rescue-notice-v5.png','rescue-family-v5.png','rescue-home-v5.png')]
@@ -254,7 +287,14 @@ def render(content, folder, kind):
     else: selected=0
     if kind=='post':
         target=folder/'0.png'
-        shutil.copyfile(sources[selected],target)
+        if day is None:
+            shutil.copyfile(sources[selected], target)
+        else:
+            slot = day.toordinal() % 6
+            if slot % 2:
+                render_card(content, target, slot // 2)
+            else:
+                shutil.copyfile(sources[slot // 2], target)
         return target
     ordered=[sources[selected]]+[p for n,p in enumerate(sources) if n!=selected]
     command=['ffmpeg','-hide_banner','-loglevel','error','-y']
@@ -336,7 +376,7 @@ def run(monitor_only=False):
                 content_path.write_text(json.dumps(content,ensure_ascii=False,indent=2),encoding='utf-8')
                 state['history']=(state['history']+[content['body']])[-180:]
             folder=ROOT/'social/media'/f'{day}-{kind}'
-            media=render(content,folder,kind)
+            media=render(content,folder,kind,day)
             media_url=checkpoint_media(state,config,media)
             payload={'text':content['body']+'\n\n'+FOOTER,'channelId':config[service],
                 'assets':[{('video' if kind=='reel' else 'image'):{'url':media_url}}],
