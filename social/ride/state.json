@@ -421,6 +421,10 @@
       "property_id": "mita",
       "format": "carousel",
       "experiment_version": "single-property-experiment-v1"
+    },
+    "2026-11-20/post/threads": {
+      "status": "attempting",
+      "dueAt": "2026-11-20T13:00:00+00:00"
     }
   },
   "history": [
