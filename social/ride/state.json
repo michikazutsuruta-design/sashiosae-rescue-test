@@ -498,6 +498,10 @@
       "create/2026-11-24": {
         "status": "complete",
         "day": "2026-11-24"
+      },
+      "create/2026-11-25": {
+        "status": "attempting",
+        "day": "2026-11-25"
       }
     },
     "baseline": {
