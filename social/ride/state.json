@@ -428,6 +428,21 @@
       "container_id": "17902949433675007",
       "id": "18122618738107210",
       "url": "https://www.threads.com/@rideestate/post/Df93BZjm1iF"
+    },
+    "2026-11-25/post/instagram": {
+      "id": "6b00f79620a2d09a0ac5d826",
+      "status": "scheduled",
+      "dueAt": "2026-11-25T07:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/858542c2757c1da4789ab6ea0ac0cb432e7ae440/social/ride/experiment-media/2026-11-25/reel.mp4",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/858542c2757c1da4789ab6ea0ac0cb432e7ae440/social/ride/experiment-media/2026-11-25/reel.mp4"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/858542c2757c1da4789ab6ea0ac0cb432e7ae440/social/ride/experiment-media/2026-11-25/poster.jpg",
+      "caption": "Foretseine Akasaka Hinokizaka | 155.37 m² · 3LDK · 3F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n唔止睇物業相。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "foretseine",
+      "format": "reel",
+      "experiment_version": "single-property-experiment-v1"
     }
   },
   "history": [
@@ -500,7 +515,7 @@
         "day": "2026-11-24"
       },
       "create/2026-11-25": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-25"
       }
     },
