@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-26",
+  "property_id": "proud",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/proud-en.html",
+  "photos": [
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+    "7.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/counter.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/lounge.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/vanity.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/proud/hall.webp"
+  ],
+  "format": "reel"
+}
