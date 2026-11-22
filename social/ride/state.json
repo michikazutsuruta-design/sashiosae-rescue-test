@@ -450,6 +450,21 @@
       "container_id": "17903092836675007",
       "id": "18643201870001614",
       "url": "https://www.threads.com/@rideestate/post/DgAZgdulsGA"
+    },
+    "2026-11-26/post/instagram": {
+      "id": "6b0248c5d5eabfb8cc74f33c",
+      "status": "scheduled",
+      "dueAt": "2026-11-26T07:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/03cd06acb290e2f373a2b08e1752d71ffbf7e5d9/social/ride/experiment-media/2026-11-26/reel.mp4",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/03cd06acb290e2f373a2b08e1752d71ffbf7e5d9/social/ride/experiment-media/2026-11-26/reel.mp4"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/03cd06acb290e2f373a2b08e1752d71ffbf7e5d9/social/ride/experiment-media/2026-11-26/poster.jpg",
+      "caption": "PROUD Jingumae | 150.20 m² · 3LDK · 4F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n入面細節慢慢睇。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "proud",
+      "format": "reel",
+      "experiment_version": "single-property-experiment-v1"
     }
   },
   "history": [
@@ -526,7 +541,7 @@
         "day": "2026-11-25"
       },
       "create/2026-11-26": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-26"
       }
     },
