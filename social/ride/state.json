@@ -465,6 +465,10 @@
       "property_id": "proud",
       "format": "reel",
       "experiment_version": "single-property-experiment-v1"
+    },
+    "2026-11-22/post/threads": {
+      "status": "attempting",
+      "dueAt": "2026-11-22T13:00:00+00:00"
     }
   },
   "history": [
