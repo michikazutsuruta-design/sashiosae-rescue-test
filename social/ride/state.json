@@ -472,6 +472,24 @@
       "container_id": "17903248659675007",
       "id": "17957066805298779",
       "url": "https://www.threads.com/@rideestate/post/DgC-Ex7G41h"
+    },
+    "2026-11-27/post/instagram": {
+      "id": "6b039bf8d5eabfb8ccf73648",
+      "status": "scheduled",
+      "dueAt": "2026-11-27T13:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d6391cfe5581a7324c456e36fc86458e98803268/social/ride/experiment-media/2026-11-27/0.jpg",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d6391cfe5581a7324c456e36fc86458e98803268/social/ride/experiment-media/2026-11-27/0.jpg",
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d6391cfe5581a7324c456e36fc86458e98803268/social/ride/experiment-media/2026-11-27/1.jpg",
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d6391cfe5581a7324c456e36fc86458e98803268/social/ride/experiment-media/2026-11-27/2.jpg",
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d6391cfe5581a7324c456e36fc86458e98803268/social/ride/experiment-media/2026-11-27/3.jpg"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/d6391cfe5581a7324c456e36fc86458e98803268/social/ride/experiment-media/2026-11-27/poster.jpg",
+      "caption": "City Tower Takanawa | 226.12 m² · 5LDK · 34F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n你最重視邊個細節？。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "city-tower",
+      "format": "carousel",
+      "experiment_version": "single-property-experiment-v1"
     }
   },
   "history": [
@@ -552,7 +570,7 @@
         "day": "2026-11-26"
       },
       "create/2026-11-27": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-27"
       }
     },
