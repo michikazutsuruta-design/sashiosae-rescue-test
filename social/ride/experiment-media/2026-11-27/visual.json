@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-27",
+  "property_id": "city-tower",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/city-tower-en.html",
+  "photos": [
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+    "7.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/tatami.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/vanity.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/bath.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/city-tower/hall.webp"
+  ],
+  "format": "carousel"
+}
