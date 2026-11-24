@@ -497,6 +497,21 @@
       "container_id": "17903403621675007",
       "id": "18356775598267925",
       "url": "https://www.threads.com/@rideestate/post/DgFmQmfGxkl"
+    },
+    "2026-11-28/post/instagram": {
+      "id": "6b04ecca6734c08a26a19115",
+      "status": "scheduled",
+      "dueAt": "2026-11-28T07:00:00.000Z",
+      "url": null,
+      "media": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/9399f92353933db57f1109438808177e957f281a/social/ride/experiment-media/2026-11-28/reel.mp4",
+      "assets": [
+        "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/9399f92353933db57f1109438808177e957f281a/social/ride/experiment-media/2026-11-28/reel.mp4"
+      ],
+      "threads_image": "https://raw.githubusercontent.com/michikazutsuruta-design/sashiosae-rescue-test/9399f92353933db57f1109438808177e957f281a/social/ride/experiment-media/2026-11-28/poster.jpg",
+      "caption": "Classy House Takanawa | 161.76 m² · 3LDK · 4F. Source-listed details; confirm current conditions. Ask for the floor plan through our website.\n\n由空間開始睇。物業資料以網站記載為本，最新狀況請查詢。\n\nRE/MAX RIDE\nhttps://tinyurl.com/RIDEESTATE\nProperty photos; availability on enquiry.\n物業實景照片；最新放售情況請查詢。",
+      "property_id": "classy",
+      "format": "reel",
+      "experiment_version": "single-property-experiment-v1"
     }
   },
   "history": [
@@ -581,7 +596,7 @@
         "day": "2026-11-27"
       },
       "create/2026-11-28": {
-        "status": "attempting",
+        "status": "complete",
         "day": "2026-11-28"
       }
     },
