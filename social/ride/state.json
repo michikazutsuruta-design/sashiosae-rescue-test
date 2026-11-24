@@ -514,10 +514,11 @@
       "experiment_version": "single-property-experiment-v1"
     },
     "2026-11-24/post/threads": {
-      "status": "attempting",
+      "status": "published",
       "dueAt": "2026-11-24T13:00:00+00:00",
       "container_id": "17903532537675007",
-      "id": "18111306368245070"
+      "id": "18111306368245070",
+      "url": "https://www.threads.com/@rideestate/post/DgIKh4gm_oA"
     }
   },
   "history": [
