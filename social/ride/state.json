@@ -605,6 +605,10 @@
       "create/2026-11-28": {
         "status": "complete",
         "day": "2026-11-28"
+      },
+      "create/2026-11-29": {
+        "status": "attempting",
+        "day": "2026-11-29"
       }
     },
     "baseline": {
