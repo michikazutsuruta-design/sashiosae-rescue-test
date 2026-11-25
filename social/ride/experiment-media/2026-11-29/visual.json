@@ -1,0 +1,19 @@
+{
+  "version": "single-property-experiment-v1",
+  "scheduled_for": "2026-11-29",
+  "property_id": "branz",
+  "source_url": "https://rideestate.rusticdove4.chatgpt.site/branz-en.html",
+  "photos": [
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+    "7.jpg"
+  ],
+  "source_photos": [
+    "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06733.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06738.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06762.webp",
+    "https://rideestate.rusticdove4.chatgpt.site/assets/branz/DSC06795.webp"
+  ],
+  "format": "reel"
+}
