@@ -301,11 +301,12 @@
       "url": "https://www.instagram.com/p/DgMZki9kaq9/"
     },
     "2026-11-26/threads": {
-      "status": "preparing",
+      "status": "ready",
       "text": "Your first night in Japan needs an offline plan, not another screenshot of a skyline. Save your hotel name and address in Japanese, booking reference and check-in window in one note. Which arrival detail would you most want ready?\n\nFree 12-page Japan With Ease preview: https://littlecompassjapan.gumroad.com/l/japan-with-ease-free?utm_source=threads&utm_medium=social&utm_campaign=daily&utm_content=2026-11-26",
       "photo": "lcj-japan-food-stall.jpg",
       "source": "https://unsplash.com/photos/people-sitting-in-food-stall-DYI2AIZj2r8",
-      "started_at": "2026-11-26T05:53:32.574428+00:00"
+      "started_at": "2026-11-26T05:53:32.574428+00:00",
+      "container": "17881386006594615"
     }
   },
   "checked_at": "2026-11-26T05:53:32.574428+00:00",
